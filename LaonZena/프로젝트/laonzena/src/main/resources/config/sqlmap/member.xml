@@ -12,11 +12,12 @@
 		<result column="member_cell_no" property="memberCellNo" />
 		<result column="member_grade" property="memberGrade" />
 		<result column="member_login_date" property="memberLoginDate" />
+		<result column="member_email" property="memberEmail" />
 	</resultMap>
 	
 	<select id="selectMemberInfo" parameterType="Member" resultMap="memberMap">
 		select *
-		from tb_member
+		from lz_tb_member
 		where member_id = #{memberId}
 		  and member_pass = #{memberPass}
 	</select>

@@ -32,7 +32,7 @@ public class LoginController extends HttpServlet {
 		
 		LoginMapper mapper = MyAppSqlConfig.getSqlSessionInstance().getMapper(LoginMapper.class);
 		Member login = mapper.selectMemberInfo(member);
-		System.out.println(login.getMemberName());
+		System.out.println(login);
 		
 		if(login == null) {
 			System.out.println("로그인 실패");

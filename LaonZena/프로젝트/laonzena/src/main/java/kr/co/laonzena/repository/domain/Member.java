@@ -11,7 +11,14 @@ public class Member {
 	private int memberCellNo;
 	private String memberGrade;
 	private Date loginDate;
+	private String memberEmail;
 	
+	public String getMemberEmail() {
+		return memberEmail;
+	}
+	public void setMemberEmail(String memberEmail) {
+		this.memberEmail = memberEmail;
+	}
 	public int getMemberNo() {
 		return memberNo;
 	}

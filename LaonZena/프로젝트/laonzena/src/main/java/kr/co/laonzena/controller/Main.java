@@ -17,6 +17,4 @@ public class Main extends HttpServlet {
 		response.sendRedirect("/laonzena/jsp/main.html");
 	}
 	
-	
-
 }
