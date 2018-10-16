@@ -14,7 +14,7 @@ public class Main extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("main 요청 완료");
-		response.sendRedirect("/laonzena/jsp/main.jsp");
+		response.sendRedirect("/laonzena/jsp/main.html");
 	}
 	
 	
