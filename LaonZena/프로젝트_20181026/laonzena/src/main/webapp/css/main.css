@@ -1,0 +1,100 @@
+@charset "UTF-8";
+#title {
+	animation-name: myani;
+    animation-duration: 1.5s;
+    animation-timing-function: linear;
+    animation-iteration-count:infinite;
+    animation-direction:alternate-reverse;
+	text-align: center;
+}
+@keyframes myani {
+		0% {
+            color:green;
+        }
+        25% {
+			color:rgb(122, 233, 122);
+        }
+        50% {
+			color:rgba(255, 251, 7, 0.973);
+        }
+        75% {
+            color:rgb(247, 103, 146);
+        }
+        100% {
+            color:rgb(6, 225, 233);
+        }
+}
+
+body {
+	background-image: url("../img/main.jpg");
+
+}
+.banner {
+	margin:bottom;
+	background: yellow;
+	height: 500px;
+	display: flex;
+}
+
+.banner__item {
+	flex: 1;
+	color: #fff;
+	font-weight: bold;
+	font-size: 2.5em;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: flex-grow .8s;
+}
+
+.banner__item:nth-child(1) {
+	background: url("https://t1.daumcdn.net/cfile/tistory/2674493557AA9E6F0B");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.banner__item:nth-child(2) {
+	background: url("http://www.sporbiz.co.kr/news/photo/201511/22757_32605_1648.jpg");
+	background-repeat : no-repeat;
+	background-size: cover;
+
+}
+
+.banner__item:nth-child(3) {
+	background: url("https://t1.daumcdn.net/cfile/tistory/2758C34C57B00F2C21");
+	background-repeat : no-repeat;
+	background-size: cover;
+}
+
+.banner__item:nth-child(4) {
+	background: url("https://pds.joins.com//news/component/htmlphoto_mmdata/201807/17/0872a69b-5d93-481f-be80-7cd1ea655805.jpg");
+	background-repeat : no-repeat;
+	background-size: cover;
+}
+
+.banner__item:nth-child(5) {
+/* 	background: url("http://jnbrand.co.kr/wordpress/wp-content/uploads/2017/11/%EC%9D%B4%EB%A7%88%ED%8A%B824%EC%BB%A8%EC%85%89%EC%83%B7.jpg"); */
+	background-repeat : no-repeat;
+	background-size: cover;
+ 	
+}
+
+.banner__item:hover {
+	flex-grow: 10;
+	
+}
+
+.banner__item:hover .banner__title {
+	font-size: 100px;
+	-webkit-transform: rotate(0);
+	transform: rotate(0);
+	animation-name: myani;
+    animation-duration: 1.5s;
+    animation-timing-function: linear;
+    animation-iteration-count:infinite;
+    animation-direction:alternate-reverse;
+}
+
+#spanlogo {
+	margin: 40%;
+}
