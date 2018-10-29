@@ -9,8 +9,39 @@
 
 </head>
 <body>
+
+	<!-- 메인 -->
+	<h1>
+		<a href="<c:url value="/main/main.do" />">index에서 메인 이동</a>
+	</h1>
 	
-	<a href="<c:url value="/main/main.do" />">index에서 메인 이동</a>
+	<!-- cu -->
+	<h1>
+		<a href="<c:url value="/cu/review/list.do" />">cu review 이동</a>
+	</h1>
+	
+	<!-- gs -->
+	<h1>
+		<a href="<c:url value="/gs/review/list.do" />">gs review 이동</a>
+	</h1>
+	
+	<!-- seven Eleven -->
+	<h1>
+		<a href="<c:url value="/seven/review/list.do" />">sevenreview 이동</a>
+	</h1>
+	
+	<!-- ministop -->
+	<h1>
+		<a href="<c:url value="/ministop/review/list.do" />">ministop review 이동</a>
+	</h1>
+	
+	<!-- emart -->
+	<h1>
+		<a href="<c:url value="/emart/review/list.do" />">emart review 이동</a>
+	</h1>
+	
+	
+	
 <!-- 	<script>location.href = "/main/main.do"</script> -->
 </body>
 </html>
