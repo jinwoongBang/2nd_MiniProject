@@ -11,4 +11,9 @@ public class LoginController {
 	public void loginForm() {
 		System.out.println("loginForm() invoked");
 	}
+	
+	@RequestMapping("/signinForm.do")
+	public void signinForm() {
+		System.out.println("signinForm() invoked");
+	}
 }
