@@ -6,11 +6,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 	<c:import url="/common/basicIncludeCss.jsp" />
 	<c:import url="/common/basicIncludeScript.jsp" />
 	<c:import url="/common/topMenu.jsp" />
-<!-- 	<link rel="stylesheet" href="/css/loginForm.css" /> -->
 	<style>
 		@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400");
 		@import url("https://fonts.googleapis.com/css?family=Playfair+Display");
@@ -22,40 +21,36 @@
 		}
 		
 		.container {
-		  width: 400px;
-		  height: 300px;
+		  width: 300px;
+		  height: 500px;
 		  background: white;
 		  position: relative;
 		  display: grid;
 		  grid-template: 100% / 50% 50%;
 		  box-shadow: 2px 2px 10px 0 rgba(51, 51, 51, 0.2);
-		  top:200px;
+		  top:130px;
 		  left:600px;
 		  border-radius:10px;
 		}
-		
-		.btn-wrapper {
-		  width: 60%;
-		}
-		
+
 		.form {
 		  width: 120%;
 		  height: 100%;
 		}
 		.form--heading {
 		  position:relative;
-		  left:80px;
+		  left: 50px;
 		  font-size: 18px;
 		  height: 50px;
 		  color: #809BCE;
 		  font-family: 'Playfair Display', serif;
+		  font-weight:bold;
 		}
 		
 		form {
 		  position:relative;
-		  left:80px;
-		  width: 100%;
-		  
+		  left: 50px;
+		  width: 120%;
 		}
 		form > * {
 		  margin: 10px;
@@ -92,6 +87,7 @@
 		  letter-spacing: 2px;
 		  background: linear-gradient(45deg, #809BCE, #9893DA);
 		  font-family: 'Playfair Display', serif;
+		  top:20px;
 		}
 		.button:hover {
 		  transform: translateY(4px);
@@ -103,19 +99,25 @@
 		    transform: scale(0.8);
 		  }
 		}
+			
 	</style>
 </head>
 <body>
-	<div class="container">
-		<div class="form form--login">
-			<div class="form--heading">Welcome LaonZena! </div>
-			<form autocomplete="off">
-				<input type="text" placeholder="ID">
-				<input type="password" placeholder="Password">
-				<button class="button">Login</button>
-			</form>
-		</div>
-	</div>
-</body>
+<div class="container">
+  <div class="form form--signup">
+    <div class="form--heading">Welcome! Sign Up</div>
+    <form autocomplete="off">
+      <input type="text" placeholder="ID">
+      <input type="text" placeholder="Name">
+      <input type="email" placeholder="Email">
+      <input type="password" placeholder="Password">
+      <input type="password" placeholder="Password Confirm">
+      <input type="text" placeholder="Address">
+      <input type="text" placeholder="CellPhone">
+      <button class="button">Sign Up</button>
+    </form>
+  </div>
+</div>
 
+</body>
 </html>
