@@ -184,3 +184,14 @@ body.okayNav-loaded {
 .okayNav__menu-toggle.icon--active span {
   background: #546edb;
 }
+.bottom-main {
+	background-color: white;
+	top:720px;
+}
+#topMenuList {
+	font-weight: bold;
+}
+a {
+	font-size: 15px;
+	margin:auto 10px;
+}
