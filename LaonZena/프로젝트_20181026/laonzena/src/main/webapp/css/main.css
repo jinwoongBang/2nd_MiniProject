@@ -5,7 +5,8 @@
     animation-timing-function: linear;
     animation-iteration-count:infinite;
     animation-direction:alternate-reverse;
-	text-align: center;
+	text-align: center;	
+    padding-top: 3em;
 }
 @keyframes myani {
 		0% {
@@ -73,7 +74,7 @@ body {
 }
 
 .banner__item:nth-child(5) {
-/* 	background: url("http://jnbrand.co.kr/wordpress/wp-content/uploads/2017/11/%EC%9D%B4%EB%A7%88%ED%8A%B824%EC%BB%A8%EC%85%89%EC%83%B7.jpg"); */
+	background: url("http://www.thinkfood.co.kr/news/photo/201708/76398_95497_582.jpg");
 	background-repeat : no-repeat;
 	background-size: cover;
  	
@@ -97,4 +98,10 @@ body {
 
 #spanlogo {
 	margin: 40%;
+}
+#search {
+	margin: auto 500px;
+}
+#searchbox {
+	width: 500px;
 }

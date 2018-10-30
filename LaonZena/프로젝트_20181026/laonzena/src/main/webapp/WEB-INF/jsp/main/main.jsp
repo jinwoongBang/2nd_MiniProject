@@ -11,7 +11,7 @@
 <c:import url="/common/basicIncludeScript.jsp" />
 <c:import url="/common/topMenu.jsp" />
 <!-- CSS -->
-<c:import url="/common/includeCss.jsp" />
+<%-- <c:import url="/common/includeCss.jsp" /> --%>
 <!-- JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.js"
 	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
@@ -21,7 +21,7 @@
 </head>
 <body>
 	<h1 id="title">
-		모두의<br>편의점
+		모두의  &nbsp; 편의점
 	</h1>
 	<div id="search">
 		<input id="searchbox" type="text" value="상품명을 입력하세요.">
@@ -101,133 +101,133 @@
 	</div>
 </body>
 <script>
-	$(".login-button").click(function() {
-		$(".login-button").fadeOut("slow", function() {
-			$("#container").fadeIn();
-			TweenMax.from("#container", .4, {
-				scale : 0,
-				ease : Sine.easeInOut
-			});
-			TweenMax.to("#container", .4, {
-				scale : 1,
-				ease : Sine.easeInOut
-			});
-			$(".banner").fadeOut("slow");
+// 	$(".login-button").click(function() {
+// 		$(".login-button").fadeOut("slow", function() {
+// 			$("#container").fadeIn();
+// 			TweenMax.from("#container", .4, {
+// 				scale : 0,
+// 				ease : Sine.easeInOut
+// 			});
+// 			TweenMax.to("#container", .4, {
+// 				scale : 1,
+// 				ease : Sine.easeInOut
+// 			});
+// 			$(".banner").fadeOut("slow");
 
-		});
-	});
+// 		});
+// 	});
 
-	$(".close-btn").click(
-			function() {
-				TweenMax.from("#container", .4, {
-					scale : 1,
-					ease : Sine.easeInOut
-				});
-				TweenMax.to("#container", .4, {
-					left : "0px",
-					scale : 0,
-					ease : Sine.easeInOut
-				});
-				$("#container, #forgotten-container, #sign-in-container")
-						.fadeOut(800, function() {
-							$(".login-button").fadeIn(800);
-							$(".banner").fadeIn();
-						});
-			});
+// 	$(".close-btn").click(
+// 			function() {
+// 				TweenMax.from("#container", .4, {
+// 					scale : 1,
+// 					ease : Sine.easeInOut
+// 				});
+// 				TweenMax.to("#container", .4, {
+// 					left : "0px",
+// 					scale : 0,
+// 					ease : Sine.easeInOut
+// 				});
+// 				$("#container, #forgotten-container, #sign-in-container")
+// 						.fadeOut(800, function() {
+// 							$(".login-button").fadeIn(800);
+// 							$(".banner").fadeIn();
+// 						});
+// 			});
 
-	/* Log-In */
-	$("#login").click(function() {
-		$.ajax({
-			url : "/laonzena/login/log-in.do",
-			type : "POST",
-			data : {
-				id : $("#log-in-id").val(),
-				pass : $("#log-in-pass").val()
-			},
-			beforeSend : function() {
-				if ($("#log-in-id").val() == "") {
-					alert("아이디를 입력하세요")
-					return false;
-				} else if ($("#log-in-pass").val() == "") {
-					alert("비밀번호를 입력하세요")
-					return false;
-				} else {
-					alert("로그인 성공");
-				}
-			}
-		})
-	})
+// 	/* Log-In */
+// 	$("#login").click(function() {
+// 		$.ajax({
+// 			url : "/laonzena/login/log-in.do",
+// 			type : "POST",
+// 			data : {
+// 				id : $("#log-in-id").val(),
+// 				pass : $("#log-in-pass").val()
+// 			},
+// 			beforeSend : function() {
+// 				if ($("#log-in-id").val() == "") {
+// 					alert("아이디를 입력하세요")
+// 					return false;
+// 				} else if ($("#log-in-pass").val() == "") {
+// 					alert("비밀번호를 입력하세요")
+// 					return false;
+// 				} else {
+// 					alert("로그인 성공");
+// 				}
+// 			}
+// 		})
+// 	})
 
-	/* Sign-In */
-	$('#sign-in').click(function() {
-		$("#container").fadeOut(function() {
-			$("#sign-in-container").fadeIn();
-		});
-	});
+// 	/* Sign-In */
+// 	$('#sign-in').click(function() {
+// 		$("#container").fadeOut(function() {
+// 			$("#sign-in-container").fadeIn();
+// 		});
+// 	});
 
-	/* Sign-In Success/Fail */
-	$("#createAccount").click(function() {
-		var info = {
-			"id" : $("#sign-in-id").val(),
-			"pass" : $("#sign-in-pass").val(),
-			"passC" : $("#sign-in-passC").val(),
-			"name" : $("#sign-in-name").val(),
-			"email" : $("#sign-in-email").val(),
-			"address" : $("#sign-in-address").val(),
-			"cellphone" : $("#sign-in-cellphone").val()
-		}
-		console.log(info.id);
-		console.log(info.pass);
-		console.log(info.passC);
-		console.log(info.name);
-		console.log(info.email);
-		console.log(info.address);
-		console.log(info.cellphone);
+// 	/* Sign-In Success/Fail */
+// 	$("#createAccount").click(function() {
+// 		var info = {
+// 			"id" : $("#sign-in-id").val(),
+// 			"pass" : $("#sign-in-pass").val(),
+// 			"passC" : $("#sign-in-passC").val(),
+// 			"name" : $("#sign-in-name").val(),
+// 			"email" : $("#sign-in-email").val(),
+// 			"address" : $("#sign-in-address").val(),
+// 			"cellphone" : $("#sign-in-cellphone").val()
+// 		}
+// 		console.log(info.id);
+// 		console.log(info.pass);
+// 		console.log(info.passC);
+// 		console.log(info.name);
+// 		console.log(info.email);
+// 		console.log(info.address);
+// 		console.log(info.cellphone);
 
-		if (info.id == "") {
-			alert("id를 입력해주세요");
-		} else if (info.pass == "") {
-			alert("비밀번호를 입력해주세요");
-		} else if (info.passC == "") {
-			alert("비밀번호 확인을 위해 한 번 더 입력해주세요");
-		} else if (info.passC != info.pass) {
-			alert("비밀번호가 다릅니다");
-		} else if (info.name == "") {
-			alert("이름을 입력해주세요");
-		} else if (info.email == "") {
-			alert("이메일을 입력해주세요");
-		} else if (info.address == "") {
-			alert("주소를 입력해주세요");
-		} else if (info.cellphone == "") {
-			alert("휴대폰번호를 입력해주세요");
-		} else {
-			alert("회원가입 완료");
-			$(".login-button").fadeIn(800);
-			$(".banner").fadeIn();
-			$("#sign-in-container").fadeOut("slow");
-		}
-	})
+// 		if (info.id == "") {
+// 			alert("id를 입력해주세요");
+// 		} else if (info.pass == "") {
+// 			alert("비밀번호를 입력해주세요");
+// 		} else if (info.passC == "") {
+// 			alert("비밀번호 확인을 위해 한 번 더 입력해주세요");
+// 		} else if (info.passC != info.pass) {
+// 			alert("비밀번호가 다릅니다");
+// 		} else if (info.name == "") {
+// 			alert("이름을 입력해주세요");
+// 		} else if (info.email == "") {
+// 			alert("이메일을 입력해주세요");
+// 		} else if (info.address == "") {
+// 			alert("주소를 입력해주세요");
+// 		} else if (info.cellphone == "") {
+// 			alert("휴대폰번호를 입력해주세요");
+// 		} else {
+// 			alert("회원가입 완료");
+// 			$(".login-button").fadeIn(800);
+// 			$(".banner").fadeIn();
+// 			$("#sign-in-container").fadeOut("slow");
+// 		}
+// 	})
 
-	/* Forgotten Password */
-	$('#forgotten').click(function() {
-		$("#container").fadeOut(function() {
-			$("#forgotten-container").fadeIn();
-		});
-	});
+// 	/* Forgotten Password */
+// 	$('#forgotten').click(function() {
+// 		$("#container").fadeOut(function() {
+// 			$("#forgotten-container").fadeIn();
+// 		});
+// 	});
 
-	/* Forgotten Password Success/Fail */
-	$("#findPass").click(function() {
-		var email = $("input[name=forgotten-email]").val();
-		console.log(email);
-		if (email == "") {
-			alert("이메일을 입력해주세요");
-		} else {
-			alert("비밀번호 이메일 전송 완료");
-			$(".login-button").fadeIn(800);
-			$(".banner").fadeIn();
-			$("#forgotten-container").fadeOut("slow");
-			console.log(email);
-		}
-	})
+// 	/* Forgotten Password Success/Fail */
+// 	$("#findPass").click(function() {
+// 		var email = $("input[name=forgotten-email]").val();
+// 		console.log(email);
+// 		if (email == "") {
+// 			alert("이메일을 입력해주세요");
+// 		} else {
+// 			alert("비밀번호 이메일 전송 완료");
+// 			$(".login-button").fadeIn(800);
+// 			$(".banner").fadeIn();
+// 			$("#forgotten-container").fadeOut("slow");
+// 			console.log(email);
+// 		}
+// 	})
 </script>
 </html>
