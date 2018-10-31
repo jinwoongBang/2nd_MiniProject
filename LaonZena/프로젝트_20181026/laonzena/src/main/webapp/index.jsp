@@ -32,13 +32,24 @@
 	
 	<!-- ministop -->
 	<h1>
-		<a href="<c:url value="/mini/event/list.do" />">ministop review 이동</a>
+<%-- 		<a href="<c:url value="/ministop/review/list.do" />">ministop review 이동</a> --%>
+		<a href="<c:url value="/mini/event/list.do" />">ministop 이벤트 이동</a>
 	</h1>
 	
 	<!-- emart -->
 	<h1>
 		<a href="<c:url value="/emart/review/list.do" />">emart review 이동</a>
 	</h1>
+	
+	
+	
+	<hr>
+	
+	<!-- 상품 리스트  -->
+	<h1>
+		<a href="<c:url value="/seven/product/productlist.do" />">상품리스트 이동</a>
+	</h1>
+	
 	
 	
 	
