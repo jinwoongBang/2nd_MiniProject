@@ -3,10 +3,11 @@
 table, tr {
 	/* border: 1px solid black; */
 	border-collapse: collapse;
+	background-color: #dbdbdb;
 }
 
 tbody {
-	font-size: 10px;
+	font-size: 15px;
 }
 
 tbody>tr:hover {

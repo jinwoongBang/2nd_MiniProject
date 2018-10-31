@@ -13,10 +13,13 @@ body {
     font-size: 1.4rem;
     line-height: 1.42857143;
     color: #555;
-    background-color: #f7f7f7;
+    background-color: rgb(173, 173, 173);
+    
 }
 
-a { text-decoration: none }
+a { 
+	text-decoration: inherit;	
+}
 
 ul {
     margin: 0;
@@ -42,12 +45,12 @@ header {
     flex-direction: row;
     height: 7rem;
     padding: 0 15px;
-    position: fixed;
+    position: static;
     -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
     justify-content: space-between;
     top: 0;
-    width: 100%
+    width: 100%;
 }
 
 .site-logo {
@@ -191,7 +194,7 @@ body.okayNav-loaded {
 #topMenuList {
 	font-weight: bold;
 }
-a {
+.top-menu {
 	font-size: 15px;
 	margin:auto 10px;
 }

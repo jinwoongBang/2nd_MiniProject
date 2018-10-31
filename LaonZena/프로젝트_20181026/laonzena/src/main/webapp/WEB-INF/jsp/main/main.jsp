@@ -10,11 +10,8 @@
 <c:import url="/common/basicIncludeCss.jsp" />
 <c:import url="/common/basicIncludeScript.jsp" />
 <c:import url="/common/topMenu.jsp" />
+<link rel="stylesheet" href="<c:url value='/css/main.css' />" />
 <link rel="stylesheet" href="<c:url value="/css/footer.css" />" />
-<%-- <c:import url="/common/bottomMenu.jsp" /> --%>
-<!-- CSS -->
-<%-- <c:import url="/common/includeCss.jsp" /> --%>
-<!-- JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.js"
 	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 	crossorigin="anonymous"></script>
@@ -33,24 +30,14 @@
 
 	<!-- 메인 편의점 -->
 	<div class="banner">
-		<div class="banner__item">
-			<div class="banner__title">CU</div>
-		</div>
-		<div class="banner__item">
-			<div class="banner__title"><a href="<c:url value="/gs/review/list.do" />">GS25</a></div>
-		</div>
-		<div class="banner__item">
-			<div class="banner__title">Seven Eleven</div>
-		</div>
-		<div class="banner__item">
-			<div class="banner__title">Mini Stop</div>
-		</div>
-		<div class="banner__item">
-			<div class="banner__title"><a href="<c:url value="/emart/list.do" />">Emart 24</a></div>
-		</div>
+		<div class="banner__item" style="cursor: pointer" onclick="location.href='<c:url value="/cu/review/list.do"/>'"></div>
+		<div class="banner__item" style="cursor: pointer" onclick="location.href='<c:url value="/gs/review/list.do"/>'"></div>
+		<div class="banner__item" style="cursor: pointer" onclick="location.href='<c:url value="/seven/review/list.do"/>'"></div>
+		<div class="banner__item" style="cursor: pointer" onclick="location.href='<c:url value="/mini/review/list.do"/>'"></div>
+		<div class="banner__item" style="cursor: pointer" onclick="location.href='<c:url value="/emart/review/list.do"/>'"></div>
 	</div>
 	<footer>
-		<div>
+		<div>		
 			<span>
 				<h1>(주)모두의 편의점</h1>
 			</span>

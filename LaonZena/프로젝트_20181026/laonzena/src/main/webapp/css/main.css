@@ -6,7 +6,7 @@
     animation-iteration-count:infinite;
     animation-direction:alternate-reverse;
 	text-align: center;	
-    padding-top: 3em;
+    padding-top: 0em;
 }
 @keyframes myani {
 		0% {
@@ -31,13 +31,18 @@ body {
 
 }
 .banner {
-	margin:bottom;
-	background: yellow;
-	height: 500px;
+	border-radius: 30px;
+	top:50px;
+	position:relative;
+	background: ;
+	height: 400px;
 	display: flex;
+	width: 80%;
+	left:150px;
 }
 
 .banner__item {
+	border-radius: 20px;
 	flex: 1;
 	color: #fff;
 	font-weight: bold;
@@ -46,46 +51,47 @@ body {
 	justify-content: center;
 	align-items: center;
 	transition: flex-grow .8s;
+	
 }
 
 .banner__item:nth-child(1) {
-	background: url("https://t1.daumcdn.net/cfile/tistory/2674493557AA9E6F0B");
+	background: url("../img/cu.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 }
 
 .banner__item:nth-child(2) {
-	background: url("http://www.sporbiz.co.kr/news/photo/201511/22757_32605_1648.jpg");
+	background: url("../img/gs25.jpg");
 	background-repeat : no-repeat;
 	background-size: cover;
 
 }
 
 .banner__item:nth-child(3) {
-	background: url("https://t1.daumcdn.net/cfile/tistory/2758C34C57B00F2C21");
+	background: url("../img/세븐일레븐.jpg");
 	background-repeat : no-repeat;
 	background-size: cover;
 }
 
 .banner__item:nth-child(4) {
-	background: url("https://pds.joins.com//news/component/htmlphoto_mmdata/201807/17/0872a69b-5d93-481f-be80-7cd1ea655805.jpg");
+	background: url("../img/ministop.png");
 	background-repeat : no-repeat;
 	background-size: cover;
 }
 
 .banner__item:nth-child(5) {
-	background: url("http://www.thinkfood.co.kr/news/photo/201708/76398_95497_582.jpg");
+	background: url("../img/이마트 24.jpg");
 	background-repeat : no-repeat;
 	background-size: cover;
  	
 }
 
 .banner__item:hover {
-	flex-grow: 10;
+	flex-grow: 5;
 	
 }
 
-.banner__item:hover .banner__title {
+.banner__item:hover .banner__title a{
 	font-size: 100px;
 	-webkit-transform: rotate(0);
 	transform: rotate(0);
