@@ -16,7 +16,7 @@ import kr.co.laonzena.repository.domain.Comment;
 
 
 @Controller
-@RequestMapping("/emart")
+@RequestMapping("/emart/review")
 public class EmartReviewController {
 	
 	@Autowired
