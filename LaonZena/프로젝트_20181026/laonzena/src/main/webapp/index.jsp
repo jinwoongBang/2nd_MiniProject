@@ -32,7 +32,7 @@
 	
 	<!-- ministop -->
 	<h1>
-		<a href="<c:url value="/ministop/review/list.do" />">ministop review 이동</a>
+		<a href="<c:url value="/mini/event/list.do" />">ministop review 이동</a>
 	</h1>
 	
 	<!-- emart -->
