@@ -37,7 +37,7 @@
 			<div class="banner__title">CU</div>
 		</div>
 		<div class="banner__item">
-			<div class="banner__title">GS25</div>
+			<div class="banner__title"><a href="<c:url value="/gs/review/list.do" />">GS25</a></div>
 		</div>
 		<div class="banner__item">
 			<div class="banner__title">Seven Eleven</div>
