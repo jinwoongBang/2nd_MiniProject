@@ -404,7 +404,7 @@
 <!--                 	<span id="eventspan">1+1</span> -->
                     <img class="games-bit__image" src="http://www.7-eleven.co.kr/upload/product/8806371/305520.1.jpg" />
                     <div class="games-bit__title" >
-                            <span id="prname2">푸르밀)비피더스블루베리</span>
+                            <span id="prname2">푸르밀)비피더스블루베리리</span>
                             
                     </div>  
                     
@@ -479,22 +479,23 @@
 	$(".games-bit__image").width("60%")
 	$(".games-bit__image").height("65%")
 	$(".games-bit__title").width("190px")
-	$(".games-bit__title").height("120px")
+	$(".games-bit__title").height("20px")
 
 	
     for(var i=1; i<8; i++) {
     	if($("#prname"+i).text().length < 12){
     		
     		$("#prname"+i).css({"margin-left":"10px"})	
+//     		$(".games-bit__title").css({"overflow":"hidden"})
     	} else if ($("#prname"+i).text().length==10) {
     		$("#prname"+i).css({"margin-left":"60px"})
     	}
         if($("#prname"+i).text().length >10) {
 			
-            $("#prname"+i).after("<div id='price' style=padding-top:10%>1200원</div>")
+            $("#prname"+i).parent().after("<div id='price' style=padding-top:10%>1200원</div>")
         } else {
         	
-            $("#prname"+i).after("<div id='price' style=padding-top:10%;>1200원</div>")
+            $("#prname"+i).parent().after("<div id='price' style=padding-top:10%;>1200원</div>")
         }
     }
     
