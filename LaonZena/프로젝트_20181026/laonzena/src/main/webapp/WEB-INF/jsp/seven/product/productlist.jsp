@@ -12,7 +12,9 @@
 <c:import url="/common/topMenu.jsp" />
 <link rel="stylesheet" href="<c:url value="/css/boardMenu.css" />" />
 <link rel="stylesheet" href="<c:url value="/css/board.css" />" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+
+<link rel="stylesheet" href="<c:url value='/css/login/boot.css' />" type="text/css"/>
 
 <script
 		  src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -169,7 +171,7 @@
             font-style: normal;
         }
         a {
-            color: rgb(173, 173, 173);
+/*             color: rgb(173, 173, 173); */
             text-decoration: none;
             margin-bottom: 1em;
         }
@@ -456,12 +458,12 @@
   <ul class="pagination pagination-lg" style="padding-left:30%">
     <li class="disabled"><a href="#"  aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
     <li class="active"><a href="#" id="pgbtn">1 <span class="sr-only">(current)</span></a></li>
-    <li class=""><a href="#" id="pgbtn">2 <span class="sr-only">(current)</span></a></li>
-    <li class=""><a href="#" id="pgbtn">3 <span class="sr-only">(current)</span></a></li>
-    <li class=""><a href="#" id="pgbtn">4 <span class="sr-only">(current)</span></a></li>
-    <li class=""><a href="#" id="pgbtn">5 <span class="sr-only">(current)</span></a></li>
+    <li class=""><a href="#" id="pgbtn1">2 <span class="sr-only">(current)</span></a></li>
+    <li class=""><a href="#" id="pgbtn1">3 <span class="sr-only">(current)</span></a></li>
+    <li class=""><a href="#" id="pgbtn1">4 <span class="sr-only">(current)</span></a></li>
+    <li class=""><a href="#" id="pgbtn1">5 <span class="sr-only">(current)</span></a></li>
     <li>
-      <a href="#" aria-label="Next" id="pgbtn">
+      <a href="#" aria-label="Next" id="pgbtn1">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>
@@ -518,7 +520,11 @@
         $(this).prev("label").removeClass('focused');
     });
 	
-	
+    $("#topMenuList").offset({left:1670.21875,top:24.5})
+    $(".site-logo").offset({top:14})
+    
+//     console.log( $("#topMenuList").offset().left)
+   
 </script>
 </body>
 </html>
