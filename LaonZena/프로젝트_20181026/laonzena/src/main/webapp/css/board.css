@@ -3,7 +3,7 @@
 table, tr {
 	/* border: 1px solid black; */
 	border-collapse: collapse;
-	background-color: #dbdbdb;
+	background-color: white;
 }
 
 tbody {
@@ -16,16 +16,17 @@ tbody>tr:hover {
 
 table {
 	position: absolute;
-	top: 110px;
+	top: 130px;
 	left: 400px;
 	width: 1000px;
-	text-align: center;
+	text-align: center !important;
 }
 
 th {
 	background-color: rgb(255, 245, 233);
 	height: 50px;
 	border-bottom: 2px solid #c9c9c9;
+	text-align: center !important;
 }
 
 img.product {
@@ -37,15 +38,15 @@ div.pagination {
 	display: flex;
 	position: absolute;
 	width: 800px;
-	top: 750px;
-	left: 500px;
+	top: 730px;
+	left: 687px;
 }
 
 div.pagination>div {
 	height: 20px;
 	width: 20px;
 	/* border: 1px solid gray; */
-	margin: auto;
+	margin: auto 5px;
 	text-align: center;
 	/* border: 1px solid #2e2e33; */
 	border-radius: 4px;
@@ -60,7 +61,7 @@ div.searchBar {
 	display: flex;
 	position: absolute;
 	width: 800px;
-	top: 705px;
+	top: 695px;
 	left: 700px;
 }
 
@@ -120,22 +121,40 @@ div.searchBar>img {
 
 #content {
 	position: absolute;
-	width: 700px;
+	width: 750px;
 	height: 550px;
-	background-color: rgb(255, 245, 233);;
+	background-color: rgb(255, 245, 233);
 	border-radius: 40px;
 	top: 100px;
-	left: 500px;
+	left: 450px;
 	z-index: 2;
 	visibility: hidden;
 	box-shadow: 4px 4px 4px 4px rgb(255, 209, 209);
 	padding: 5px 50px;
+	overflow-x:hidden;
+	overflow-y:scroll;
+	border : 30px solid rgb(255, 245, 233);
+	color : #4c4c4c;
+	text-weight: bold;
+	font-size: 14px;
 }
+::-webkit-scrollbar { 
+	    width: 10px;
+	    background : transparent;
+	}
 
 #board-write {
 	text-align: center;
 	text-shadow: 2px 2px 2px 2px #707070;
 	font-size: 15px;
+}
+#content>div{
+	margin-top : 25px;
+}
+#content>h1{
+	color:black;
+	text-align : center;
+	font-weight: bold;
 }
 
 #content>div>input {
@@ -143,50 +162,40 @@ div.searchBar>img {
 	width: 300px;
 	height: 30px;
 	border-radius: 10px;
-	margin: 15px;
-	left: 50px;
+	left: 60px;
 }
 
-#content>div>input:focus {
+#content>div>input[type=file] {
 	position: relative;
 	width: 300px;
 	height: 30px;
 	border-radius: 10px;
-	margin: 10px;
-	left: 40px;
-	box-shadow: 2px 2px 2px 2px #707070;
-}
-
-textarea {
-	position: relative;
-	border-radius: 20px;
-	width: 500px;
-	height: 120px;
 	left: 50px;
-	top: 20px;
+}
+#content>div>input[id=product-name] {
+	position: relative;
+	left: 40px;
 }
 
-textarea:focus {
-	position: relative;
-	border-radius: 20px;
+#content>div>input:focus {
 	box-shadow: 2px 2px 2px 2px #707070;
+}
+
+.file-attach {
+	display : flex;
 }
 
 #content>div>select {
 	position: relative;
-	left: 60px;
+	left: 30px;
 	border-radius: 5px;
 	width: 100px;
+	height:25px;
 }
 
-#content>div span {
-	display: inline-block;
-	width: 50px;
-}
-
-#text {
+.summernote {
 	position: relative;
-	top: 00px;
+	top:-10px;
 }
 
 #search-product {
@@ -205,8 +214,8 @@ textarea:focus {
 	height: 150px;
 	border-radius: 100px;
 	float: right;
-	right: -25px;
-	top: 10px;
+	right: 0px;
+	top: -10px;
 }
 
 #search-img>img {
@@ -217,8 +226,8 @@ textarea:focus {
 
 #write-review {
 	position: relative;
-	top: 40px;
-	left: 140px;
+	left: 80px;
+	top: -10px;
 }
 
 #write-review>button {

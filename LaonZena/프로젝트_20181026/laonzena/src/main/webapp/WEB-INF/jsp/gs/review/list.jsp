@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+	
 	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 	<c:import url="/common/basicIncludeCss.jsp" />
 	<c:import url="/common/basicIncludeScript.jsp" />
@@ -13,16 +14,22 @@
 	
 	<link rel="stylesheet" href="<c:url value="/css/boardMenu.css" />" />
 	<link rel="stylesheet" href="<c:url value="/css/board.css" />" />
+	
+	<link rel="stylesheet" href="<c:url value='/css/login/boot.css' />" type="text/css"/>
+	  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+	  <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+	  <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
 </head>
 <body>
     <div id="overlay">
         
     </div>
     <div id="content">
+    	<h1>
+            Write
+        </h1>
         <div id="board-write">
-            <h1>
-                Write
-            </h1>
+            
         </div>
         <span id="search-img">
             <img src='<c:url value="/img/god.jpg"/>' />
@@ -41,16 +48,18 @@
         </div>
         <div>
             <span>Product</span>
-            <input type="text" />
-            <img id="search-product" src='<c:url value="/img/search icon png vector.png"/>' />
+            <input type="text" id="product-name" />
         </div>
-        <div>
-            <span>Price</span>
-            <input type="text" />
+        <div class="file-attach"> 
+            <span>이미지</span>
+            <input type="file" id="file-attach"/> 
+<!--             <input type="text" placeholder="c:/programfile/당나귀/해리포터.avi"/> -->
+<%--             <img id="search-product" class="" src='<c:url value="/img/search icon png vector.png"/>' /> --%>
         </div>
-        <div>
-            <span id="text">Content</span>
-            <textarea></textarea>
+       
+        <div class="summernote">
+            <div id="summernote"><p>Hello Summernote</p></div>
+		  
         </div>
         <div id="write-review">
             <button>Submit</button>
@@ -317,6 +326,14 @@
             content.style.visibility = "hidden";
         })
 
+    </script>
+    
+    
+    <script>
+    	/* 썸머노트 */
+	    $(document).ready(function() {
+	        $('#summernote').summernote();
+	    });
     </script>
 </body>
 </html>
