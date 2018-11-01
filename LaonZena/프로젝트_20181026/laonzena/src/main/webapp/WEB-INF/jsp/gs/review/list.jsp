@@ -15,7 +15,7 @@
 	<link rel="stylesheet" href="<c:url value="/css/boardMenu.css" />" />
 	<link rel="stylesheet" href="<c:url value="/css/board.css" />" />
 	
-	<link rel="stylesheet" href="<c:url value='/css/login/boot.css' />" type="text/css"/>
+	<link rel="stylesheet" href="<c:url value='/css/gs_review/boot.css' />" type="text/css"/>
 	  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
 	  <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
 	  <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
