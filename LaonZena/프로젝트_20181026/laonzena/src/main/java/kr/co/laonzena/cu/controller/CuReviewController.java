@@ -15,7 +15,7 @@ import kr.co.laonzena.repository.domain.Board;
 import kr.co.laonzena.repository.domain.Comment;
 
 @Controller
-@RequestMapping("/cu")
+@RequestMapping("/cu/review")
 public class CuReviewController {
 
 	@Autowired
@@ -35,9 +35,7 @@ public class CuReviewController {
 	}
 
 	@RequestMapping("/updateForm.do")
-	public void updateForm(int no, Model model) throws Exception {
-		model.addAttribute("board", service.updateForm(no));
-	}
+	public void updateForm() throws Exception {}
 
 	@RequestMapping("/update/sdsds.do")
 	public String update(Board board) throws Exception {	
@@ -45,11 +43,11 @@ public class CuReviewController {
 		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "list.do";
 	}
 
-	@RequestMapping("review/list.do")
+	@RequestMapping("/list.do")
 	public void list(){	
 	}
 
-	@RequestMapping("review/detail.do")
+	@RequestMapping("/detail.do")
 	public void detail(){
 	}
 	

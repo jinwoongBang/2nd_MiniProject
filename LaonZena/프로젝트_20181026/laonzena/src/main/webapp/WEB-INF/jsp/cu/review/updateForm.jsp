@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>     
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,16 +8,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-	<c:import url="/common/topMenu.jsp" />
     <c:import url="/common/basicIncludeCss.jsp" />
+<c:import url="/common/topMenu.jsp" />
 
-<script
-		  src="https://code.jquery.com/jquery-3.3.1.min.js"
-		  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-		  crossorigin="anonymous">
-</script>
+    <!-- include libraries(jQuery, bootstrap) -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+
+<!-- include summernote css/js-->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+
+
+</head>
     <!-- 메뉴 -->
-    <style>
+<style>
         @import url("http://weloveiconfonts.com/api/?family=entypo");
             *, *:after, *:before {
             -moz-box-sizing: border-box;
@@ -253,32 +258,21 @@
             top: 250px;
         }
         
-        /* 댓글 작성 */
         #comment{
             position: relative;
             border-radius: 20px;
             width: 900px;
             height: 50px;
             left: 400px;
-            top: 380px;
+            top: 250px;
         }
-        
-        /* 작성된 댓글 */
-        #createdCmt{
-        	position: relative;
-            border-radius: 20px;
-            width: 900px;
-            height: 50px;
-            top: 180px;
-        }
-		
-		/* 수정, 삭제 버튼*/
+
         .modify, .delete{
             position: relative;
             border: 0px solid white;
             border-radius: 10px;
             background-color: #e5fff3;
-            top: 80px;
+            top: 200px;
             left:1100px;
             width: 100px;
             height: 30px;
@@ -287,78 +281,51 @@
 
         .commentList{
           position: absolute;
-          border-radius: 20px;
           top:700px;
           left:0px;
           width: 900px;
           text-align: center;
-          
-          
         }
-        
-        #insertCmt{
-       		border: 0px solid white;
-            border-radius: 10px;
-            background-color: #e5fff3;
-            width: 100px;
-            height: 30px;
-            font-weight: bold;
-        }
-        
-        /*댓글 작성 내용 */
+
         #cmtCon{
-          width: 70%;
-          border-radius: 20px;
+          width: 80%;
         }
-        /*댓글 작성자 아이디 */
+
         #cmtId{
           width: 10%;
-          border-radius: 20px;
         }
-
-        /*댓글 작성 버튼 */
-        #cmtButton{
-            border: 0px solid white;
-            border-radius: 10px;
-            background-color: #e5fff3;
-            font-weight: bold;
-            width: 100px;
-            height: 30px;
-        }
-
-        /*작성된 댓글 내용 */
-        #cmtListCon{
-            border-radius: 20px;
-            width: 70%;
-            
-        }
-        
-        #content {
-        	width:910px;
-        }
-
-		html {
-			background-color: #fcfcfc;
-		}
-		
-		body {
-			background-color: #fcfcfc;
-		}
     
+    
+    	#summernote{
+    		top: 250px;
+    		left: 400px;
+    	}
+    	
+     	.note-editor { 
+     		top: 180px; 
+     		left: 400px; 
+     		width:900px; 
+    		
+    	} 
+    	#header{
+    		display: flex !important;
+    	}
+    	.site-logo{
+    		margin-bottom: 0 !important;
+    	}
     </style>
 
-</head>
 <body>
-    <!-- 메뉴 -->
-    <div class="wrap">
-        <section id="vert-nav">
-            <h3>CU Board</h3>
-            <nav role='navigation'>
-                <ul class="topmenu">
+     <!-- 메뉴 -->
+     <div class="wrap">
+            <section id="vert-nav">
+                <h3>CU Board</h3>
+                <nav role='navigation'>
+                    <ul class="topmenu">
                         <!-- <li><a id="#" href="#0"><i class="entypo-home"></i> Home</a></li> -->
                         <li><a href="#0"><i class="entypo-user"></i>Product</a>
                             <ul class="submenu">
-                                <li><a href="#0">전체</a></li>
+                            <li><a href="#0">전체</a></li>
                             <li><a href="#0">간편식사</a></li>
                             <li><a href="#0">즉석조리</a></li>
                             <li><a href="#0">과자류</a></li>
@@ -367,117 +334,89 @@
                             <li><a href="#0">음료</a></li>
                             <li><a href="#0">생활용품</a></li>
                         </ul></li>
-                    <li><a href="#0"><i class="entypo-brush"></i>Event Product</a>
-                        <ul class="submenu">
+                        <li><a href="#0"><i class="entypo-brush"></i>Event Product</a>
+                    <ul class="submenu">
                             <li><a href="#0">1+1</a></li>
                             <li><a href="#0">2+1</a></li>
                             <li><a href="#0">3+1</a></li>
                             </ul>
                         </li>
                         <li><a href="#0"><i class="entypo-vcard"></i>Review Community</a></li>
-                    </ul>
+                        </ul>
                 </nav>  
             </section>
         </div>
 
         <!--Detail 상단-->
-    
-        <table>
+        <table id="bar">
                 <thead>
                     <tr>
                         <th>제목</th>
-                        <td class="title" colspan="7">제목</td>
+                        <td class="title" colspan="7">
+                            <input type="text" name="title" value="제목">
+                        </td>
                     </tr>
                     <tr>
                         <th>작성자</th>
-                        <td class="writer">작성자</td>
+                        <td class="writer">
+                            <input type="text" name="writer" value="작성자">
+                        </td>
                         <th>작성일</th>
-                        <td class="reg-date">yy-MM-dd HH:mm:ss</td>
+                        <td class="reg-date">
+                            <input type="text" name=regDate value="작성일">
+                        </td>
                         <th>조회수</th>
-                        <td class="cnt">board.viewCnt</td>
+                        <td class="cnt">
+                            <input type="text" name="cnt" value="10">
+                        </td>
                         <th>추천수</th>
-                        <td class="cnt"><span class="rec_count">추천수</span></td>
+                        <td class="cnt"><span class="rec_count">
+                                <input type="text" name="cnt" value="20">
+                        </span></td>
                     </tr>
                 </thead>
         </table>
         
-        <textarea style="width: 900px; height: 350px; top:190px;resize: none;"  readonly="readonly">내용</textarea>
+        <div id="summernote"></div>
 
- 		<div>
-            <button class="modify" style="top:200px;" id="modify">수정</button>
-            <button type="submit" class="delete" style="top:200px;">삭제</button>
+    
+    
+          
+        <div id=comment>
+                <input type="hidden" name="boardNo"value="" />            
+                <input id="cmtId" type="text" name="writerId" readonly="readonly" value="댓글작성자"/>
+                <input id="cmtCon" type="text" name="content" />
+                <button>작성</button>
         </div>
-        
-        <!-- 작성된 댓글 리스트 -->
-		<div>
-<!-- 			<table id="comment"> -->
-			<form method="post" action="registcomment.do">
-				<input type="hidden" name="no" value="${board.no}" />	
-<!-- 				<tr> -->
-	<!-- 				<td><input type="text" name="writer" /></td> -->
-<!-- 					<td><textarea name="content"></textarea></td> -->
-<!-- 					<td><input type="submit" id="insertCmt" value="등록" /></td> -->
-<!-- 				</tr>	 -->
-				<textarea id="content"name="content" style="top:230px;"></textarea>
-			
-			</form>
-				<button type="submit" class="modify" style="top:240px;left:1207px">등록</button>
-<!-- 			</table> -->
-		</div>
-	
-<!-- 	<form action="updatecomment.do" method="post"> -->
-<%-- 		<input type="hidden" name="no" value="${board.no}" /> --%>
-<%-- 		<input type="hidden" name="commentNo" value="${commentNo}" /> --%>
-<!-- 	<div id="commentList"> -->
-		
-<!-- 	  <table id="createdCmt" width='80%' border='1'> -->
 
-<%-- 		<c:forEach var="comment" items="${commentList}"> --%>
-<%-- 		<c:choose> --%>
-<%-- 	  		<c:when test="${commentNo eq comment.commentNo}">	 --%>
-<!-- 				<tr> -->
-<%-- 				  <td><c:out value="${comment.writer}" /></td> --%>
-<!-- 				  <td> -->
-				  <!-- 	<textarea id="CmtCon" name="content" rows="2" cols="60"><c:out value="${comment.content}" /></textarea>  -->
-<!-- 				  </td> -->
-<!-- 				  <td colspan="2"> -->
-<!-- 				  	  <input type="submit" value="수정" />	 -->
-<%-- 				  	  <a href="detail.do?no=${board.no}">취소</a>	 --%>
-<!-- 				  </td> -->
-<!-- 				 </tr> -->
-<%-- 		 	</c:when> --%>
-<%-- 		 	<c:otherwise> --%>
-<!-- 				<tr> -->
-<%-- 				  <td><c:out value="${comment.writer}" /></td> --%>
-<%-- 				  <td><c:out value="${comment.content}" /></td> --%>
-<%-- 				  <td><fmt:formatDate var="regDate" value="${comment.regDate}"  --%>
-<%-- 				                      pattern="yyyy-MM-dd HH:mm:ss" /> --%>
-<%-- 				      <c:out value="${regDate}" /> --%>
-<!-- 				  </td> -->
-<!-- 				  <td> -->
-<%-- 				  	  <a href="deletecomment.do?commentNo=${comment.commentNo}&no=${comment.no}">삭제</a>	 --%>
-<%-- 				  	  <a href="detail.do?commentNo=${comment.commentNo}&no=${comment.no}">수정</a>	 --%>
-<!-- 				  </td> -->
-<!-- 				 </tr> -->
-<%-- 		 	</c:otherwise> --%>
-<%-- 		 </c:choose>	 --%>
-<%-- 		 </c:forEach> --%>
-<%-- 		 <c:if test="${empty commentList}"> --%>
-<!-- 		 <tr> -->
-<!-- 		    <td colspan='4'>댓글이 존재하지 않습니다.</td> -->
-<!-- 		 </tr> -->
-<%-- 	 	</c:if> --%>
-<!-- 	 </table> -->
-<!-- 	</div> -->
-<!-- 	</form>	 -->
-	
-       <script>
-       	$("#modify").click(function () {
-			location.href="updateForm.do";
-		})
-       
-       </script>
+        <div>
+            <button type="submit" class="modify" style="top:130px">수정</button>
+            <button type="submit" class="delete" style="top:130px">삭제</button>
+        </div>
+
 
 </body>
+<script>
+
+	
+		$('#summernote').summernote({
+			
+// 				width:900,
+				height:500,
+				minHeight:null,
+				maxHeight:null,
+				focus:true,
+				disableResize:false,
+				disableResizeEditor:false,
+				resize:false
+	
+		});
+	
+	
+	
+		
+
+	
+</script>
 
 </html>
