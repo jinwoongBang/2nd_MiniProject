@@ -5,5 +5,5 @@ import java.util.List;
 import kr.co.laonzena.repository.domain.Product;
 
 public interface EmartEventService {
-	List<Product> list();		
+	
 }

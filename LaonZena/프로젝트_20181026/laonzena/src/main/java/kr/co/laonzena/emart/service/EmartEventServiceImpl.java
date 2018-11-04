@@ -8,14 +8,7 @@ import org.springframework.stereotype.Service;
 import kr.co.laonzena.repository.domain.Product;
 import kr.co.laonzena.repository.mapper.ProductMapper;
 
-@Service
+
 public class EmartEventServiceImpl implements EmartEventService {
-	@Autowired
-	private ProductMapper mapper;
-	
-	@Override
-	public List<Product> list() {
-		return mapper.selectBoard();
-	}
 
 }

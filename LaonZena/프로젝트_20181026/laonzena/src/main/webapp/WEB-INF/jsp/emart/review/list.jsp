@@ -14,11 +14,10 @@
 <c:import url="/common/basicIncludeCss.jsp" />
 <c:import url="/common/basicIncludeScript.jsp" />
 <c:import url="/common/topMenu.jsp" />
-
 <link rel="stylesheet" href="<c:url value="/css/boardMenu.css" />" />
 <link rel="stylesheet" href="<c:url value="/css/board.css" />" />
 
-<link rel="stylesheet" href="<c:url value='/css/gs_review/boot.css' />"
+<link rel="stylesheet" href="<c:url value='/css/boot.css' />"
 	type="text/css" />
 <script
 	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
@@ -62,7 +61,7 @@
 		</div>
 		<div id="write-review">
 			<button>Submit</button>
-			<button>Cancle</button>
+			<button>Cancel</button>
 		</div>
 	</div>
 
@@ -74,14 +73,13 @@
 		<nav role='navigation'>
 		<ul class="topmenu">
 			<!-- <li><a id="#" href="#0"><i class="entypo-home"></i> Home</a></li> -->
-			<li><a href="<c:url value="/emart/product/event.do"/>"><i class="entypo-user"></i>Product</a>
+			<li><a href="#0"><i class="entypo-user"></i>Product</a>
 				<ul class="submenu">
-					<li><a href="#0">전체</a></li>
-					<li><a href="#0">음료/커피</a></li>
-					<li><a href="#0">유제품</a></li>
-					<li><a href="#0">과자/간식</a></li>
-					<li><a href="#0">라면/가공식품</a></li>
-					<li><a href="#0">생활용품</a></li>
+					<li><a href="<c:url value="/emart/product/product.do"/>">전체</a></li>
+					<li><a href="#0">냉장</a></li>
+					<li><a href="#0">음료</a></li>
+					<li><a href="#0">일반식품</a></li>
+					<li><a href="#0">과자</a></li>
 				</ul></li>
 			<li><a href="#0"><i class="entypo-brush"></i>Event Product</a>
 				<ul class="submenu">
