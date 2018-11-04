@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+</head>
 
     <!-- 탑 리스트 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css" />
@@ -71,144 +72,9 @@
             top: 0;
             width: 100%
         }
-
-        .site-logo {
-            transition: color 200ms cubic-bezier(.55, 0, .1, 1);
-            color: #30acff;
-            font-size: 3rem;
-        }
-
-        .ok-header__logo:hover {color: #546edb}
-
-        /* okayNav styles */
-        body.okayNav-loaded {
-          overflow-x: hidden;
-        }
-        .okayNav:not(.loaded) {
-          visibility: hidden;
-          -webkit-user-select: none;
-            -moz-user-select: none;
-              -ms-user-select: none;
-                  user-select: none;
-        }
-        .okayNav ul {
-          /* We want two navigations - one hidden and one visible */
-          float: left;
-        }
-        .okayNav a {
-          /* Links general styling */
-          color: #2e2e33;
-          font-size: 1.4rem;
-          font-weight: bold;
-          position: relative;
-          z-index: 1;
-        }
-        .okayNav__nav--visible {
-          overflow: hidden;
-          white-space: nowrap;
-        }
-        .okayNav__nav--visible li {
-          display: inline-block;
-        }
-        .okayNav__nav--visible a {
-          /* Link styling for the visible part of the nav */
-          display: block;
-          transition: color 200ms cubic-bezier(0.55, 0, 0.1, 1);
-          padding: 15px 15px;
-        }
-        .okayNav__nav--visible a:hover {
-          color: #546edb;
-        }
-        /* Link styling for the off-screen part of the nav */
-        .okayNav__nav--invisible {
-          position: fixed;
-          top: 70px;
-          bottom: 0;
-          overflow-y: scroll;
-          -webkit-overflow-scrolling: touch;
-          background: #fff;
-        }
-        .okayNav__nav--invisible a {
-          background: #fff;
-          width: 240px;
-          display: block;
-          padding: 15px;
-        }
-        .okayNav__nav--invisible.nav-left {
-          left: 0;
-          -webkit-transform: translateX(-100%);
-                  transform: translateX(-100%);
-        }
-        .okayNav__nav--invisible.nav-right {
-          right: 0;
-          -webkit-transform: translateX(100%);
-                  transform: translateX(100%);
-        }
-        .okayNav__nav--invisible.transition-enabled {
-          transition: -webkit-transform 400ms cubic-bezier(0.55, 0, 0.1, 1);
-          transition: transform 400ms cubic-bezier(0.55, 0, 0.1, 1);
-          transition: transform 400ms cubic-bezier(0.55, 0, 0.1, 1), -webkit-transform 400ms cubic-bezier(0.55, 0, 0.1, 1);
-        }
-        .okayNav__nav--invisible.nav-open {
-          -webkit-transform: translateX(0);
-                  transform: translateX(0);
-        }
-        /* Kebab icon */
-        .okayNav__menu-toggle {
-          position: relative;
-          transition: -webkit-transform 400ms cubic-bezier(0.55, 0, 0.1, 1);
-          transition: transform 400ms cubic-bezier(0.55, 0, 0.1, 1);
-          transition: transform 400ms cubic-bezier(0.55, 0, 0.1, 1), -webkit-transform 400ms cubic-bezier(0.55, 0, 0.1, 1);
-          cursor: pointer;
-          width: 40px;
-          height: 20px;
-          float: left;
-          z-index: 1;
-          top: 15px;
-        }
-        .okayNav__menu-toggle.okay-invisible {
-          position: absolute;
-          opacity: 0;
-          -webkit-user-select: none;
-            -moz-user-select: none;
-              -ms-user-select: none;
-                  user-select: none;
-          pointer-events: none;
-        }
-        .okayNav__menu-toggle span {
-          display: block;
-          position: absolute;
-          margin: auto;
-          height: 4px;
-          width: 4px;
-          background: #2e2e33;
-          border-radius: 50%;
-          left: 0;
-          right: 0;
-          pointer-events: none;
-        }
-        .okayNav__menu-toggle span:nth-child(1) {
-          top: 0;
-        }
-        .okayNav__menu-toggle span:nth-child(2) {
-          top: 50%;
-          -webkit-transform: translateY(-50%);
-                  transform: translateY(-50%);
-        }
-        .okayNav__menu-toggle span:nth-child(3) {
-          bottom: 0;
-        }
-        .okayNav__menu-toggle.icon--active {
-          /* Kebab icon when off-screen nav is open */
-          -webkit-transform: rotate(90deg);
-                  transform: rotate(90deg);
-        }
-        .okayNav__menu-toggle.icon--active span {
-          background: #546edb;
-        }
-    </style>    
+    </style>
             
-    <!-- 메뉴 -->
+
     <style>
         @import url("http://weloveiconfonts.com/api/?family=entypo");
             *, *:after, *:before {
@@ -248,7 +114,7 @@
 
         .wrap {
             position: absolute;
-            width: 1020px;
+            width: 600px;
             padding: 2em 0;
             top:50px;
         }
@@ -422,6 +288,7 @@
           font-size : 10px;
         }
         
+      
         tbody > tr:hover{
           background-color: rgb(255, 247, 238);
         }
@@ -429,7 +296,7 @@
           position: absolute;
           top:110px;
           left:400px;
-          width: 1000px;
+          width: 700px;
           text-align: center;
         }
         th{
@@ -441,6 +308,13 @@
         img.product {
           width: 50px;
           height: 50px;
+        }
+        
+
+
+        .commentList{
+            top : 400px;
+        
         }
    
         div.pagination {
@@ -493,7 +367,7 @@
             background-color: rgb(255, 247, 238);
             left: 5px;
         }
-        div.searchBar> .write{
+        div.searchBar> .write, .list, .insertCmt{
             position: relative;
             border: 0px solid white;
             border-radius: 10px;
@@ -561,9 +435,19 @@
             border-radius: 20px;
             width: 500px;
             height: 120px;
-            left: 50px;
-            top: 20px;
+            left: 400px;
+            top: 250px;
         }
+
+        textarea > content {
+            position: relative;
+            border-radius: 20px;
+            width: 500px;
+            height: 120px;
+            left: 250px;
+            top: 250px; 
+        }
+
         textarea:focus{
             position: relative;
             border-radius: 20px;
@@ -621,55 +505,63 @@
             color: #666;
             margin: 0px 20px;
         }
+        #content {
+            margin-bottom: 500px;
+        }
+        #comment {
+            top: 300px;
+            left:300px;
+        }
     </style>
 
 
 </head>
 <body>
+   
     <div id="overlay">
-        
-    </div>
-    <div id="content">
-        <div id="board-write">
-            <h1>
-                Write
-            </h1>
+            
         </div>
-        <span id="search-img">
-            <img src="../img/god.jpg">
-        </span>
-        <div>
-            <span>Title</span>
-            <input type="text" />
-        </div>
-        <div>
-            <span>Category</span>
-            <select id="search-category">
-                <option>유제품</option>
-                <option>햄버거</option>
-                <option>음료</option>
-            </select>
-        </div>
-        <div>
-            <span>Product</span>
-            <input type="text" />
-            <img id="search-product" src="../img/search icon png vector.png" />
-        </div>
-        <div>
-            <span>Price</span>
-            <input type="text" />
-        </div>
-        <div>
-            <span id="text">Content</span>
-            <textarea></textarea>
-        </div>
-        <div id="write-review">
-            <button>Submit</button>
-            <button>Cancle</button>
+        <div id="content">
+            <div id="board-write">
+                <h1>
+                    Write
+                </h1>
+            </div>
+            <span id="search-img">
+                <img src="../img/god.jpg">
+            </span>
+            <div>
+                <span>Title</span>
+                <input type="text" />
+            </div>
+            <div>
+                <span>Category</span>
+                <select id="search-category">
+                    <option>유제품</option>
+                    <option>햄버거</option>
+                    <option>음료</option>
+                </select>
+            </div>
+            <div>
+                <span>Product</span>
+                <input type="text" />
+                <img id="search-product" src="../img/search icon png vector.png" />
+            </div>
+            <div>
+                <span>Price</span>
+                <input type="text" />
+            </div>
+            <div>
+                <span id="text">Content</span>
+                <textarea></textarea>
+            </div>
+            <div id="write-review">
+                <button>Submit</button>
+                <button>Cancle</button>
+            </div>
         </div>
     </div>
 
-    </div>
     <!-- 탑리스트 -->
     <header id="header">
             <a id="topList" class="site-logo" href="#">
@@ -694,25 +586,26 @@
     <!-- 메뉴 -->
     <div class="wrap">
         <section id="vert-nav">
-            <h3>GS Board</h3>
+            <h3>CU Board</h3>
             <nav role='navigation'>
                 <ul class="topmenu">
                     <!-- <li><a id="#" href="#0"><i class="entypo-home"></i> Home</a></li> -->
                     <li><a href="#0"><i class="entypo-user"></i>Product</a>
                         <ul class="submenu">
-                            <li> <a href="#0">전체</a></li>
-                            <li> <a href="#0">음료/커피</a></li>
-                            <li> <a href="#0">유제품</a></li>
-                            <li> <a href="#0">과자/간식</a></li>
-                            <li> <a href="#0">라면/가공식품</a></li>
-                            <li> <a href="#0">생활용품</a></li>
-                        </ul>
-                            </li>
-                            <li><a href="#0"><i class="entypo-brush"></i>Event Product</a>
-                        <ul class="submenu">
-                            <li> <a href="#0">1+1</a></li>
-                            <li> <a href="#0">2+1</a></li>
-                            <li> <a href="#0">덤증정</a></li>
+                            <li><a href="#0">전체</a></li>
+						<li><a href="#0">간편식사</a></li>
+						<li><a href="#0">즉석조리</a></li>
+						<li><a href="#0">과자류</a></li>
+						<li><a href="#0">아이스크림</a></li>
+						<li><a href="#0">식품</a></li>
+						<li><a href="#0">음료</a></li>
+						<li><a href="#0">생활용품</a></li>
+					</ul></li>
+				<li><a href="#0"><i class="entypo-brush"></i>Event Product</a>
+					<ul class="submenu">
+						<li><a href="#0">1+1</a></li>
+						<li><a href="#0">2+1</a></li>
+						<li><a href="#0">3+1</a></li>
                         </ul>
                     </li>
                     <li><a href="#0"><i class="entypo-vcard"></i>Review Community</a></li>
@@ -723,166 +616,97 @@
               
     <!-- 게시판 -->
     <table>
-      <thead>
-        <tr>
-          <th>No</th>
-          <th>Category</th>
-          <th>Product</th>
-          <th>Product Name</th>
-          <th>Title</th>
-          <th>Writer</th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr>
-              <td>1</td>
-              <td>review</td>
-              <td><img class="product" src="../img/spinner.jpg"/></td>
-              <td>혜자네 창렬 김밥</td>
-              <td>혜자인듯 창렬인듯 존맛인듯</td>
-              <td>방진웅</td>
-              <td>2018 - 10 - 29</td>
-          </tr>
-          <tr>
-              <td>2</td>
-              <td>review</td>
-              <td><img class="product" src="../img/spinner.jpg"/></td>
-              <td>혜자네 창렬 김밥</td>
-              <td>혜자인듯 창렬인듯 존맛인듯</td>
-              <td>방진웅</td>
-              <td>2018 - 10 - 29</td>
-          </tr>
-          <tr>
-              <td>3</td>
-              <td>review</td>
-              <td><img class="product" src="../img/spinner.jpg"/></td>
-              <td>혜자네 창렬 김밥</td>
-              <td>혜자인듯 창렬인듯 존맛인듯</td>
-              <td>방진웅</td>
-              <td>2018 - 10 - 29</td>
-          </tr>
-          <tr>
-              <td>4</td>
-              <td>review</td>
-              <td><img class="product" src="../img/spinner.jpg"/></td>
-              <td>혜자네 창렬 김밥</td>
-              <td>혜자인듯 창렬인듯 존맛인듯</td>
-              <td>방진웅</td>
-              <td>2018 - 10 - 29</td>
-          </tr>
-          <tr>
-              <td>5</td>
-              <td>review</td>
-              <td><img class="product" src="../img/spinner.jpg"/></td>
-              <td>혜자네 창렬 김밥</td>
-              <td>혜자인듯 창렬인듯 존맛인듯</td>
-              <td>방진웅</td>
-              <td>2018 - 10 - 29</td>
-          </tr>
-          <tr>
-              <td>6</td>
-              <td>review</td>
-              <td><img class="product" src="../img/spinner.jpg"/></td>
-              <td>혜자네 창렬 김밥</td>
-              <td>혜자인듯 창렬인듯 존맛인듯</td>
-              <td>방진웅</td>
-              <td>2018 - 10 - 29</td>
-          </tr>
-          <tr>
-              <td>7</td>
-              <td>review</td>
-              <td><img class="product" src="../img/spinner.jpg"/></td>
-              <td>혜자네 창렬 김밥</td>
-              <td>혜자인듯 창렬인듯 존맛인듯</td>
-              <td>방진웅</td>
-              <td>2018 - 10 - 29</td>
-          </tr>
-          <tr>
-              <td>8</td>
-              <td>review</td>
-              <td><img class="product" src="../img/spinner.jpg"/></td>
-              <td>혜자네 창렬 김밥</td>
-              <td>혜자인듯 창렬인듯 존맛인듯</td>
-              <td>방진웅</td>
-              <td>2018 - 10 - 29</td>
-          </tr>
-          <tr>
-              <td>9</td>
-              <td>review</td>
-              <td><img class="product" src="../img/spinner.jpg"/></td>
-              <td>혜자네 창렬 김밥</td>
-              <td>혜자인듯 창렬인듯 존맛인듯</td>
-              <td>방진웅</td></td>
-              <td>2018 - 10 - 29</td>
-          </tr>
-          <tr>
-              <td>10</td>
-              <td>review</td>
-              <td><img class="product" src="../img/spinner.jpg"/></td>
-              <td>혜자네 창렬 김밥</td>
-              <td>혜자인듯 창렬인듯 존맛인듯</td>
-              <td>방진웅</td>
-              <td>2018 - 10 - 29</td>
-          </tr>
-      
-      </tbody>
-    </table>
-        <div class="searchBar">
-            <select>
-                <option value="">글제목</option>
-                <option value="">작성자</option>
-                <option value="">내용</option>
-            </select>
-            <input type="text"/>
-            <img src="../img/search icon png vector.png"/>
-            <button type="submit" class="write">Write</button>
-        </div>
-        <div class="pagination">
-            <div>
-                <a href="#1">&lt;&lt;</a>
-            </div>
-            <div>
-                <a href="#2">&lt;</a>
-            </div>
-            <div>
-                <a href="#3">1</a>
-            </div>
-            <div>
-                <a href="#4">2</a>
-            </div>
-            <div>
-                <a href="#5">3</a>
-            </div>
-            <div>
-                <a href="#6">4</a>
-            </div>
-            <div>
-                <a href="#7">5</a>
-            </div>
-            <div>
-                <a href="#8">6</a>
-            </div>
-            <div>
-                <a href="#9">7</a>
-            </div>
-            <div>
-                <a href="#10">8</a>
-            </div>
-            <div>
-                <a href="#11">9</a>
-            </div>
-            <div>
-                <a href="#12">10</a>
-            </div>
-            <div>
-                <a href="#13">&gt;</a>
-            </div>
-            <div>
-                <a href="#14">&gt;&gt;</a>
-            </div>
-        </div>
+        <thead>
+            <tr>
+                <th>제목</th>
+                <td class="title">${제목}</td>
+            </tr>
+            <tr>
+                <th>작성자</th>
+                <td class="writer">${작성자}</td>
+                <th>작성일</th>
+                <td class="reg-date">yy-MM-dd HH:mm:ss</td>
+                    <th>조회수</th>
+                    <td class="cnt">${board.viewCnt}</td>
+                        <th>추천수</th>
+                        <td class="cnt"><span class="rec_count">추천수</span></td>
+            </tr>
+        </thead>
+      </table>
+       
+      <textarea style="width: 900px; height: 450px; resize: none;"  readonly="readonly">${내용}</textarea>
         
+      <span id=comment>
+
+            <input type="hidden" name="boardNo" value="${글번호}" />            
+            <input type="text" name="content" />
+            <input type="text" name="writerId" readonly="readonly" value="${댓글작성자아이디}"/>
+            <input type="submit">
+ 
+        </span>
+      
+	<!-- 작성된 댓글 리스트 -->
+	 	<!-- <div class="commentList">
+ 		<form method="post" action="<c:url value="/manvolun/updatecomment.j"/>">
+      		<input type="hidden" name="boardNo" value="${글번호}" />
+      		<input type="hidden" name="commentNo" value="${댓글번호}" />
+      		<c:choose>
+	<c:when test="${empty commentList}">
+	<table width="80%">
+		<tr>
+		    <td colspan='20'>댓글이 존재하지 않습니다.</td>
+		</tr>
+	</table>
+	</c:when>
+	<c:otherwise>
+	  <table width='80%' border='1'>
+		 <tr>
+			<c:forEach var="comment" items="${commentList}">
+			<c:choose>
+		  		<c:when test="${commentNo eq comment.commentNo}">	
+					<tr>
+					  <td><c:out value="${comment.writerId}" /></td>
+					  <td>
+					  	<textarea name="content" rows="2" cols="60"><c:out value="${comment.content}" /></textarea>
+					  </td>
+					  <td colspan="2">
+					  	  <input type="submit" value="수정" />	
+					  	  <a href=<c:url value="/manvolun/detail.j?boardNo=${board.boardNo}"/>">취소</a>	
+					  </td>
+					 </tr>
+		</c:when>
+		<c:otherwise>
+				<tr>
+				  <td><c:out value="${comment.writerId}" /></td>
+				  <td><c:out value="${comment.content}" /></td>
+				  <td><fmt:formatDate var="regDate" value="${comment.regDate}" 
+				                      pattern="yyyy-MM-dd" />
+				      <c:out value="${regDate}" />
+				  </td>
+				  <td>
+				  	  <a href="<c:url value="/manvolun/deletecomment.j?commentNo=${comment.commentNo}&boardNo=${comment.boardNo}"/>">삭제</a>	
+				  	  <a href="<c:url value="/manvolun/detail.j?commentNo=${comment.commentNo}&boardNo=${comment.boardNo}"/>">수정</a>	
+				  </td>
+				 </tr>
+		 	</c:otherwise>		 	
+		 </c:choose>	
+		 </c:forEach>
+		<%-- <c:if test="${empty commentList}">
+		
+		</c:if> --%>
+	</table>
+	</c:otherwise>
+	</c:choose>
+    </div> -->
+          
+    
+    <!-- 댓글 작성 -->
+
+       
+        
+    
+</body>
+  
     <script>
         /* 사이드 메뉴 */
         $(".submenu").parent().prepend('<i class="entypo-down-open-big sf"></i>');
@@ -949,5 +773,5 @@
         })
 
     </script>
-</body>
+ 
 </html>

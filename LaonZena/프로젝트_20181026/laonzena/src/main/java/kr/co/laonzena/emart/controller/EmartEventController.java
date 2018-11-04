@@ -1,5 +1,6 @@
 package kr.co.laonzena.emart.controller;
 
-public class EmartEventController {
 
+public class EmartEventController {
+	
 }

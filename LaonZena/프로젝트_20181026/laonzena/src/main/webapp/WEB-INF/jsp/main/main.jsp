@@ -12,11 +12,12 @@
 <c:import url="/common/topMenu.jsp" />
 <link rel="stylesheet" href="<c:url value='/css/main.css' />" />
 <link rel="stylesheet" href="<c:url value="/css/footer.css" />" />
+<link rel="stylesheet" href="<c:url value='/css/bottomMenu.css' />" />
+
 <script src="https://code.jquery.com/jquery-3.3.1.js"
 	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 	crossorigin="anonymous"></script>
-<script
-	src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenMax.min.js"></script>
+	
 </head>
 <body>
 	<h1 id="title">
