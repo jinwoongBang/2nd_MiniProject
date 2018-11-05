@@ -7,32 +7,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
-<script src="https://code.jquery.com/jquery-3.3.1.js"
-	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-	crossorigin="anonymous"></script>
 <c:import url="/common/basicIncludeCss.jsp" />
 <c:import url="/common/basicIncludeScript.jsp" />
 <c:import url="/common/topMenu.jsp" />
+<c:import url="/common/sideMenu/emartSideMenu.jsp" />
 <link rel="stylesheet" href="<c:url value="/css/boardMenu.css" />" />
 <link rel="stylesheet" href="<c:url value="/css/board.css" />" />
+<link rel="stylesheet" href="<c:url value="/css/sideMenu.css" />" />
 
-<link rel="stylesheet" href="<c:url value='/css/boot.css' />"
-	type="text/css" />
-<script
-	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-<link
-	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css"
-	rel="stylesheet">
-<script
-	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
 </head>
 <body>
 	<div id="overlay"></div>
 	<div id="content">
-		<h1>Write</h1>
-		<div id="board-write"></div>
-		<span id="search-img"> <img src='<c:url value="/img/god.jpg"/>' />
+		<div id="board-write">
+			<h1>Write</h1>
+		</div>
+		<span id="search-img"> <img src="../img/god.jpg">
 		</span>
 		<div>
 			<span>Title</span> <input type="text" />
@@ -45,19 +35,15 @@
 			</select>
 		</div>
 		<div>
-			<span>Product</span> <input type="text" id="product-name" />
+			<span>Product</span> <input type="text" /> <img id="search-product"
+				src="../img/search icon png vector.png" />
 		</div>
-		<div class="file-attach">
-			<span>이미지</span> <input type="file" id="file-attach" />
-			<!--             <input type="text" placeholder="c:/programfile/당나귀/해리포터.avi"/> -->
-			<%--             <img id="search-product" class="" src='<c:url value="/img/search icon png vector.png"/>' /> --%>
+		<div>
+			<span>Price</span> <input type="text" />
 		</div>
-
-		<div class="summernote">
-			<div id="summernote">
-				<p>Hello Summernote</p>
-			</div>
-
+		<div>
+			<span id="text">Content</span>
+			<textarea></textarea>
 		</div>
 		<div id="write-review">
 			<button>Submit</button>
@@ -66,32 +52,7 @@
 	</div>
 
 	</div>
-	<!-- 메뉴 -->
-	<div class="wrap">
-		<section id="vert-nav">
-		<h3>EMART Board</h3>
-		<nav role='navigation'>
-		<ul class="topmenu">
-			<!-- <li><a id="#" href="#0"><i class="entypo-home"></i> Home</a></li> -->
-			<li><a href="#0"><i class="entypo-user"></i>Product</a>
-				<ul class="submenu">
-					<li><a href="<c:url value="/emart/product/product.do"/>">전체</a></li>
-					<li><a href="#0">냉장</a></li>
-					<li><a href="#0">음료</a></li>
-					<li><a href="#0">일반식품</a></li>
-					<li><a href="#0">과자</a></li>
-				</ul></li>
-			<li><a href="#0"><i class="entypo-brush"></i>Event Product</a>
-				<ul class="submenu">
-					<li><a href="#0">1+1</a></li>
-					<li><a href="#0">2+1</a></li>
-					<li><a href="#0">덤증정</a></li>
-				</ul></li>
-			<li><a href='<c:url value="/gs/review/list.do"/>'><i
-					class="entypo-vcard"></i>Review Community</a></li>
-		</ul>
-		</nav> </section>
-	</div>
+
 
 	<!-- 게시판 -->
 	<table>
@@ -108,17 +69,16 @@
 		</thead>
 		<tbody>
 			<c:forEach var="b" items="${list}">
-   			<tr>
-				<td>${b.no}</td>
-				<td>review</td>				
-				<td>null</td>				
-				<td>null</td>				
-				<td><a href='detail.do?no=${b.no}'>${b.title}</a></td>
-				<td>${b.writer}</td>
-			    <td><fmt:formatDate value="${b.regDate}" pattern="yyyy-MM-dd" /></td>
-			</tr>
-	</c:forEach>	
-
+				<tr>
+					<td>${b.no}</td>
+					<td>${b.category}</td>
+					<td>${b.product}</td>
+					<td>${b.product}</td>
+					<td><a href='detail.do?no=${b.no}'>${b.title}</a></td>
+					<td>${b.writer}</td>					
+					<td><fmt:formatDate value="${b.regDate}" pattern="yyyy-MM-dd" /></td>
+				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
 	<div class="searchBar">
@@ -126,9 +86,7 @@
 			<option value="">글제목</option>
 			<option value="">작성자</option>
 			<option value="">내용</option>
-		</select> <input type="text" />
-		<!--             <img src="../img/search icon png vector.png"/> -->
-		<img src='<c:url value="/img/search icon png vector.png"/>' />
+		</select> <input type="text" /> <img src="../img/search icon png vector.png" />
 		<button type="submit" class="write">Write</button>
 	</div>
 	<div class="pagination">
@@ -177,78 +135,60 @@
 	</div>
 
 	<script>
-        /* 사이드 메뉴 */
-        $(".submenu").parent().prepend('<i class="entypo-down-open-big sf"></i>');
+		/* 글 작성 */
+		$(".write").on("click", function() {
+			var overlay = document.getElementById("overlay");
+			var content = document.getElementById("content");
+			overlay.style.visibility = "visible";
+			content.style.visibility = "visible";
+			$("#overlay").on("click", function() {
+				overlay.style.visibility = "hidden";
+				content.style.visibility = "hidden";
+			})
+		})
 
-        $("#vert-nav .topmenu a").click( function() {
-            var $menu = $(this).next(".submenu");
-            $menu.slideToggle('slow');
-            $menu.parent().toggleClass('openmenu');
-        });
+		/* 상품 검색 */
+		$("#search-product")
+				.on(
+						"click",
+						function() {
+							alert("상품 검색");
+							window
+									.open(
+											"http://gs25.gsretail.com/gscvs/ko/products/youus-freshfood",
+											"상품 검색", "width=700px,height=500px");
+						})
 
-        $("input,textarea").focus( function() {
-            $(this).prev("label").addClass('focused');
-        }); 
+		/* 상품 검색 버튼 */
+		$("#search-product").mouseenter(function() {
+			$(this).animate({
+				width : 25,
+				height : 25
+			});
+		}).mouseleave(function() {
+			$(this).animate({
+				width : 20,
+				height : 20
+			});
+		})
 
-        $("input,textarea").blur( function() {
-            $(this).prev("label").removeClass('focused');
-        });
-    </script>
+		/* Content submit */
+		$("#write-review>button:nth-child(1)").on("click", function() {
+			alert("제출");
+			var overlay = document.getElementById("overlay");
+			var content = document.getElementById("content");
+			overlay.style.visibility = "hidden";
+			content.style.visibility = "hidden";
+		})
 
-	<script>
-        /* 글 작성 */
-        $(".write").on("click",function () {
-            var overlay = document.getElementById("overlay");
-            var content = document.getElementById("content");
-            overlay.style.visibility = "visible";
-            content.style.visibility = "visible";
-            $("#overlay").on("click", function () {
-                overlay.style.visibility = "hidden";
-                content.style.visibility = "hidden";
-            })
-        })
-        
-        /* 상품 검색 */
-        $("#search-product").on("click", function(){
-            alert("상품 검색");
-            window.open(
-			    "http://gs25.gsretail.com/gscvs/ko/products/youus-freshfood", "상품 검색", "width=700px,height=500px"	
-		    );
-        })
-        
-        /* 상품 검색 버튼 */
-        $("#search-product").mouseenter(function () {
-            $(this).animate({width:25, height:25});
-        }).mouseleave(function(){
-            $(this).animate({width:20, height:20});
-        })
-        
-        /* Content submit */
-        $("#write-review>button:nth-child(1)").on("click", function () {
-            alert("제출");
-            var overlay = document.getElementById("overlay");
-            var content = document.getElementById("content");
-            overlay.style.visibility = "hidden";
-            content.style.visibility = "hidden";
-        })
-
-        /* Content Cancle */
-        $("#write-review>button:nth-child(2)").on("click", function () {
-            alert("취소");
-            var overlay = document.getElementById("overlay");
-            var content = document.getElementById("content");
-            overlay.style.visibility = "hidden";
-            content.style.visibility = "hidden";
-        })
-
-    </script>
-
-
-	<script>
-    	/* 썸머노트 */
-	    $(document).ready(function() {
-	        $('#summernote').summernote();
-	    });
-    </script>
+		/* Content Cancle */
+		$("#write-review>button:nth-child(2)").on("click", function() {
+			alert("취소");
+			var overlay = document.getElementById("overlay");
+			var content = document.getElementById("content");
+			overlay.style.visibility = "hidden";
+			content.style.visibility = "hidden";
+		})
+	</script>
 </body>
 </html>

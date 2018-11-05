@@ -30,9 +30,10 @@
 <script
 	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
 
+
 </head>
 <body>
-<div class="wrap" style="margin-left: 30%">
+	<div class="wrap" style="margin-left: 30%">
 		<div class="games-navigator , games-navigator--active">
 
 			<div class="games-navigator__content">

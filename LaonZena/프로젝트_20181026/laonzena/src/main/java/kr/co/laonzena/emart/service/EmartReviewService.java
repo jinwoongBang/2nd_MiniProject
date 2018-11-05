@@ -7,11 +7,11 @@ import kr.co.laonzena.repository.domain.Comment;
 
 
 public interface EmartReviewService {
-	void write(Board board);
-	Board updateForm(int no);	
-	void update(Board board);	
 	List<Board> list();	
+	void write(Board board);
 	Board detail(int no);	
-	void delete(int no);	
-	List<Comment> commentList(int no);
+//	Board updateForm(int no);	
+//	void update(Board board);	
+//	void delete(int no);	
+//	List<Comment> commentList(int no);
 }

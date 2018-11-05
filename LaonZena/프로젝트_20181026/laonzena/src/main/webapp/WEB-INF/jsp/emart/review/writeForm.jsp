@@ -6,11 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<c:import url="/common/basicIncludeCss.jsp" />
-<c:import url="/common/basicIncludeScript.jsp" />
-<c:import url="/common/topMenu.jsp" />
-<%-- <link rel="stylesheet" href="<c:url value="/css/boardMenu.css" />" /> --%>
-<%-- <link rel="stylesheet" href="<c:url value="/css/board.css" />" /> --%>
 </head>
 <body>
 	<h2>자유 게시판</h2>

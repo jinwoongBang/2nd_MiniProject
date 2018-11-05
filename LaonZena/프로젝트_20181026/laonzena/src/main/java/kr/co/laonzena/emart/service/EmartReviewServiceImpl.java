@@ -19,16 +19,16 @@ public class EmartReviewServiceImpl implements EmartReviewService {
 	public void write(Board board) {
 		mapper.insertBoard(board);
 	}
-
-	@Override
-	public Board updateForm(int no) {
-		return mapper.selectBoardByNo(no);
-	}
-
-	@Override
-	public void update(Board board) {		
-		mapper.updateBoard(board);
-	}
+//
+//	@Override
+//	public Board updateForm(int no) {
+//		return mapper.selectBoardByNo(no);
+//	}
+//
+//	@Override
+//	public void update(Board board) {		
+//		mapper.updateBoard(board);
+//	}
 
 	@Override
 	public List<Board> list() {
@@ -39,14 +39,14 @@ public class EmartReviewServiceImpl implements EmartReviewService {
 	public Board detail(int no) {
 		return mapper.selectBoardByNo(no);
 	}
-
-	@Override
-	public void delete(int no) {
-		mapper.deleteBoard(no);
-	}
-
-	@Override
-	public List<Comment> commentList(int no) {
-		return mapper.selectCommentByNo(no);
-	}
+//
+//	@Override
+//	public void delete(int no) {
+//		mapper.deleteBoard(no);
+//	}
+//
+//	@Override
+//	public List<Comment> commentList(int no) {
+//		return mapper.selectCommentByNo(no);
+//	}
 }

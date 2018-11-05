@@ -3,13 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset='utf-8'>
-<title>자유게시판</title>
-<c:import url="/common/basicIncludeCss.jsp" />
-<c:import url="/common/basicIncludeScript.jsp" />
-<c:import url="/common/topMenu.jsp" />
-<%-- <link rel="stylesheet" href="<c:url value="/css/boardMenu.css" />" /> --%>
-<%-- <link rel="stylesheet" href="<c:url value="/css/board.css" />" /> --%>
+  <meta charset='utf-8'>
+  <title>자유게시판</title>
 </head>
 <body>
 	 <h2>자유게시판</h2>
