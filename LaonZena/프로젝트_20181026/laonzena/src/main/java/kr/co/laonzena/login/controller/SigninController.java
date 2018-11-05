@@ -25,7 +25,7 @@ public class SigninController {
 	public String signin(Member member) {
 		System.out.println("signin() invoked");
 		service.signinMember(member);
-		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "/login/login.do";
+		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "/login/loginForm.do";
 	}
 	
 	@RequestMapping("/identificationConfirm.do")
