@@ -15,13 +15,13 @@
 		
 		.container {
 		  width: 480px;
-		  height: 500px;
+		  height: 550px;
 		  background: white;
 		  position: relative;
 		  display: grid;
 		  grid-template: 100% / 50% 50%;
 		  box-shadow: 2px 2px 10px 0 rgba(51, 51, 51, 0.2);
-		  top:130px;
+		  top:40px;
 		  left:600px;
 		  border-radius:10px;
 		}
@@ -69,6 +69,14 @@
 		  transition: 0.6s all ease;
 		}
 		
+		form #juminNo {
+			display:flex;
+			width:100%;
+		}
+		form #juminNo input {
+			margin: 0px 20px
+		}
+		
 		.button {
 		  width: 100%;
 		  height: 40px;
@@ -90,19 +98,28 @@
 		}
 		#identification-confirm {
 			width:90px;
+			height: 20px;
 			position:relative;
 			left:130px;
-			top:-375px;
+			top:-410px;
 			border-radius:10px;
-			font-size : 12px;
+			font-size : 10px;
 		}
 		#authorization-code {
 			width:90px;
+			height: 20px;
 			position:relative;
 			left:130px;
-			top:-340px;
+			top:-334px;
 			border-radius:10px;
-			font-size : 12px;
+			font-size : 10px;
+		}
+		#unmatchPass {
+			position: absolute;
+			font-size: 10px;
+			color: #ff4848;
+			right: 10px;
+			visibility: hidden;
 		}
 		
 		@media (max-width: 750px) {
