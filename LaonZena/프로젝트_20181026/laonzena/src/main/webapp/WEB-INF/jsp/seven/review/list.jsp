@@ -25,12 +25,13 @@
     <div id="overlay">
         
     </div>
+    <form id="writeForm"method="post" enctype="multipart/form-data" action="<c:url value="/seven/review/writeas.do"/>">
     <div id="content">
     	<h1>
             Write
         </h1>
         <div id="board-write">
-            
+            <input type="hidden" value="${user.memberId}" name="writer">
         </div>
         <span id="search-img">
             <img src='<c:url value="/img/god.jpg"/>' />
@@ -41,10 +42,10 @@
         </div>
         <div>
             <span>Category</span>
-            <select id="search-category">
-                <option>유제품</option>
-                <option>햄버거</option>
-                <option>음료</option>
+            <select id="search-category" name="category">
+                <option value="1">유제품</option>
+                <option value="2">햄버거</option>
+                <option value="3">음료</option>
             </select>
         </div>
         <div>
@@ -53,20 +54,27 @@
         </div>
         <div class="file-attach"> 
             <span>이미지</span>
-            <input type="file" id="file-attach"/> 
+            
+            <input type="file" id="file-attach" name="attach" multiple="multiple"/> 
+           
 <!--             <input type="text" placeholder="c:/programfile/당나귀/해리포터.avi"/> -->
 <%--             <img id="search-product" class="" src='<c:url value="/img/search icon png vector.png"/>' /> --%>
         </div>
        
+            	<input type="hidden" name="content" id="boardContent"/>
         <div class="summernote">
-            <div id="summernote"><p>Hello Summernote</p></div>
+            <div id="summernote">
+            </div>
 		  
         </div>
         <div id="write-review">
             <button id="submit">Submit</button>
             <button>Cancle</button>
+            <button id="summer" type="button">note</button>
         </div>
+        
     </div>
+    </form>
 
     </div>
     <!-- 메뉴 -->
@@ -117,10 +125,18 @@
           <c:forEach var="seven" items="${list}">
    			 <tr>
 				<td>${seven.no}</td>
-				<td>${seven.category}</td>
-				<td><img class="product" src='<c:url value="/img/spinner.jpg"/>'/></td>
-				<td>${seven.productName}</td>
-				<td>${seven.title}</td>
+				<c:if test="${seven.category==1}">
+					<td>유제품</td>
+				</c:if>
+				<c:if test="${seven.category==2}">
+					<td>햄버거</td>
+				</c:if>
+				<c:if test="${seven.category==3}">
+					<td>음료</td>
+				</c:if>
+				<td><img class="product" src='<c:url value="${seven.serPath}/${seven.serName}"/>'/></td>
+				<td>${seven.product}</td>
+				<td><a href="detail.do?no=${seven.no}">${seven.title}</a></td>
 				<td>${seven.writer}</td>
 			    <td><fmt:formatDate value="${seven.regDate}" pattern="yyyy-MM-dd" /></td>
 <%-- 			    <td>${seven.viewCnt}</td> --%>
@@ -148,6 +164,7 @@
 <!--             <img src="../img/search icon png vector.png"/> -->
             <img src='<c:url value="/img/search icon png vector.png"/>'/>
             <button type="submit" class="write">Write</button>
+            
         </div>
         <div class="pagination">
             <div>
@@ -193,7 +210,7 @@
                 <a href="#14">&gt;&gt;</a>
             </div>
         </div>
-        
+
         
     <script>
         /* 사이드 메뉴 */
@@ -226,7 +243,7 @@
                 content.style.visibility = "hidden";
             })
             
-            console.log($("#content").children("div").html())
+           
         })
         
         /* 상품 검색 */
@@ -247,24 +264,28 @@
         /* Content submit */
         $("#write-review>button:nth-child(1)").on("click", function () {
             alert("제출");
+//             $('#boardContent').val($('#summernote').summernote('code'))
+            $('#boardContent').val($('.note-editable').text())
+//             alert($("#boardContent").val())
+            
             var overlay = document.getElementById("overlay");
             var content = document.getElementById("content");
             overlay.style.visibility = "hidden";
             content.style.visibility = "hidden";
            
-            $.ajax({
-    			url:"/laonzena/seven/review/write.do", // 어디에 호출할지
-    			data : {
-    					title: $("#title").val(),
-    					content:$(".note-editable").text(),
-    					productName: $("#product-name").val(),
-    					category: $("#search-category").val(),
-    					writer: "test"
-    					}, // 파라미터를 객체 형태로 보낼 수도 있다(키:값)
-    			success: function () { // 요청결과로 넘어온 값으로 처리할 내용
-    				alert("등록 완료 !")
-    			}
-    		})
+//             $.ajax({
+//     			url:"/laonzena/seven/review/write.do", // 어디에 호출할지
+//     			data : {
+//     					title: $("#title").val(),
+//     					content:$(".note-editable").text(),
+//     					productName: $("#product-name").val(),
+//     					category: $("#search-category").val(),
+//     					writer: "test"
+//     					}, // 파라미터를 객체 형태로 보낼 수도 있다(키:값)
+//     			success: function () { // 요청결과로 넘어온 값으로 처리할 내용
+//     				alert("등록 완료 !")
+//     			}
+//     		})
             
             
             
@@ -279,6 +300,15 @@
             overlay.style.visibility = "hidden";
             content.style.visibility = "hidden";       
         })      
+        
+        
+        
+        $("#summer").click(function () {
+        	console.log($('#summernote').summernote('code'))
+		})
+        
+
+
     </script>
     
     

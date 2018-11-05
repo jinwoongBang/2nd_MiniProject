@@ -23,4 +23,14 @@ public class SevenReviewServiceImpl implements SevenReviewService{
 	public void insertBoard(Board board) {
 		mapper.insertBoard(board);	
 	}
+	
+	@Override
+	public Board detail(int no) {
+		return mapper.selectBoardByNo(no);
+	}
+	
+	@Override
+	public void viewCnt(int no) {
+		mapper.viewCntUp(no);
+	}
 }
