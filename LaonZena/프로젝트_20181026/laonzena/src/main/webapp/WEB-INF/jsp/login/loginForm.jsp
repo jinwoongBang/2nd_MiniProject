@@ -16,9 +16,9 @@
 	<div class="container">
 		<div class="form form--login">
 			<div class="form--heading">Welcome LaonZena! </div>
-			<form autocomplete="off">
-				<input type="text" placeholder="ID">
-				<input type="password" placeholder="Password">
+			<form autocomplete="off" action='<c:url value="/login/login.do" />' >
+				<input type="text" id="memberId" name="memberId" placeholder="ID">
+				<input type="password" id="memberPass" name="memberPass" placeholder="Password">
 				<button class="button">Login</button>
 			</form>
 		</div>

@@ -31,7 +31,7 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="typeAliasesPackage" value="kr.co.laonzena.repository.domain"></property>
-		<property name="mapperLocations" value="classpath:config/sqlmap/*.xml"></property>
+		<property name="mapperLocations" value="classpath:config/sqlmap/**/*.xml"></property>
 	</bean>
 
 	<!-- spring 에게 Mapper 인터페이스의 위치를 알려주고 인터페이스에 해당하는 구현 객체 -->

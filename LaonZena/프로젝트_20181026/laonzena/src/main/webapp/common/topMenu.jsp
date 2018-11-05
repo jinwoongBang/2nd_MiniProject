@@ -8,9 +8,9 @@
   </a> 
 	<div id="topMenuList">
       <a class="top-menu" href="<c:url value="/main/main.do" />">Home</a>
-      <a class="top-menu"id="top-sign-in" href="<c:url value="/login/signinForm.do" />">회원가입</a>
       <c:choose>
       <c:when test="${empty user}">
+	    <a class="top-menu"id="top-sign-in" href="<c:url value="/login/signinForm.do" />">회원가입</a>
       	<a class="top-menu" id="top-sign-in" href="<c:url value="/login/loginForm.do" />">로그인</a>
       </c:when>
       <c:otherwise>
@@ -19,10 +19,6 @@
       </c:choose>
 	</div>
 </header>
-<!-- /header -->
-<script>
-	var navigation = $('#nav-main').okayNav();	
-</script>
 
 
 
