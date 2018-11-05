@@ -4,70 +4,88 @@ import java.util.Date;
 
 public class Member {
 	
-	private int no;
-	private String id;
-	private String pass;
-	private String email;
-	private String cellPhone;
-	private String address;
-	private String juminNo;
-	private String name;
-	private Date regDate;
-	public int getNo() {
-		return no;
-	}
-	public void setNo(int no) {
-		this.no = no;
-	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public String getPass() {
-		return pass;
-	}
-	public void setPass(String pass) {
-		this.pass = pass;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getCellPhone() {
-		return cellPhone;
-	}
-	public void setCellPhone(String cellPhone) {
-		this.cellPhone = cellPhone;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	public String getJuminNo() {
-		return juminNo;
-	}
-	public void setJuminNo(String juminNo) {
-		this.juminNo = juminNo;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public Date getRegDate() {
-		return regDate;
-	}
-	public void setRegDate(Date regDate) {
-		this.regDate = regDate;
-	}
+	private int memberNo;
+	private String memberId;
+	private String memberPass;
+	private String memberEmail;
+	private String memberCellPhone;
+	private String memberAddress;
+	private String memberName;
+	private Date memberRegDate;
+	private String memberJuminNo;
+	private String frontJuminNo;
+	private String backJuminNo;
 	
 	
+	public String getMemberJuminNo() {
+		if(memberJuminNo == null) {
+			memberJuminNo = frontJuminNo + "-" + backJuminNo;
+		}
+		return memberJuminNo;
+	}
+	public void setMemberJuminNo(String memberJuminNo) {
+		this.memberJuminNo = memberJuminNo;
+	}
+	public String getFrontJuminNo() {
+		return frontJuminNo;
+	}
+	public void setFrontJuminNo(String frontJuminNo) {
+		this.frontJuminNo = frontJuminNo;
+	}
+	public String getBackJuminNo() {
+		return backJuminNo;
+	}
+	public void setBackJuminNo(String backJuminNo) {
+		this.backJuminNo = backJuminNo;
+	}
+	public int getMemberNo() {
+		return memberNo;
+	}
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
+	}
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+	public String getMemberPass() {
+		return memberPass;
+	}
+	public void setMemberPass(String memberPass) {
+		this.memberPass = memberPass;
+	}
+	public String getMemberEmail() {
+		return memberEmail;
+	}
+	public void setMemberEmail(String memberEmail) {
+		this.memberEmail = memberEmail;
+	}
+	public String getMemberCellPhone() {
+		return memberCellPhone;
+	}
+	public void setMemberCellPhone(String memberCellPhone) {
+		this.memberCellPhone = memberCellPhone;
+	}
+	public String getMemberAddress() {
+		return memberAddress;
+	}
+	public void setMemberAddress(String memberAddress) {
+		this.memberAddress = memberAddress;
+	}
+	
+	public String getMemberName() {
+		return memberName;
+	}
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
+	public Date getMemberRegDate() {
+		return memberRegDate;
+	}
+	public void setMemberRegDate(Date memberRegDate) {
+		this.memberRegDate = memberRegDate;
+	}
 	
 }
