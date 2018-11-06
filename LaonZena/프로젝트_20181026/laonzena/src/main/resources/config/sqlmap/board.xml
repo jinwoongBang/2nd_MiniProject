@@ -17,6 +17,14 @@
 		<result column="board_writer" property="writer"/>	
 	</resultMap>
 	
+	<resultMap type="comment" id="commentMap">
+		<result column="comment_no" property="commentNo"/>
+		<result column="board_no" property="boardNo"/>
+		<result column="comment_content" property="content"/>
+		<result column="comment_writer" property="writer"/>
+	</resultMap>
+	
+	
 	<select id="selectBoard" resultMap="boardMap">
 		select *
 		 from  lz_tb_se_board
@@ -57,9 +65,41 @@
 	<update id="viewCntUp" parameterType="int">
 		update lz_tb_se_board
 		set   board_view_cnt= board_view_cnt+1
-		where board_no = #{no}
-		
+		where board_no = #{no}	
 	</update>
+	
+	
+	<insert id="insertComment" parameterType="comment">
+		insert into lz_tb_se_comment(
+		    comment_no,
+		    board_no,
+		    comment_content,
+		    comment_writer
+		)values(
+		    lz_s_gs_comment_no.nextval,
+		    #{boardNo},
+		    #{content},
+		    #{writer}    
+		)
+	</insert>
+	
+	<select id="selectCommentByNo" parameterType="int" resultMap="commentMap">
+		select *
+		 from lz_tb_se_comment
+		where board_no = #{boardNo} 
+	</select>
+	
+	<update id="commentUpdate" parameterType="comment">
+		update lz_tb_se_comment
+		set  comment_content=#{content}
+		where board_no=#{boardNo} and comment_no=#{commentNo}
+	</update>
+	
+	<delete id="commentDelete" parameterType="comment">
+		delete 
+		from lz_tb_se_comment
+		where board_no=#{boardNo} and comment_no=#{commentNo}
+	</delete>
 </mapper>
 
 

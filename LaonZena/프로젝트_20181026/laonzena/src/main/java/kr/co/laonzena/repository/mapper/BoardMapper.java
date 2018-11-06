@@ -13,4 +13,9 @@ public interface BoardMapper {
 	int deleteBoard(int no);	
 	int updateBoard(Board board);	
 	List<Comment> selectCommentByNo(int no);
+	void insertComment(Comment comment);
+	void commentUpdate(Comment comment);
+	void commentDelete(Comment comment);
+	
+	void viewCntUp(int no);
 }
