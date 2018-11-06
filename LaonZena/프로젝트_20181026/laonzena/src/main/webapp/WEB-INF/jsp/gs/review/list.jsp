@@ -16,9 +16,11 @@
 	<link rel="stylesheet" href="<c:url value="/css/board.css" />" />
 	
 	<link rel="stylesheet" href="<c:url value='/css/gs_review/boot.css' />" type="text/css"/>
-	  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
-	  <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
-	  <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+	<!-- jquery form : http://malsup.com/jquery/form/#getting-started  -->
+<!-- 	<script src="http://malsup.github.com/jquery.form.js"></script>  -->
 </head>
 <body>
     <div id="overlay">
@@ -36,34 +38,33 @@
         </span>
         <div>
             <span>Title</span>
-            <input type="text" />
+            <input id="title" type="text" />
         </div>
         <div>
             <span>Category</span>
-            <select id="search-category">
-                <option>유제품</option>
-                <option>햄버거</option>
-                <option>음료</option>
+            <select id="category">
+                <option value="1">유제품</option>
+                <option value="2">햄버거</option>
+                <option value="3">음료</option>
             </select>
         </div>
         <div>
             <span>Product</span>
-            <input type="text" id="product-name" />
+            <input type="text" id="product" />
         </div>
         <div class="file-attach"> 
             <span>이미지</span>
-            <input type="file" id="file-attach"/> 
-<!--             <input type="text" placeholder="c:/programfile/당나귀/해리포터.avi"/> -->
-<%--             <img id="search-product" class="" src='<c:url value="/img/search icon png vector.png"/>' /> --%>
+            <form id="fileForm" method="post" enctype="multipart/form-data">
+	            <input type="file" name="attach" id="file-attach" multiple="multiple" /> 
+            </form>
         </div>
        
         <div class="summernote">
-            <div id="summernote"><p>Hello Summernote</p></div>
-		  
+            <div id="summernote"></div>  
         </div>
         <div id="write-review">
             <button>Submit</button>
-            <button>Cancle</button>
+            <button>Cancel</button>
         </div>
     </div>
 
@@ -112,108 +113,28 @@
         </tr>
       </thead>
       <tbody>
+      	<c:forEach var="b" items="${list}" varStatus="status">
           <tr>
-              <td>1</td>
-              <td>review</td>
+              <td>${status.index+1}</td>
+              <td>${b.category}</td>
               <td><img class="product" src='<c:url value="/img/spinner.jpg"/>'/></td>
-              <td>혜자네 창렬 김밥</td>
-              <td>혜자인듯 창렬인듯 존맛인듯</td>
-              <td>방진웅</td>
-              <td>2018 - 10 - 29</td>
-          </tr>
-          <tr>
-              <td>2</td>
-              <td>review</td>
-              <td><img class="product" src='<c:url value="/img/spinner.jpg"/>'/></td>
-              <td>혜자네 창렬 김밥</td>
-              <td>혜자인듯 창렬인듯 존맛인듯</td>
-              <td>방진웅</td>
-              <td>2018 - 10 - 29</td>
-          </tr>
-          <tr>
-              <td>3</td>
-              <td>review</td>
-              <td><img class="product" src='<c:url value="/img/spinner.jpg"/>'/></td>
-              <td>혜자네 창렬 김밥</td>
-              <td>혜자인듯 창렬인듯 존맛인듯</td>
-              <td>방진웅</td>
-              <td>2018 - 10 - 29</td>
-          </tr>
-          <tr>
-              <td>4</td>
-              <td>review</td>
-              <td><img class="product" src='<c:url value="/img/spinner.jpg"/>'/></td>
-              <td>혜자네 창렬 김밥</td>
-              <td>혜자인듯 창렬인듯 존맛인듯</td>
-              <td>방진웅</td>
-              <td>2018 - 10 - 29</td>
-          </tr>
-          <tr>
-              <td>5</td>
-              <td>review</td>
-              <td><img class="product" src='<c:url value="/img/spinner.jpg"/>'/></td>
-              <td>혜자네 창렬 김밥</td>
-              <td>혜자인듯 창렬인듯 존맛인듯</td>
-              <td>방진웅</td>
-              <td>2018 - 10 - 29</td>
-          </tr>
-          <tr>
-              <td>6</td>
-              <td>review</td>
-              <td><img class="product" src='<c:url value="/img/spinner.jpg"/>'/></td>
-              <td>혜자네 창렬 김밥</td>
-              <td>혜자인듯 창렬인듯 존맛인듯</td>
-              <td>방진웅</td>
-              <td>2018 - 10 - 29</td>
-          </tr>
-          <tr>
-              <td>7</td>
-              <td>review</td>
-              <td><img class="product" src='<c:url value="/img/spinner.jpg"/>'/></td>
-              <td>혜자네 창렬 김밥</td>
-              <td>혜자인듯 창렬인듯 존맛인듯</td>
-              <td>방진웅</td>
-              <td>2018 - 10 - 29</td>
-          </tr>
-          <tr>
-              <td>8</td>
-              <td>review</td>
-              <td><img class="product" src='<c:url value="/img/spinner.jpg"/>'/></td>
-              <td>혜자네 창렬 김밥</td>
-              <td>혜자인듯 창렬인듯 존맛인듯</td>
-              <td>방진웅</td>
-              <td>2018 - 10 - 29</td>
-          </tr>
-          <tr>
-              <td>9</td>
-              <td>review</td>
-              <td><img class="product" src='<c:url value="/img/spinner.jpg"/>'/></td>
-              <td>혜자네 창렬 김밥</td>
-              <td>혜자인듯 창렬인듯 존맛인듯</td>
-              <td>방진웅</td>
-              <td>2018 - 10 - 29</td>
-          </tr>
-          <tr>
-              <td>10</td>
-              <td>review</td>
-              <td><img class="product" src='<c:url value="/img/spinner.jpg"/>'/></td>
-              <td>혜자네 창렬 김밥</td>
-              <td>혜자인듯 창렬인듯 존맛인듯</td>
-              <td>방진웅</td>
-              <td>2018 - 10 - 29</td>
-          </tr>
-      
+              <td>${b.product}</td>
+              <td>${b.title}</td>
+              <td>${b.writer}</td>
+              <td>${b.regDate}</td>
+          </tr>	
+      	</c:forEach>
+
       </tbody>
     </table>
         <div class="searchBar">
-            <select>
-                <option value="">글제목</option>
-                <option value="">작성자</option>
-                <option value="">내용</option>
+            <select id="search-select">
+                <option value="1">글제목</option>
+                <option value="2">작성자</option>
+                <option value="3">내용</option>
             </select>
-            <input type="text"/>
-<!--             <img src="../img/search icon png vector.png"/> -->
-            <img src='<c:url value="/img/search icon png vector.png"/>'/>
+            <input type="text" id="search-content"/>
+            <img id="search-btn" src='<c:url value="/img/search icon png vector.png"/>'/>
             <button type="submit" class="write">Write</button>
         </div>
         <div class="pagination">
@@ -281,6 +202,13 @@
     </script>
 
     <script>
+    	/* 검색 */
+    	$("#search-btn").click(function () {
+    		alert($("#search-select").val());
+    		alert($("#search-content").val());
+    		windows.location("/laonzena/gs/review/search.do");
+    	});
+    	
         /* 글 작성 */
         $(".write").on("click",function () {
             var overlay = document.getElementById("overlay");
@@ -293,33 +221,102 @@
             })
         })
         
-        /* 상품 검색 */
-        $("#search-product").on("click", function(){
-            alert("상품 검색");
-            window.open(
-			    "http://gs25.gsretail.com/gscvs/ko/products/youus-freshfood", "상품 검색", "width=700px,height=500px"	
-		    );
-        })
-        
-        /* 상품 검색 버튼 */
-        $("#search-product").mouseenter(function () {
-            $(this).animate({width:25, height:25});
-        }).mouseleave(function(){
-            $(this).animate({width:20, height:20});
-        })
-        
         /* Content submit */
-        $("#write-review>button:nth-child(1)").on("click", function () {
-            alert("제출");
+        $("#write-review > button:nth-child(1)").on("click", function () {
+        	var form = $("#fileForm")[0];
+        	console.log(form);
+            var formData = new FormData(form);
+            
+            var title = $("#title").val();
+            var category = $("#category").val();
+            var product = $("#product").val();
+            var content = $('#summernote').summernote('code');
+//             var file = $("#file-attach").files();
+
+            formData.append("title", title);
+            formData.append("category", category);
+            formData.append("product", product);
+            formData.append("content", content);
+            formData.append("writer", "${user.memberId}");
+
+            console.log("title : " + title);
+            console.log("category : " + category);
+            console.log("product : " + product);
+            console.log("content : " + content);
+            console.log("formData : " + formData);
+            console.log("writer : " + "${user.memberId}");
+            
+//             $.ajax({
+//             	url : "/laonzena/gs/review/write.do",
+//     			type : "POST",
+//     			data : {
+//     				title: title,
+//     				category: category,
+//     				product: product,
+//     				content: content,
+//     				writer: "${user.memberId}",
+//     			}
+//             }).done(function (data) {
+//             	 $.ajax({
+//                  	url : "/laonzena/gs/review/fileUpload.do",
+//          			type : "POST",
+//          			data : formData,
+//          			contentType: false,
+//          			processData: false
+//                  }).done(function (data) {
+//                  	alert("파일 업로드 성공");
+//                  }).fail(function () {
+//                  	alert("파일 업로드 실패");
+//                  })
+//             }).fail(function () {
+//             	alert("게시물 데이터 전송 실패");
+//             });
+            
+//             $.ajax({
+//              	url : "/laonzena/gs/review/fileUpload.do",
+//      			type : "POST",
+//      			data : formData,
+//      			contentType: false,
+//      			processData: false
+//              }).done(function (data) {
+//             	 $.ajax({
+//                  	url : "/laonzena/gs/review/write.do",
+//          			type : "POST",
+//          			data : {
+//          				title: title,
+//          				category: category,
+//          				product: product,
+//          				content: content,
+//          				writer: "${user.memberId}"
+//          			}
+//                  }).done(function (data) {
+//                 	 alert("게시물 데이터 전송 성공");
+//                  }).fail(function () {
+//                  	alert("게시물 데이터 전송 실패");
+//                  })
+//              }).fail(function () {
+//              	alert("파일 업로드 실패");
+//              })
+ 			$.ajax({
+             	url : "/laonzena/gs/review/write.do",
+     			type : "POST",
+     			data : formData,
+     			contentType: false,
+     			processData: false
+             }).done(function (data) {
+            	 alert("파일 업로드 성공");
+             }).fail(function () {
+             	alert("파일 업로드 실패");
+             })
+            
             var overlay = document.getElementById("overlay");
             var content = document.getElementById("content");
             overlay.style.visibility = "hidden";
             content.style.visibility = "hidden";
-        })
+        });
 
         /* Content Cancle */
         $("#write-review>button:nth-child(2)").on("click", function () {
-            alert("취소");
             var overlay = document.getElementById("overlay");
             var content = document.getElementById("content");
             overlay.style.visibility = "hidden";
@@ -328,11 +325,12 @@
 
     </script>
     
-    
     <script>
     	/* 썸머노트 */
 	    $(document).ready(function() {
-	        $('#summernote').summernote();
+	        $('#summernote').summernote(
+	        	{placeholder: '내용을 입력해주세요'}
+	        );
 	    });
     </script>
 </body>
