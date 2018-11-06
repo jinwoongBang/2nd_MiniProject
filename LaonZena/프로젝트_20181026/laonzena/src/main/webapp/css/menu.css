@@ -55,7 +55,7 @@ header {
 .site-logo {
     transition: color 200ms cubic-bezier(.55, 0, .1, 1);
     color: #30acff;
-    font-size: 3rem;
+    font-size: 0rem;
 }
 
 .ok-header__logo:hover {color: #546edb}

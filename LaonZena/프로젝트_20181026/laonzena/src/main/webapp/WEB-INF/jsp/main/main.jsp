@@ -7,25 +7,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
 <c:import url="/common/basicIncludeCss.jsp" />
 <c:import url="/common/basicIncludeScript.jsp" />
 <c:import url="/common/topMenu.jsp" />
 <link rel="stylesheet" href="<c:url value='/css/main.css' />" />
 <link rel="stylesheet" href="<c:url value="/css/footer.css" />" />
-<link rel="stylesheet" href="<c:url value='/css/bottomMenu.css' />" />
-
 <script src="https://code.jquery.com/jquery-3.3.1.js"
 	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 	crossorigin="anonymous"></script>
-	
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenMax.min.js"></script>
 </head>
 <body>
 	<h1 id="title">
 		모두의  &nbsp; 편의점
 	</h1>
 	<div id="search">
-		<input id="searchbox" type="text" value="상품명을 입력하세요.">
-		<button>검색</button>
+		<input id="searchbox" type="text" placeholder="상품명을 입력하세요.(예 : 식용유)">
+		<button><a href="http://namu.wiki/w/%EC%8B%9D%EC%9A%A9%EC%9C%A0">검색</a></button>
 	</div>
 	<br>
 
@@ -40,7 +40,7 @@
 	<footer>
 		<div>		
 			<span>
-				<h1>(주)모두의 편의점</h1>
+				<h1>(주)LaonZena</h1>
 			</span>
 			<span id="name">
 				&lt;창업 문의&gt;  &nbsp;&nbsp;

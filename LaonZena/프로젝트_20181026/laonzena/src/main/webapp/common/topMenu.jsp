@@ -1,11 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
-
+<style>
+	img#logo {
+		width: 200px; 
+		height: 65px;
+	}
+	
+	img#back {
+		margin-left:14px;
+		width: 600px; 
+		height: 65px;
+	}
+</style>
 <header id="header">
   <a class="site-logo" href="<c:url value="/main/main.do" />">
-           LaonZena
+     <img id="logo" src='<c:url value="/img/logo.png"/>' />
   </a> 
+  <span>
+       <img id="back" src='<c:url value="/img/back.jpg"/>' />
+  </span>
 	<div id="topMenuList">
       <a class="top-menu" href="<c:url value="/main/main.do" />">Home</a>
       <c:choose>

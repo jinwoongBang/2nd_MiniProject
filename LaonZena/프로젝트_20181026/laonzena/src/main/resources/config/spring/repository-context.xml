@@ -36,7 +36,7 @@
 
 	<!-- spring 에게 Mapper 인터페이스의 위치를 알려주고 인터페이스에 해당하는 구현 객체 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="kr.co.laonzena.repository.mapper"></property>
+		<property name="basePackage" value="kr.co.laonzena.repository.mapper.**"></property>
 	</bean>
 	
 	<!-- 트랜젝션 처리 파트 시작 -->

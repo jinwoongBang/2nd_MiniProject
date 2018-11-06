@@ -14,6 +14,14 @@ public class Board {
 	private String serName;
 	private String serPath;
 	private String writer;
+	private String content;
+	
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
 	public int getNo() {
 		return no;
 	}

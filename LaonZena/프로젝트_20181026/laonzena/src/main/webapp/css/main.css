@@ -27,7 +27,8 @@
 }
 
 body {
-	background-image: url("../img/main.jpg");
+	background-image: url("../img/main3.jpg");
+	background-size: 100%;
 
 }
 .banner {
@@ -111,3 +112,4 @@ body {
 #searchbox {
 	width: 500px;
 }
+

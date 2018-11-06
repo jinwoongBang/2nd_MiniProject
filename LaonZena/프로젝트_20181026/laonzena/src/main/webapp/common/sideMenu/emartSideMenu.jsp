@@ -17,18 +17,18 @@
 			<li><a href="#0"><i class="entypo-user"></i>Product</a>
 				<ul class="submenu">
 					<li><a href="<c:url value="/emart/product/product.do"/>">전체</a></li>
-					<li><a href="#0">냉장</a></li>				
-					<li><a href="#0">음료</a></li>
-					<li><a href="#0">일반식품</a></li>
-					<li><a href="#0">과자</a></li>
+					<li><a href="<c:url value="/emart/product/naengjang.do"/>">냉장</a></li>				
+					<li><a href="<c:url value="/emart/product/drink.do"/>">음료</a></li>
+					<li><a href="<c:url value="/emart/product/normalfood.do"/>">일반식품</a></li>
+					<li><a href="<c:url value="/emart/product/snack.do"/>">과자</a></li>
 				</ul></li>
 			<li><a href="#0"><i class="entypo-brush"></i>Event Product</a>
 				<ul class="submenu">
-					<li><a href="#0">1+1</a></li>
-					<li><a href="#0">2+1</a></li>
-					<li><a href="#0">덤증정</a></li>
+					<li><a href="<c:url value="/emart/event/1n1.do"/>">1+1</a></li>
+					<li><a href="<c:url value="/emart/event/2n1.do"/>">2+1</a></li>
+					<li><a href="<c:url value="/emart/event/dum.do"/>">덤증정</a></li>
 				</ul></li>
-			<li><a href="#0"><i class="entypo-vcard"></i>Review
+			<li><a href="<c:url value="/emart/review/list.do"/>"><i class="entypo-vcard"></i>Review
 					Community</a></li>
 		</ul>
 		</nav>
