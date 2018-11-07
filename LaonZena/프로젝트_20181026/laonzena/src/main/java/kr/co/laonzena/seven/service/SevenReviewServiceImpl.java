@@ -7,16 +7,17 @@ import org.springframework.stereotype.Service;
 
 import kr.co.laonzena.repository.domain.Board;
 import kr.co.laonzena.repository.domain.Comment;
-import kr.co.laonzena.repository.mapper.BoardMapper;
+import kr.co.laonzena.repository.domain.Page;
+import kr.co.laonzena.repository.mapper.SevenBoardMapper;
 
 @Service
 public class SevenReviewServiceImpl implements SevenReviewService{
 	@Autowired
-	private BoardMapper mapper;
+	private SevenBoardMapper mapper;
 	
 	@Override
-	public List<Board> list() {
-		return mapper.selectBoard();
+	public List<Board> list(Page page) {
+		return mapper.selectBoard(page); // list 객체
 	}
 	
 	
@@ -41,6 +42,13 @@ public class SevenReviewServiceImpl implements SevenReviewService{
 	}
 	
 	@Override
+	public void updateBoard(Board board) {
+		mapper.updateBoard(board);
+		
+	}
+	
+	
+	@Override
 	public List<Comment> selectCommentByNo(int no) {
 		return mapper.selectCommentByNo(no);
 	}
@@ -55,4 +63,11 @@ public class SevenReviewServiceImpl implements SevenReviewService{
 	public void commentDelete(Comment comment) {
 		mapper.commentDelete(comment);		
 	}
+	
+	@Override
+	   public int deleteBoard(int no) {
+	    return mapper.deleteBoard(no);   
+	 }
+	
+	
 }

@@ -12,6 +12,8 @@
 	<c:import url="/common/basicIncludeCss.jsp" />
 	<c:import url="/common/basicIncludeScript.jsp" />
 	<c:import url="/common/topMenu.jsp" />
+	<c:import url="/common/pagenation.jsp" />
+	
 	
 	<link rel="stylesheet" href="<c:url value="/css/boardMenu.css" />" />
 	<link rel="stylesheet" href="<c:url value="/css/board.css" />" />
@@ -122,9 +124,9 @@
       </thead>
       <tbody>
          
-          <c:forEach var="seven" items="${list}">
+          <c:forEach var="seven" items="${list}"> <!-- list = {1번보드(작성자,작성글...), 2번보드(작성자,작성글..)} -->
    			 <tr>
-				<td>${seven.no}</td>
+				<td>${seven.no}</td> <!-- board객체의 getNo 메소드를 불름  -->
 				<c:if test="${seven.category==1}">
 					<td>유제품</td>
 				</c:if>
@@ -142,15 +144,12 @@
 <%-- 			    <td>${seven.viewCnt}</td> --%>
 			</tr>
 		</c:forEach>
-          <tr>
-              <td>10</td>
-              <td>review</td>
-              <td><img class="product" src='<c:url value="/img/spinner.jpg"/>'/></td>
-              <td>혜자네 창렬 김밥</td>
-              <td>혜자인듯 창렬인듯 존맛인듯</td>
-              <td>방진웅</td>
-              <td>2018 - 10 - 29</td>
-          </tr>
+          <c:if test="${empty list}">
+      		<tr>
+      			<td colspan="7" >입력된 게시물이 없습니다.</td> 
+      		</tr>
+      		
+      	</c:if>
       
       </tbody>
     </table>
@@ -166,50 +165,7 @@
             <button type="submit" class="write">Write</button>
             
         </div>
-        <div class="pagination">
-            <div>
-                <a href="#1">&lt;&lt;</a>
-            </div>
-            <div>
-                <a href="#2">&lt;</a>
-            </div>
-            <div>
-                <a href="#3">1</a>
-            </div>
-            <div>
-                <a href="#4">2</a>
-            </div>
-            <div>
-                <a href="#5">3</a>
-            </div>
-            <div>
-                <a href="#6">4</a>
-            </div>
-            <div>
-                <a href="#7">5</a>
-            </div>
-            <div>
-                <a href="#8">6</a>
-            </div>
-            <div>
-                <a href="#9">7</a>
-            </div>
-            <div>
-                <a href="#10">8</a>
-            </div>
-            <div>
-                <a href="#11">9</a>
-            </div>
-            <div>
-                <a href="#12">10</a>
-            </div>
-            <div>
-                <a href="#13">&gt;</a>
-            </div>
-            <div>
-                <a href="#14">&gt;&gt;</a>
-            </div>
-        </div>
+        
 
         
     <script>
@@ -308,7 +264,29 @@
 		})
         
 
+		 var currentPageNo = ${currentPageNo};
 
+        $(".pagination > div > a.paging ").click(function (e) {
+        	e.preventDefault();
+        	var pageNo = $(this).attr("href"); 
+        	location.href = "/laonzena/seven/review/list.do?pageNo=" + pageNo;
+        })
+       
+        /* Next Page */
+		function nextPage() {
+        	currentPageNo = currentPageNo+1;
+        	location.href = "/laonzena/seven/review/list.do?pageNo=" + currentPageNo;
+        }
+        
+        /* Prev Page */
+		function prevPage() {
+        	if(currentPageNo-1 == 0){
+        		alert("이전 페이지가 존재하지 않습니다.");
+        	} else {
+				currentPageNo = currentPageNo-1;
+				location.href = "/laonzena/seven/review/list.do?pageNo=" + currentPageNo;        		
+        	}
+        }
     </script>
     
     

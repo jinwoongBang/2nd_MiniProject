@@ -429,7 +429,7 @@
 		
  		<div>
             <button class="modify" style="top:20px;" id="modify">수정</button>
-            <button type="submit" class="delete" style="top:20px;">삭제</button>
+            <button type="submit" class="delete" style="top:20px;"><a href="delete.do?no=${board.no}">삭제</a></button>
         </div>
         
         <!-- 작성된 댓글 리스트 -->
@@ -438,7 +438,7 @@
 				<input type="hidden" name="boardNo" value="${board.no}" />	
 				<input type="hidden" name="writer" value="${user.memberId}" />	
 				<textarea id="comment"name="content" style="top:53px;"></textarea>	
-				<button type="button" class="modify" style="top:100px;left:300px">등록</button>
+				<button type="button" class="modify" id="regComment"style="top:100px;left:300px">등록</button>
 			</form>
 		</div>
 			<div id="commentList" style="margin-top:9%">
@@ -461,13 +461,18 @@
 	
        <script>
        	$("#modify").click(function () {
-			location.href="updateForm.do";
+       		if(`${board.writer}`!=`${user.memberId}` || `${user.memberId}`==null) {
+       			alert("수정 할 수 없습니다 ")
+       			return false;
+       		}
+			location.href="updateForm.do?no=" +${board.no};
+
 		})
 		
 		
 		
 		// 댓글 ajax 등록 처리
-		$(".modify").click(function () {
+		$("#regComment").click(function () {
 			var formData = $("#commentAjax").serialize();
 			
 			
@@ -518,104 +523,201 @@
 				}
 			});
 		})
-		
-		$("#upndel > #commentUpdate").click(function () {
 
-			if($(this).parent().siblings("#commentP").text() != `${user.memberId}`) {
- 				alert("수정 할 수 없습니다.")
-				return false;
-			}
-			if($(this).text()=="수정완료") {
-				$.ajax({
-
-					url:"commentUpdate.do",
-					data:{
-							"writer":`${user.memberId}`,
-							"content":$("#commentC > input[id='content']").val(),
-							"boardNo":$("#commentAjax > input[name='boardNo']").val(),
-							"commentNo":$(this).parent().siblings("input[id='commentNo']").val()
-						},
-					success : function (result) {
-					
-						var html="";
-						var lastResult="";
-						for(var i=0; i<result.length; i++){
-							html = "<div id='newComment'>"
-							html+="<input id='commentNo' type='hidden' value='"+result[i].commentNo+"'/>"
-							html+="<input id='boardNo' type='hidden' value='"+result[i].boardNo+"'/>"
-							html+="<p id='commentP'>"
-							html+=result[i].writer
-							html+="</p>"
-							html+="<div id='commentC'>"
-							html+=result[i].content
-							html+="</div>"
-							html+="<div id='upndel'>"
-							html+="<button id='commentUpdate'>수정"
-							html+="</button>"
-							html+="<button id='commentDelete'>삭제"
-							html+="</button>"
-							html+="</div>"		
-							html +="</div>"
-							lastResult+=html;
-						}
-
-						$("#commentList").html(lastResult)
-					}
-					
-				})
-				$(this).html("수정")		
-				
-			}
-			$(this).parent().siblings("#commentC").html("<input type='text' id='content'/>")
-			$(this).html("수정완료")
-					
-		})
-		
-		$("#upndel > #commentDelete").click(function () {
-
-			if($(this).parent().siblings("#commentP").text() != `${user.memberId}`) {
- 				alert("삭제 할 수 없습니다.")
-				return false;
-			}
-			
-			
-			var commentNo = $(this).parent().siblings("input[id='commentNo']").val()
-			var boardNo = $(this).parent().siblings("input[id='boardNo']").val()
-			console.log(boardNo)
-			console.log(commentNo)
-			$.ajax({
-				url:"commentDelete.do",
-				data:{"boardNo":boardNo , "commentNo":commentNo},
-				success:function(result) {
-					alert("삭제 완료")
-					var html="";
-					var lastResult="";
-					for(var i=0; i<result.length; i++){
-						html = "<div id='newComment'>"
-						html+="<input id='commentNo' type='hidden' value='"+result[i].commentNo+"'/>"
-						html+="<input id='boardNo' type='hidden' value='"+result[i].boardNo+"'/>"
-						html+="<p id='commentP'>"
-						html+=result[i].writer
-						html+="</p>"
-						html+="<div id='commentC'>"
-						html+=result[i].content
-						html+="</div>"
-						html+="<div id='upndel'>"
-						html+="<button id='commentUpdate'>수정"
-						html+="</button>"
-						html+="<button id='commentDelete'>삭제"
-						html+="</button>"
-						html+="</div>"
-						html +="</div>"
-						lastResult+=html;
-					}
-
-					console.log(lastResult);
-					$("#commentList").html(lastResult)
+			$(document).on("click","#upndel > #commentUpdate", function () {
+				if($(this).parent().siblings("#commentP").text() != `${user.memberId}`) {
+	 				alert("수정 할 수 없습니다.")
+					return false;
 				}
-				
+				if($(this).text()=="수정완료") {
+					$.ajax({
+	
+						url:"commentUpdate.do",
+						data:{
+								"writer":`${user.memberId}`,
+								"content":$("#commentC > input[id='content']").val(),
+								"boardNo":$("#commentAjax > input[name='boardNo']").val(),
+								"commentNo":$(this).parent().siblings("input[id='commentNo']").val()
+							},
+						success : function (result) {
+						
+							var html="";
+							var lastResult="";
+							for(var i=0; i<result.length; i++){
+								html = "<div id='newComment'>"
+								html+="<input id='commentNo' type='hidden' value='"+result[i].commentNo+"'/>"
+								html+="<input id='boardNo' type='hidden' value='"+result[i].boardNo+"'/>"
+								html+="<p id='commentP'>"
+								html+=result[i].writer
+								html+="</p>"
+								html+="<div id='commentC'>"
+								html+=result[i].content
+								html+="</div>"
+								html+="<div id='upndel'>"
+								html+="<button id='commentUpdate'>수정"
+								html+="</button>"
+								html+="<button id='commentDelete'>삭제"
+								html+="</button>"
+								html+="</div>"		
+								html +="</div>"
+								lastResult+=html;
+							}
+	
+							$("#commentList").html(lastResult)
+						}
+						
+					})
+					$(this).html("수정")		
+					
+				}
+				$(this).parent().siblings("#commentC").html("<input type='text' id='content'/>")
+				$(this).html("수정완료")
 			})
-		})
+			
+// 			$("#upndel > #commentUpdate").click(function () {
+	
+// 				if($(this).parent().siblings("#commentP").text() != `${user.memberId}`) {
+// 	 				alert("수정 할 수 없습니다.")
+// 					return false;
+// 				}
+// 				if($(this).text()=="수정완료") {
+// 					$.ajax({
+	
+// 						url:"commentUpdate.do",
+// 						data:{
+// 								"writer":`${user.memberId}`,
+// 								"content":$("#commentC > input[id='content']").val(),
+// 								"boardNo":$("#commentAjax > input[name='boardNo']").val(),
+// 								"commentNo":$(this).parent().siblings("input[id='commentNo']").val()
+// 							},
+// 						success : function (result) {
+						
+// 							var html="";
+// 							var lastResult="";
+// 							for(var i=0; i<result.length; i++){
+// 								html = "<div id='newComment'>"
+// 								html+="<input id='commentNo' type='hidden' value='"+result[i].commentNo+"'/>"
+// 								html+="<input id='boardNo' type='hidden' value='"+result[i].boardNo+"'/>"
+// 								html+="<p id='commentP'>"
+// 								html+=result[i].writer
+// 								html+="</p>"
+// 								html+="<div id='commentC'>"
+// 								html+=result[i].content
+// 								html+="</div>"
+// 								html+="<div id='upndel'>"
+// 								html+="<button id='commentUpdate'>수정"
+// 								html+="</button>"
+// 								html+="<button id='commentDelete'>삭제"
+// 								html+="</button>"
+// 								html+="</div>"		
+// 								html +="</div>"
+// 								lastResult+=html;
+// 							}
+	
+// 							$("#commentList").html(lastResult)
+// 						}
+						
+// 					})
+// 					$(this).html("수정")		
+					
+// 				}
+// 				$(this).parent().siblings("#commentC").html("<input type='text' id='content'/>")
+// 				$(this).html("수정완료")
+						
+// 			})
+
+$(document).on("click","#upndel > #commentDelete", function () {
+	if($(this).parent().siblings("#commentP").text() != `${user.memberId}`) {
+			alert("삭제 할 수 없습니다.")
+		return false;
+	}
+	
+	
+	var commentNo = $(this).parent().siblings("input[id='commentNo']").val()
+	var boardNo = $(this).parent().siblings("input[id='boardNo']").val()
+	console.log(boardNo)
+	console.log(commentNo)
+	$.ajax({
+		url:"commentDelete.do",
+		data:{"boardNo":boardNo , "commentNo":commentNo},
+		success:function(result) {
+			alert("삭제 완료")
+			var html="";
+			var lastResult="";
+			for(var i=0; i<result.length; i++){
+				html = "<div id='newComment'>"
+				html+="<input id='commentNo' type='hidden' value='"+result[i].commentNo+"'/>"
+				html+="<input id='boardNo' type='hidden' value='"+result[i].boardNo+"'/>"
+				html+="<p id='commentP'>"
+				html+=result[i].writer
+				html+="</p>"
+				html+="<div id='commentC'>"
+				html+=result[i].content
+				html+="</div>"
+				html+="<div id='upndel'>"
+				html+="<button id='commentUpdate'>수정"
+				html+="</button>"
+				html+="<button id='commentDelete'>삭제"
+				html+="</button>"
+				html+="</div>"
+				html +="</div>"
+				lastResult+=html;
+			}
+
+			console.log(lastResult);
+			$("#commentList").html(lastResult)
+		}
+		
+	})
+	
+	
+	
+})
+// 		$("#upndel > #commentDelete").click(function () {
+
+// 			if($(this).parent().siblings("#commentP").text() != `${user.memberId}`) {
+//  				alert("삭제 할 수 없습니다.")
+// 				return false;
+// 			}
+			
+			
+// 			var commentNo = $(this).parent().siblings("input[id='commentNo']").val()
+// 			var boardNo = $(this).parent().siblings("input[id='boardNo']").val()
+// 			console.log(boardNo)
+// 			console.log(commentNo)
+// 			$.ajax({
+// 				url:"commentDelete.do",
+// 				data:{"boardNo":boardNo , "commentNo":commentNo},
+// 				success:function(result) {
+// 					alert("삭제 완료")
+// 					var html="";
+// 					var lastResult="";
+// 					for(var i=0; i<result.length; i++){
+// 						html = "<div id='newComment'>"
+// 						html+="<input id='commentNo' type='hidden' value='"+result[i].commentNo+"'/>"
+// 						html+="<input id='boardNo' type='hidden' value='"+result[i].boardNo+"'/>"
+// 						html+="<p id='commentP'>"
+// 						html+=result[i].writer
+// 						html+="</p>"
+// 						html+="<div id='commentC'>"
+// 						html+=result[i].content
+// 						html+="</div>"
+// 						html+="<div id='upndel'>"
+// 						html+="<button id='commentUpdate'>수정"
+// 						html+="</button>"
+// 						html+="<button id='commentDelete'>삭제"
+// 						html+="</button>"
+// 						html+="</div>"
+// 						html +="</div>"
+// 						lastResult+=html;
+// 					}
+
+// 					console.log(lastResult);
+// 					$("#commentList").html(lastResult)
+// 				}
+				
+// 			})
+// 		})
 		
        
        </script>
