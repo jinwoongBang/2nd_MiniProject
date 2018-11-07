@@ -435,6 +435,9 @@ body {
 	</div>
 
 	<div>
+<!-- 		<button class="recom" style="top: 10px;" id="recom"> -->
+<%-- 			<a href="detail.do?no=${board.no}">추천</a> --%>
+<!-- 		</button> -->
 		<button class="modify" style="top: 10px;" id="modify">
 			<a href="detail.do?no=${board.no}">수정</a>
 		</button>
@@ -524,60 +527,64 @@ body {
 			});
 		})
 		
-		$("#upndel > #commentUpdate").click(function () {
+		$(document).on("click","#upndel > #commentUpdate", function () {
+			
 
-			if($(this).parent().siblings("#commentP").text() != `${user.memberId}`) {
- 				alert("수정 할 수 없습니다.")
-				return false;
-			}
-			if($(this).text()=="수정완료") {
-				$.ajax({
 
-					url:"commentUpdate.do",
-					data:{
-							"writer":`${user.memberId}`,
-							"content":$("#commentC > input[id='content']").val(),
-							"boardNo":$("#commentAjax > input[name='boardNo']").val(),
-							"commentNo":$(this).parent().siblings("input[id='commentNo']").val()
-						},
-					success : function (result) {
-					
-						var html="";
-						var lastResult="";
-						for(var i=0; i<result.length; i++){
-							html = "<div id='newComment'>"
-							html+="<input id='commentNo' type='hidden' value='"+result[i].commentNo+"'/>"
-							html+="<input id='boardNo' type='hidden' value='"+result[i].boardNo+"'/>"
-							html+="<p id='commentP'>"
-							html+=result[i].writer
-							html+="</p>"
-							html+="<div id='commentC'>"
-							html+=result[i].content
-							html+="</div>"
-							html+="<div id='upndel'>"
-							html+="<button id='commentUpdate'>수정"
-							html+="</button>"
-							html+="<button id='commentDelete'>삭제"
-							html+="</button>"
-							html+="</div>"		
-							html +="</div>"
-							lastResult+=html;
+				if($(this).parent().siblings("#commentP").text() != `${user.memberId}`) {
+	 				alert("수정 할 수 없습니다.")
+					return false;
+				}
+				if($(this).text()=="수정완료") {
+					$.ajax({
+
+						url:"commentUpdate.do",
+						data:{
+								"writer":`${user.memberId}`,
+								"content":$("#commentC > input[id='content']").val(),
+								"boardNo":$("#commentAjax > input[name='boardNo']").val(),
+								"commentNo":$(this).parent().siblings("input[id='commentNo']").val()
+							},
+						success : function (result) {
+						
+							var html="";
+							var lastResult="";
+							for(var i=0; i<result.length; i++){
+								html = "<div id='newComment'>"
+								html+="<input id='commentNo' type='hidden' value='"+result[i].commentNo+"'/>"
+								html+="<input id='boardNo' type='hidden' value='"+result[i].boardNo+"'/>"
+								html+="<p id='commentP'>"
+								html+=result[i].writer
+								html+="</p>"
+								html+="<div id='commentC'>"
+								html+=result[i].content
+								html+="</div>"
+								html+="<div id='upndel'>"
+								html+="<button id='commentUpdate'>수정"
+								html+="</button>"
+								html+="<button id='commentDelete'>삭제"
+								html+="</button>"
+								html+="</div>"		
+								html +="</div>"
+								lastResult+=html;
+							}
+
+							$("#commentList").html(lastResult)
 						}
-
-						$("#commentList").html(lastResult)
-					}
+						
+					})
+					$(this).html("수정")		
 					
-				})
-				$(this).html("수정")		
-				
-			}
-			$(this).parent().siblings("#commentC").html("<input type='text' id='content' style='width:670px'/>")
-			$(this).html("수정완료")
-					
+				}
+				$(this).parent().siblings("#commentC").html("<input type='text' id='content' style='width:670px'/>")
+				$(this).html("수정완료")
+			
 		})
 		
-		$("#upndel > #commentDelete").click(function () {
 
+		
+		
+		$(document).on("click","#upndel > #commentDelete", function () {
 			if($(this).parent().siblings("#commentP").text() != `${user.memberId}`) {
  				alert("삭제 할 수 없습니다.")
 				return false;
@@ -620,7 +627,10 @@ body {
 				}
 				
 			})
-		})       
+		
+		})
+		
+  
        </script>
 
 </body>
