@@ -4,10 +4,11 @@ import java.util.List;
 
 import kr.co.laonzena.repository.domain.Board;
 import kr.co.laonzena.repository.domain.Comment;
+import kr.co.laonzena.repository.domain.Page;
 
 
 public interface GsBoardMapper {
-	List<Board> selectBoard();
+	List<Board> selectBoard(Page page);
 	void insertBoard(Board board);
 	Board selectBoardByNo(int no);
 	int deleteBoard(int no);	

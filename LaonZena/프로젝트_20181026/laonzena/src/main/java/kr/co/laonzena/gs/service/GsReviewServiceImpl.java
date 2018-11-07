@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.laonzena.repository.domain.Board;
+import kr.co.laonzena.repository.domain.Page;
 import kr.co.laonzena.repository.mapper.GsBoardMapper;
 
 @Service
@@ -15,9 +16,9 @@ public class GsReviewServiceImpl implements GsReviewService {
 	private GsBoardMapper mapper;
 	
 	@Override
-	public List<Board> boardList() {
+	public List<Board> boardList(Page page) {
 		System.out.println("boardList() service invoked");
-		return mapper.selectBoard();
+		return mapper.selectBoard(page);
 	}
 
 	@Override

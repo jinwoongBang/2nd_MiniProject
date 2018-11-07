@@ -13,6 +13,7 @@
 	<c:import url="/common/basicIncludeScript.jsp" />
 	<c:import url="/common/topMenu.jsp" />
 	<c:import url="/common/sideMenu/gsSideMenu.jsp" />
+	<c:import url="/common/pagenation.jsp" />
 	
 	<link rel="stylesheet" href="<c:url value="/css/boardMenu.css" />" />
 	<link rel="stylesheet" href="<c:url value="/css/board.css" />" />
@@ -87,9 +88,9 @@
         </tr>
       </thead>
       <tbody>
-      	<c:forEach var="b" items="${list}" varStatus="status">
+      <c:forEach var="b" items="${list}">
           <tr>
-              <td>${status.index+1}</td>
+              <td>${b.no}</td>
               <td>${b.category}</td>
               <td><img class="product" src='<c:url value="${b.serPath}${b.serName}"/>'/></td>
               <td>${b.product}</td>
@@ -98,6 +99,12 @@
               <td><fmt:formatDate value="${b.regDate}" pattern="yyyy-MM-dd" /></td>
           </tr>	
       	</c:forEach>
+      	<c:if test="${empty list}">
+      		<tr>
+      			<td colspan="7" >입력된 게시물이 없습니다.</td> 
+      		</tr>
+      		
+      	</c:if>
 
       </tbody>
     </table>
@@ -111,52 +118,11 @@
             <img id="search-btn" src='<c:url value="/img/search icon png vector.png"/>'/>
             <button type="submit" class="write">Write</button>
         </div>
-        <div class="pagination">
-            <div>
-                <a href="#1">&lt;&lt;</a>
-            </div>
-            <div>
-                <a href="#2">&lt;</a>
-            </div>
-            <div>
-                <a href="#3">1</a>
-            </div>
-            <div>
-                <a href="#4">2</a>
-            </div>
-            <div>
-                <a href="#5">3</a>
-            </div>
-            <div>
-                <a href="#6">4</a>
-            </div>
-            <div>
-                <a href="#7">5</a>
-            </div>
-            <div>
-                <a href="#8">6</a>
-            </div>
-            <div>
-                <a href="#9">7</a>
-            </div>
-            <div>
-                <a href="#10">8</a>
-            </div>
-            <div>
-                <a href="#11">9</a>
-            </div>
-            <div>
-                <a href="#12">10</a>
-            </div>
-            <div>
-                <a href="#13">&gt;</a>
-            </div>
-            <div>
-                <a href="#14">&gt;&gt;</a>
-            </div>
-        </div>
+        
         
     <script>
+    	
+    	
         /* 사이드 메뉴 */
         $(".submenu").parent().prepend('<i class="entypo-down-open-big sf"></i>');
 
@@ -176,6 +142,8 @@
     </script>
 
     <script>
+    	
+    	
     	/* 검색 */
     	$("#search-btn").click(function () {
     		alert($("#search-select").val());
@@ -198,14 +166,12 @@
         /* Content submit */
         $("#write-review > button:nth-child(1)").on("click", function () {
         	var form = $("#fileForm")[0];
-        	console.log(form);
             var formData = new FormData(form);
             
             var title = $("#title").val();
             var category = $("#category").val();
             var product = $("#product").val();
             var content = $('#summernote').summernote('code');
-//             var file = $("#file-attach").files();
 
             formData.append("title", title);
             formData.append("category", category);
@@ -220,57 +186,6 @@
             console.log("formData : " + formData);
             console.log("writer : " + "${user.memberId}");
             
-//             $.ajax({
-//             	url : "/laonzena/gs/review/write.do",
-//     			type : "POST",
-//     			data : {
-//     				title: title,
-//     				category: category,
-//     				product: product,
-//     				content: content,
-//     				writer: "${user.memberId}",
-//     			}
-//             }).done(function (data) {
-//             	 $.ajax({
-//                  	url : "/laonzena/gs/review/fileUpload.do",
-//          			type : "POST",
-//          			data : formData,
-//          			contentType: false,
-//          			processData: false
-//                  }).done(function (data) {
-//                  	alert("파일 업로드 성공");
-//                  }).fail(function () {
-//                  	alert("파일 업로드 실패");
-//                  })
-//             }).fail(function () {
-//             	alert("게시물 데이터 전송 실패");
-//             });
-            
-//             $.ajax({
-//              	url : "/laonzena/gs/review/fileUpload.do",
-//      			type : "POST",
-//      			data : formData,
-//      			contentType: false,
-//      			processData: false
-//              }).done(function (data) {
-//             	 $.ajax({
-//                  	url : "/laonzena/gs/review/write.do",
-//          			type : "POST",
-//          			data : {
-//          				title: title,
-//          				category: category,
-//          				product: product,
-//          				content: content,
-//          				writer: "${user.memberId}"
-//          			}
-//                  }).done(function (data) {
-//                 	 alert("게시물 데이터 전송 성공");
-//                  }).fail(function () {
-//                  	alert("게시물 데이터 전송 실패");
-//                  })
-//              }).fail(function () {
-//              	alert("파일 업로드 실패");
-//              })
  			$.ajax({
              	url : "/laonzena/gs/review/write.do",
      			type : "POST",
@@ -296,7 +211,31 @@
             overlay.style.visibility = "hidden";
             content.style.visibility = "hidden";
         })
+        
+        /* Page */
+        var currentPageNo = ${currentPageNo};
 
+        $(".pagination > div > a.paging ").click(function (e) {
+        	e.preventDefault();
+        	var pageNo = $(this).attr("href");
+        	location.href = "/laonzena/gs/review/list.do?pageNo=" + pageNo;
+        })
+        
+        /* Next Page */
+		function nextPage() {
+        	currentPageNo = currentPageNo+1;
+        	location.href = "/laonzena/gs/review/list.do?pageNo=" + currentPageNo;
+        }
+        
+        /* Prev Page */
+		function prevPage() {
+        	if(currentPageNo-1 == 0){
+        		alert("이전 페이지가 존재하지 않습니다.");
+        	} else {
+				currentPageNo = currentPageNo-1;
+				location.href = "/laonzena/gs/review/list.do?pageNo=" + currentPageNo;        		
+        	}
+        }
     </script>
     
     <script>

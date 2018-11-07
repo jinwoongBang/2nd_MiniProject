@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.laonzena.gs.service.GsReviewService;
 import kr.co.laonzena.repository.domain.Board;
+import kr.co.laonzena.repository.domain.Page;
 
 @Controller
 @RequestMapping("/gs/review")
@@ -25,9 +27,19 @@ public class GsReviewController {
 	GsReviewService service;
 	
 	@RequestMapping("/list.do")
-	public void reviewList(Model model) {
+	public void reviewList(@RequestParam(value="pageNo", defaultValue="1") String pageNo, Model model) {
 		System.out.println("reviewList() invoked");
-		model.addAttribute("list", service.boardList());
+		System.out.println("pageNo : " + pageNo);
+		Page page = new Page();
+		page.setPageNo(Integer.parseInt(pageNo));
+		int begin = page.getBeginNo();
+		int end = page.getEndNo();
+		
+		System.out.println("begin : " + begin);
+		System.out.println("end : " + end);
+			
+		model.addAttribute("list", service.boardList(page));
+		model.addAttribute("currentPageNo", pageNo);
 	}
 	
 	@RequestMapping("/write.do")

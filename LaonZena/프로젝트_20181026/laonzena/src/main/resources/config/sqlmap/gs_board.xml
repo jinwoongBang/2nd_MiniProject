@@ -17,9 +17,31 @@
 		<result column="board_writer" property="writer" />
 	</resultMap>
 	
-	<select id="selectBoard" resultMap="boardMap">
+	<!-- 참조 -->
+<!-- 	<select id="selectBoard" parameterType="Page" resultMap="BoardMap"> -->
+<!-- 		select * -->
+<!-- 		  from (select rownum rnum, a.* 	 -->
+<!-- 			      from (select * -->
+<!-- 				    	  from tb_paging_board  -->
+<!-- 					     order by no desc) a -->
+<!-- 			     where rownum &lt;= #{end}) -->
+<!-- 		 where rnum &gt;= #{begin}			      -->
+<!-- 	</select> -->
+	
+	<select id="selectBoard" parameterType ="Page" resultMap="boardMap">
 		select *
-		from lz_tb_gs_board
+		  from (select rownum rnum, a.* 	
+			      from (select *
+				    	  from lz_tb_gs_board 
+					     order by board_no desc) a
+			     where rownum &lt;= #{endNo})
+		 where rnum &gt;= #{beginNo}
+	</select>
+	
+	<!-- 전체 게시물의 수(조건에 맞는) -->
+	<select id="selectBoardCount" resultType="int">
+		select count(*)
+		  from lz_tb_gs_board 
 	</select>
 	
 	<insert id="insertBoard" parameterType="Board">
