@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,6 +12,7 @@
 	<c:import url="/common/basicIncludeCss.jsp" />
 	<c:import url="/common/basicIncludeScript.jsp" />
 	<c:import url="/common/topMenu.jsp" />
+	<c:import url="/common/sideMenu/gsSideMenu.jsp" />
 	
 	<link rel="stylesheet" href="<c:url value="/css/boardMenu.css" />" />
 	<link rel="stylesheet" href="<c:url value="/css/board.css" />" />
@@ -69,35 +71,7 @@
     </div>
 
     </div>
-    <!-- 메뉴 -->
-    <div class="wrap">
-        <section id="vert-nav">
-            <h3>GS Board</h3>
-            <nav role='navigation'>
-                <ul class="topmenu">
-                    <!-- <li><a id="#" href="#0"><i class="entypo-home"></i> Home</a></li> -->
-                    <li><a href="#0"><i class="entypo-user"></i>Product</a>
-                        <ul class="submenu">
-                            <li> <a href="#0">전체</a></li>
-                            <li> <a href="#0">음료/커피</a></li>
-                            <li> <a href="#0">유제품</a></li>
-                            <li> <a href="#0">과자/간식</a></li>
-                            <li> <a href="#0">라면/가공식품</a></li>
-                            <li> <a href="#0">생활용품</a></li>
-                        </ul>
-                            </li>
-                            <li><a href="#0"><i class="entypo-brush"></i>Event Product</a>
-                        <ul class="submenu">
-                            <li> <a href="#0">1+1</a></li>
-                            <li> <a href="#0">2+1</a></li>
-                            <li> <a href="#0">덤증정</a></li>
-                        </ul>
-                    </li>
-                    <li><a href='<c:url value="/gs/review/list.do"/>'><i class="entypo-vcard"></i>Review Community</a></li>
-                </ul>
-            </nav>  
-        </section>
-    </div>
+    
               
     <!-- 게시판 -->
     <table>
@@ -117,11 +91,11 @@
           <tr>
               <td>${status.index+1}</td>
               <td>${b.category}</td>
-              <td><img class="product" src='<c:url value="/img/spinner.jpg"/>'/></td>
+              <td><img class="product" src='<c:url value="${b.serPath}${b.serName}"/>'/></td>
               <td>${b.product}</td>
-              <td>${b.title}</td>
+              <td><a href='detail.do?no=${b.no}'>${b.title}</a></td>
               <td>${b.writer}</td>
-              <td>${b.regDate}</td>
+              <td><fmt:formatDate value="${b.regDate}" pattern="yyyy-MM-dd" /></td>
           </tr>	
       	</c:forEach>
 

@@ -10,4 +10,6 @@ public interface GsReviewService {
 	
 	List<Board> boardList();
 	void boardWrite(Board board);
+	Board detail(int no);
+	void viewCnt(int no);
 }

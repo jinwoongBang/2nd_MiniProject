@@ -1,4 +1,4 @@
-package kr.co.laonzena.repository.mapper.emart;
+package kr.co.laonzena.repository.mapper;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import kr.co.laonzena.repository.domain.Board;
 import kr.co.laonzena.repository.domain.Comment;
 
 
-public interface BoardMapper {
+public interface EmartBoardMapper {
 	List<Board> selectBoard();
 	void insertBoard(Board board);
 	Board selectBoardByNo(int no);

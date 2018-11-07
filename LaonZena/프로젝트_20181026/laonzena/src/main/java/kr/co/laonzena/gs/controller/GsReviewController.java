@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.laonzena.gs.service.GsReviewService;
 import kr.co.laonzena.repository.domain.Board;
@@ -88,13 +89,30 @@ public class GsReviewController {
 		board.setWriter(writer);
 		board.setOriName(oriName);
 		board.setSerName(serName);
-		board.setSerPath(serPath);
+		board.setSerPath("/upload/");
 		
 		service.boardWrite(board);
+	}
+	
+	@RequestMapping("/detail.do")
+	public ModelAndView detail(int no){
+		ModelAndView mav = new ModelAndView("gs/review/detail");
+		service.viewCnt(no);
+		Board board = service.detail(no);
+		mav.addObject("b", board);
+		return mav;
+		
 	}
 
 	@RequestMapping("/search.do")
 	public void searchBoard(Board board) {
 		System.out.println("searchBoard() invoked");
 	}
+	
+	@RequestMapping("/updateForm.do")
+	public void updateForm(int no, Model model) {
+		model.addAttribute("board",service.detail(no));
+	}
+	
+	
 }

@@ -8,32 +8,35 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="wrap">
-		<section id="vert-nav">
-		<h3>EMART Board</h3>
-		<nav role='navigation'>
-		<ul class="topmenu">
-			<!-- <li><a id="#" href="#0"><i class="entypo-home"></i> Home</a></li> -->
-			<li><a href="#0"><i class="entypo-user"></i>Product</a>
-				<ul class="submenu">
-					<li><a href="<c:url value="/emart/product/product.do"/>">전체</a></li>
-					<li><a href="#0">냉장</a></li>				
-					<li><a href="#0">음료</a></li>
-					<li><a href="#0">일반식품</a></li>
-					<li><a href="#0">과자</a></li>
-				</ul></li>
-			<li><a href="#0"><i class="entypo-brush"></i>Event Product</a>
-				<ul class="submenu">
-					<li><a href="#0">1+1</a></li>
-					<li><a href="#0">2+1</a></li>
-					<li><a href="#0">덤증정</a></li>
-				</ul></li>
-			<li><a href="#0"><i class="entypo-vcard"></i>Review
-					Community</a></li>
-		</ul>
-		</nav>
-		</section>
-	</div>
+	<!-- 메뉴 -->
+    <div class="wrap">
+        <section id="vert-nav">
+            <h3>GS Board</h3>
+            <nav role='navigation'>
+                <ul class="topmenu">
+                    <!-- <li><a id="#" href="#0"><i class="entypo-home"></i> Home</a></li> -->
+                    <li><a href="#0"><i class="entypo-user"></i>Product</a>
+                        <ul class="submenu">
+                            <li> <a href="#0">전체</a></li>
+                            <li> <a href="#0">음료/커피</a></li>
+                            <li> <a href="#0">유제품</a></li>
+                            <li> <a href="#0">과자/간식</a></li>
+                            <li> <a href="#0">라면/가공식품</a></li>
+                            <li> <a href="#0">생활용품</a></li>
+                        </ul>
+                            </li>
+                            <li><a href="#0"><i class="entypo-brush"></i>Event Product</a>
+                        <ul class="submenu">
+                            <li> <a href="#0">1+1</a></li>
+                            <li> <a href="#0">2+1</a></li>
+                            <li> <a href="#0">덤증정</a></li>
+                        </ul>
+                    </li>
+                    <li><a href='<c:url value="/gs/review/list.do"/>'><i class="entypo-vcard"></i>Review Community</a></li>
+                </ul>
+            </nav>  
+        </section>
+    </div>
 	<script>
         /* 사이드 메뉴 */
         $(".submenu").parent().prepend('<i class="entypo-down-open-big sf"></i>');
