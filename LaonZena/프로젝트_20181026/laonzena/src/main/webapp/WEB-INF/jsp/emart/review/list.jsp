@@ -18,7 +18,6 @@
 <link rel="stylesheet" href="<c:url value="/css/boardMenu.css" />" />
 <link rel="stylesheet" href="<c:url value="/css/board.css" />" />
 <link rel="stylesheet" href="<c:url value="/css/sideMenu.css" />" />
-<link rel="stylesheet" href="<c:url value='/css/boot.css' />" type="text/css"/>
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
 <!-- <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>  -->
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
@@ -66,7 +65,6 @@
 			<div id="write-review">
 				<button id="submit">Submit</button>
 				<button>Cancel</button>
-				<button id="summer" type="button">note</button>
 			</div>
 
 		</div>
@@ -230,8 +228,9 @@
             
         })
 
-        /* Content Cancle */
-        $("#write-review>button:nth-child(2)").on("click", function () {
+        /* Content Cancel */
+        $("#write-review>button:nth-child(2)").on("click", function (e) {
+        	e.preventDefault();
             alert("취소");
             var overlay = document.getElementById("overlay");
             var content = document.getElementById("content");
