@@ -27,7 +27,7 @@
     <div id="overlay">
         
     </div>
-    <form id="writeForm"method="post" enctype="multipart/form-data" action="<c:url value="/seven/review/writeas.do"/>">
+    <form id="writeForm" method="post" enctype="multipart/form-data" action="<c:url value="/seven/review/writeas.do"/>">
     <div id="content">
     	<h1>
             Write
@@ -70,15 +70,15 @@
 		  
         </div>
         <div id="write-review">
-            <button id="submit">Submit</button>
-            <button>Cancle</button>
-            <button id="summer" type="button">note</button>
+            <button id="submit" >Submit</button>
+            <button type="button">Cancle</button>
         </div>
         
     </div>
     </form>
-
     </div>
+
+
     <!-- 메뉴 -->
     <div class="wrap">
         <section id="vert-nav">
@@ -169,6 +169,40 @@
 
         
     <script>
+    $(document).on("click","#submit", function () {
+    	var content = $.trim($(".note-editable").text())
+    	$("#boardContent").val(content)
+    	console.log(content)
+    	console.log($("#boardContent").val())
+    	if(content=="") {alert("내용을 입력 해 주세요"); return false;};
+    	if($("#title").val() =="") {alert("제목을 입력하세요"); return false;};
+		if($("input[id='product-name']").val()=="") {alert("제품명을 입력 해 주세요"); return false;};
+		
+		
+// 		$("form").submit();
+    })
+    
+    
+//     $("#submit").on("submit", function(event) {
+//         event.preventDefault();
+//         if($("#title").val() =="") {alert("제목을 입력하세요"); return false;};
+// 		if($("input[id='product-name']").val()=="") {alert("제품명을 입력 해 주세요"); return false;};
+// 		$("form").submit();
+//      });
+    
+    
+//     	$("#submit").click(function () {
+// 			if($("#title").val() =="") {alert("제목을 입력하세요"); return false;};
+// 			if($("input[id='product-name']").val()=="") {alert("제품명을 입력 해 주세요"); return false;};
+// // 			if($(".note-editable").text().isEmpty()==true) {alert("내용을 입력 해 주세요"); return false;}
+
+//     		$("form").submit();
+// 		})
+
+ 
+//     	function cancel{
+// 			return fa;
+// 		}
         /* 사이드 메뉴 */
         $(".submenu").parent().prepend('<i class="entypo-down-open-big sf"></i>');
 
@@ -218,35 +252,35 @@
         })
         
         /* Content submit */
-        $("#write-review>button:nth-child(1)").on("click", function () {
-            alert("제출");
-//             $('#boardContent').val($('#summernote').summernote('code'))
-            $('#boardContent').val($('.note-editable').text())
-//             alert($("#boardContent").val())
+//         $("#write-review>button:nth-child(1)").on("click", function () {
+//             alert("제출");
+// //             $('#boardContent').val($('#summernote').summernote('code'))
+//             $('#boardContent').val($('.note-editable').text())
+// //             alert($("#boardContent").val())
             
-            var overlay = document.getElementById("overlay");
-            var content = document.getElementById("content");
-            overlay.style.visibility = "hidden";
-            content.style.visibility = "hidden";
+//             var overlay = document.getElementById("overlay");
+//             var content = document.getElementById("content");
+//             overlay.style.visibility = "hidden";
+//             content.style.visibility = "hidden";
            
-//             $.ajax({
-//     			url:"/laonzena/seven/review/write.do", // 어디에 호출할지
-//     			data : {
-//     					title: $("#title").val(),
-//     					content:$(".note-editable").text(),
-//     					productName: $("#product-name").val(),
-//     					category: $("#search-category").val(),
-//     					writer: "test"
-//     					}, // 파라미터를 객체 형태로 보낼 수도 있다(키:값)
-//     			success: function () { // 요청결과로 넘어온 값으로 처리할 내용
-//     				alert("등록 완료 !")
-//     			}
-//     		})
+// //             $.ajax({
+// //     			url:"/laonzena/seven/review/write.do", // 어디에 호출할지
+// //     			data : {
+// //     					title: $("#title").val(),
+// //     					content:$(".note-editable").text(),
+// //     					productName: $("#product-name").val(),
+// //     					category: $("#search-category").val(),
+// //     					writer: "test"
+// //     					}, // 파라미터를 객체 형태로 보낼 수도 있다(키:값)
+// //     			success: function () { // 요청결과로 넘어온 값으로 처리할 내용
+// //     				alert("등록 완료 !")
+// //     			}
+// //     		})
             
             
             
             
-        })
+//         })
 
         /* Content Cancle */
         $("#write-review>button:nth-child(2)").on("click", function () {
