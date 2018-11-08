@@ -1,5 +1,9 @@
 package kr.co.laonzena.cu.service;
 
-public class CuEventService {
+import java.util.List;
 
+import kr.co.laonzena.repository.domain.Product;
+
+public interface CuEventService {
+	List<Product> list();
 }

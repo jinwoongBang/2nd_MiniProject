@@ -7,7 +7,8 @@ import org.springframework.stereotype.Service;
 
 import kr.co.laonzena.repository.domain.Board;
 import kr.co.laonzena.repository.domain.Comment;
-import kr.co.laonzena.repository.mapper.BoardMapper;
+import kr.co.laonzena.repository.mapper.CuBoardMapper;
+
 
 
 
@@ -15,7 +16,7 @@ import kr.co.laonzena.repository.mapper.BoardMapper;
 public class CuReviewServiceImpl implements CuReviewService{
 	
 	@Autowired
-	private BoardMapper mapper;
+	private CuBoardMapper mapper;
 	
 	@Override
 	public void write(Board board) {
