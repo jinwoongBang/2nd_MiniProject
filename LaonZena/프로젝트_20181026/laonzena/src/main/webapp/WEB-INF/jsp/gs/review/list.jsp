@@ -118,29 +118,6 @@
             <img id="search-btn" src='<c:url value="/img/search icon png vector.png"/>'/>
             <button type="submit" class="write">Write</button>
         </div>
-        
-        
-    <script>
-    	
-    	
-        /* 사이드 메뉴 */
-        $(".submenu").parent().prepend('<i class="entypo-down-open-big sf"></i>');
-
-        $("#vert-nav .topmenu a").click( function() {
-            var $menu = $(this).next(".submenu");
-            $menu.slideToggle('slow');
-            $menu.parent().toggleClass('openmenu');
-        });
-
-        $("input,textarea").focus( function() {
-            $(this).prev("label").addClass('focused');
-        }); 
-
-        $("input,textarea").blur( function() {
-            $(this).prev("label").removeClass('focused');
-        });
-    </script>
-
     <script>
     	
     	
@@ -153,6 +130,10 @@
     	
         /* 글 작성 */
         $(".write").on("click",function () {
+        	if(${user.memberId==null}){
+        		alert("로그인 후 이용해주세요");
+        		return false;
+        	}
             var overlay = document.getElementById("overlay");
             var content = document.getElementById("content");
             overlay.style.visibility = "visible";
@@ -165,13 +146,18 @@
         
         /* Content submit */
         $("#write-review > button:nth-child(1)").on("click", function () {
-        	var form = $("#fileForm")[0];
+        	
+        	
+        	
+            var form = $("#fileForm")[0];
             var formData = new FormData(form);
             
             var title = $("#title").val();
             var category = $("#category").val();
             var product = $("#product").val();
-            var content = $('#summernote').summernote('code');
+//             var content = $('#summernote').summernote('code');
+			var content = $("div.note-editable").text();
+
 
             formData.append("title", title);
             formData.append("category", category);
@@ -191,17 +177,28 @@
      			type : "POST",
      			data : formData,
      			contentType: false,
-     			processData: false
+     			processData: false,
+     			beforeSend: function () {
+     				if(title=="") {
+     					alert("제목을 입력하세요");
+     					return false;
+     				} else if (product=="") {
+     					alert("제품명을 입력 해 주세요");
+     					return false;
+     				} else if (content=="") {
+     					alert("내용을 입력 해 주세요");
+     					return false;
+     				};
+     			}
              }).done(function (data) {
             	 alert("파일 업로드 성공");
+            	 var overlay = document.getElementById("overlay");
+                 var content = document.getElementById("content");
+                 overlay.style.visibility = "hidden";
+                 content.style.visibility = "hidden";
              }).fail(function () {
              	alert("파일 업로드 실패");
              })
-            
-            var overlay = document.getElementById("overlay");
-            var content = document.getElementById("content");
-            overlay.style.visibility = "hidden";
-            content.style.visibility = "hidden";
         });
 
         /* Content Cancle */
