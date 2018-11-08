@@ -1,0 +1,246 @@
+@charset "UTF-8";
+
+table, tr {
+	/* border: 1px solid black; */
+	border-collapse: collapse;
+	background-color: white;
+}
+
+tbody {
+	font-size: 15px;
+}
+
+tbody>tr:hover {
+	background-color: rgb(255, 247, 238);
+}
+
+table {
+	position: absolute;
+	top: 130px;
+	left: 400px;
+	width: 1000px;
+	text-align: center !important;
+}
+
+th {
+	background-color: rgb(255, 245, 233);
+	height: 50px;
+	border-bottom: 2px solid #c9c9c9;
+	text-align: center !important;
+}
+
+img.product {
+	width: 50px;
+	height: 50px;
+}
+
+div.pagination {
+	display: flex;
+	position: absolute;
+	width: 800px;
+	top: 730px;
+	left: 687px;
+	margin-top: -35px;
+    margin-left: -72px;
+}
+
+div.pagination>div {
+	height: 20px;
+	width: 20px;
+	/* border: 1px solid gray; */
+	margin: auto 5px;
+	text-align: center;
+	/* border: 1px solid #2e2e33; */
+	border-radius: 4px;
+}
+
+div.pagination>div:active {
+	font-size: 15px;
+	box-shadow: 1px 1px 1px 1px #666 inset;
+}
+
+div.searchBar {
+	display: flex;
+	position: absolute;
+	width: 800px;
+	top: 695px;
+	left: 700px;
+	margin-top: -48px;
+	margin-left: -72px;
+}
+
+div.searchBar>input {
+	border-radius: 10px;
+	width: 300px;
+}
+
+div.searchBar>input:focus {
+	background-color: rgb(255, 251, 247);
+}
+
+div.searchBar>select {
+	border-radius: 10px;
+	background-color: #f7f7f7;
+}
+
+div.searchBar>.search {
+	position: relative;
+	border: 0px solid white;
+	border-radius: 10px;
+	background-color: rgb(255, 247, 238);
+	left: 5px;
+}
+
+div.searchBar>.write {
+	position: relative;
+    border: 0px solid white;
+    border-radius: 10px;
+    background-color: #63dea5;
+    left: 254px;
+    width: 100px;
+    height: 30px;
+    font-weight: bold;
+    font-size: large;
+}
+
+div.searchBar>.write:active {
+	box-shadow: 2px 2px 2px 2px #666 inset;
+}
+
+div.searchBar>img {
+	position: relative;
+	widows: 20px;
+	height: 20px;
+	left: 5px;
+}
+
+#overlay {
+	position: absolute;
+	width: 120%;
+	height: 120%;
+	background-color: #2e2e33;
+	opacity: 0.7;
+	visibility: hidden;
+	z-index: 1;
+}
+
+#content {
+	position: absolute;
+	width: 780px;
+	height: 550px;
+	background: url("../img/main5.jpg");
+	border-radius: 40px;
+	top: 100px;
+	left: 450px;
+	z-index: 2;
+	visibility: hidden;
+	box-shadow: 4px 4px 4px 4px rgb(255, 209, 209);
+	padding: 5px 50px;
+	overflow-x:hidden;
+	overflow-y:scroll;
+	border : 30px solid rgb(255, 245, 233);
+	color : #4c4c4c;
+	text-weight: bold;
+	font-size: 14px;
+}
+::-webkit-scrollbar { 
+	    width: 10px;
+	    background : transparent;
+	}
+
+#board-write {
+	text-align: center;
+	text-shadow: 2px 2px 2px 2px #707070;
+	font-size: 15px;
+}
+#content>div{
+	margin-top : 25px;
+}
+#content>h1{
+	color:black;
+	text-align : center;
+	font-weight: bold;
+}
+
+#content>div>input {
+	position: relative;
+	width: 300px;
+	height: 30px;
+	border-radius: 10px;
+	left: 60px;
+}
+
+#content>div>input[type=file] {
+	position: relative;
+	width: 300px;
+	height: 30px;
+	border-radius: 10px;
+	left: 50px;
+}
+#content>div>input[id=product-name] {
+	position: relative;
+	left: 40px;
+}
+
+#content>div>input:focus {
+	box-shadow: 2px 2px 2px 2px #707070;
+}
+
+.file-attach {
+	display : flex;
+}
+
+#content>div>select {
+	position: relative;
+	left: 30px;
+	border-radius: 5px;
+	width: 100px;
+	height:25px;
+}
+
+.summernote {
+	position: relative;
+	top:-10px;
+}
+
+#search-product {
+	position: relative;
+	width: 20px;
+	height: 20px;
+	left: 42px;
+	top: 4px;
+	cursor: pointer;
+}
+
+#search-img {
+	position: relative;
+	display: inline-block;
+	width: 150px;
+	height: 150px;
+	border-radius: 100px;
+	float: right;
+	right: 0px;
+	top: -10px;
+}
+
+#search-img>img {
+	width: 150px;
+	height: 150px;
+	border-radius: 100px;
+}
+
+#write-review {
+	position: relative;
+	left: 80px;
+	top: -10px;
+}
+
+#write-review>button {
+	background-color: #7cead5;
+	border-radius: 10px;
+	width: 170px;
+	height: 40px;
+	color: #666;
+	margin: 0px 20px;
+	font-weight: bold;
+}
