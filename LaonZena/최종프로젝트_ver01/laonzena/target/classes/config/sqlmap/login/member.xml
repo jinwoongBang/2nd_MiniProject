@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.laonzena.repository.mapper.MemberMapper">
+
+	<resultMap id="memberMap" type="Member">
+		<result column="member_no" property="memberNo" />
+		<result column="member_id" property="memberId" />
+		<result column="member_pass" property="memberPass" />
+		<result column="member_email" property="memberEmail" />
+		<result column="member_cell_phone" property="memberCellPhone" />
+		<result column="member_address" property="memberAddress" />
+		<result column="member_jumin_no" property="memberJuminNo" />
+		<result column="member_name" property="memberName" />
+		<result column="member_reg_date" property="memberRegDate" />
+	</resultMap>
+
+	<insert id="insertMember" parameterType="Member">
+		insert into lz_tb_member (
+                        member_no,
+                        member_id,
+                        member_pass,
+                        member_email,
+                        member_cell_phone,
+                        member_address,
+                        member_jumin_no,
+                        member_name,
+                        member_reg_date
+                	) values (
+                        lz_s_member_no.nextval,
+                        #{memberId},
+                        #{memberPass},
+                        #{memberEmail},
+                        #{memberCellPhone},
+                        #{memberAddress},
+                        #{memberJuminNo},
+                        #{memberName},
+                        sysdate                     
+                )
+	</insert>
+	
+	<select id="selectMember" parameterType="Member" resultMap="memberMap">
+		select *
+		from lz_tb_member
+		<where>
+			<if test="memberId != ''">
+				member_id = #{memberId}
+			</if>
+			<if test="memberPass != null">
+				and member_pass = #{memberPass}
+			</if>
+		</where>
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
