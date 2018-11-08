@@ -435,9 +435,12 @@ body {
 	</div>
 
 	<div>
+<!-- 		<button class="recom" style="top: 10px;" id="recom"> -->
+<%-- 			<a href="detail.do?no=${board.no}">추천</a> --%>
+<!-- 		</button> -->
 
 		<button class="modify" style="top:10px;" id="modify">수정</button>
-		<button type="button" class="delete" style="top: 10px;">삭제</button> 
+		<button type="button" class="delete" style="top: 10px;">삭제</button>
 	</div>
 
 	<!-- 작성된 댓글 리스트 -->
@@ -464,24 +467,25 @@ body {
 			</div>
 		</c:forEach>
 	</div>
-	
 	<script>
+	
 	$("#modify").click(function () {
    		if(`${board.writer}`!=`${user.memberId}` || `${user.memberId}`==null) {
    			alert("수정 할 수 없습니다 ")
    			return false;
    		}
-	
+		location.href="updateForm.do?no=" +${board.no};
+
 	})
 	
-	   $(".delete").click(function() {
-      if(`${board.writer}`!=`${user.memberId}` || `${user.memberId}`==null) {
-         alert("삭제 할 수 없습니다.")
-         return false;
-      } else if (`${board.writer}`==`${user.memberId}`) {
-         location.href="delete.do?no=${board.no}";
-      }
-   })
+	$(".delete").click(function() {
+		if(`${board.writer}`!=`${user.memberId}` || `${user.memberId}`==null) {
+			alert("삭제 할 수 없습니다.")
+			return false;
+		} else if (`${board.writer}`==`${user.memberId}`) {
+			location.href="delete.do?no=${board.no}";
+		}
+	})
 		
 		// 댓글 ajax 등록 처리
 		$("#regComment").click(function () {
@@ -588,6 +592,9 @@ body {
 				$(this).html("수정완료")
 			
 		})
+		
+
+		
 		
 		$(document).on("click","#upndel > #commentDelete", function () {
 			if($(this).parent().siblings("#commentP").text() != `${user.memberId}`) {
