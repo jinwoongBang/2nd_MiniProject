@@ -440,9 +440,7 @@ body {
 <!-- 		</button> -->
 
 		<button class="modify" style="top:10px;" id="modify">수정</button>
-		<button type="submit" class="delete" style="top: 10px;">
-			<a href="delete.do?no=${board.no}">삭제</a>
-		</button>
+		<button type="button" class="delete" style="top: 10px;">삭제</button>
 	</div>
 
 	<!-- 작성된 댓글 리스트 -->
@@ -470,6 +468,7 @@ body {
 		</c:forEach>
 	</div>
 	<script>
+	
 	$("#modify").click(function () {
    		if(`${board.writer}`!=`${user.memberId}` || `${user.memberId}`==null) {
    			alert("수정 할 수 없습니다 ")
@@ -483,8 +482,9 @@ body {
 		if(`${board.writer}`!=`${user.memberId}` || `${user.memberId}`==null) {
 			alert("삭제 할 수 없습니다.")
 			return false;
+		} else if (`${board.writer}`==`${user.memberId}`) {
+			location.href="delete.do?no=${board.no}";
 		}
-		location.href="updateForm.do?no=" +${board.no};
 	})
 		
 		// 댓글 ajax 등록 처리
