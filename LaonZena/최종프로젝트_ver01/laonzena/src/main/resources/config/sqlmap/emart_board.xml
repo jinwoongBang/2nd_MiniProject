@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.laonzena.repository.mapper.EmartBoardMapper">
+	<resultMap type="board" id="boardMap">
+		<result column="board_no" property="no"/>
+		<result column="board_title" property="title"/>
+		<result column="board_reg_date" property="regDate"/>
+		<result column="board_category" property="category"/>
+		<result column="board_product" property="product"/>
+		<result column="board_view_cnt" property="viewCnt"/>
+		<result column="board_recom_cnt" property="recomCnt"/>
+		<result column="attach_ori_name" property="oriName"/>
+		<result column="attach_ser_name" property="serName"/>
+		<result column="attach_ser_path" property="serPath"/>
+		<result column="board_content" property="content"/>
+		<result column="board_writer" property="writer"/>	
+	</resultMap>
+	
+	<resultMap type="comment" id="commentMap">
+		<result column="comment_no" property="commentNo"/>
+		<result column="board_no" property="boardNo"/>
+		<result column="comment_content" property="content"/>
+		<result column="comment_writer" property="writer"/>
+	</resultMap>
+	
+	<select id="selectBoard" resultMap="boardMap">
+		select *
+		  from (select rownum rnum, a.*  <!-- 개수  1,2,3,4 -->	
+			      from (select *
+				    	  from lz_tb_emart_board 
+					     order by board_no desc) a
+			     where rownum &lt;= #{endNo}) <!--  1 >=개수 || 개수<=10  10ro   ,1,2,3,4,5,6,7,8,9,10-->
+		 where rnum &gt;= #{beginNo}	 
+	</select>
+	
+	<insert id="insertBoard" parameterType="Board">
+		insert into lz_tb_emart_board(
+			board_no,
+			board_title,
+			board_category,
+			board_product,
+			board_view_cnt,
+			board_recom_cnt,
+			attach_ser_name,
+			attach_ser_path,
+			board_writer,
+			board_content
+		) values (
+			lz_s_emart_board_no.nextval,
+			#{title},
+			#{category},
+			#{product},
+			0,
+			0,
+			#{serName},
+			#{serPath},
+			#{writer},
+			#{content}
+		)
+	</insert>
+	
+	<select id="selectBoardByNo" parameterType="int" resultMap="boardMap">
+		select *
+		 from lz_tb_emart_board
+		where board_no = #{no} 
+	</select>
+	
+	<update id="viewCntUp" parameterType="int">
+		update lz_tb_emart_board
+		 set  board_view_cnt= board_view_cnt+1
+		where board_no = #{no}		
+	</update>
+	
+	<delete id="deleteBoard" parameterType="int">
+    	delete 
+    	  from lz_tb_emart_board
+    	 where board_no = #{no}
+    </delete> 
+    
+    <update id="updateBoard" parameterType="board">
+		update lz_tb_emart_board
+		set  board_content=#{content} , board_title=#{title}
+		where board_no=#{no}
+	</update>
+    
+    <!-- 댓글 관련 -->
+    <insert id="insertComment" parameterType="comment">
+		insert into lz_tb_emart_comment(
+		    comment_no,
+		    board_no,
+		    comment_content,
+		    comment_writer
+		)values(
+		    lz_s_emart_comment_no.nextval,
+		    #{boardNo},
+		    #{content},
+		    #{writer}    
+		)
+	</insert>
+	
+	<select id="selectCommentByNo" parameterType="int" resultMap="commentMap">
+		select *
+		 from lz_tb_emart_comment
+		where board_no = #{boardNo} 
+	</select>
+	
+	<update id="commentUpdate" parameterType="comment">
+		update lz_tb_emart_comment
+		set  comment_content=#{content}
+		where board_no=#{boardNo} and comment_no=#{commentNo}
+	</update>
+	
+	<delete id="commentDelete" parameterType="comment">
+		delete 
+		from lz_tb_emart_comment
+		where board_no=#{boardNo} and comment_no=#{commentNo}
+	</delete>   
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
