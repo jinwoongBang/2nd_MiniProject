@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+    <link href="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js">
+    <link href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.quicksearch/2.3.2/jquery.quicksearch.js">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/featherlight/1.7.6/featherlight.min.js">
+<style>
+body {
+  background: #f1f1f1;
+  overflow-x: hidden;
+}
+
+/* Game Hub Navigation */
+.games-hub__navigation {
+  margin: 30px 0 30px 30px;
+  list-style: none;
+  padding: 0;
+}
+@media (max-width: 480px) {
+  .games-hub__navigation {
+    margin: 15px 0 15px 10px;
+  }
+}
+
+.games-hub__navigation li {
+  display: inline-block;
+}
+
+a.games-hub__navigation-link {
+  outline: 0;
+  margin: 0 5px 0 0;
+  display: inline-block;
+  background-color: #640e81;
+  color: #fff;
+  font-family: 'Gotham-Book';
+  font-size: 18px;
+  line-height: 54px;
+  border-radius: 54px;
+  text-decoration: none;
+  padding: 0 30px;
+  transition: ease-in-out .2s all;
+}
+@media (max-width: 480px) {
+  a.games-hub__navigation-link {
+    font-size: 14px;
+    line-height: 35px;
+    border-radius: 35px;
+  }
+}
+.games-hub__navigation-link--active a.games-hub__navigation-link {
+  transform: translate(-10%, 0px);
+  transition: ease-in-out .5s all;
+  background: #00ffb8;
+}
+a.games-hub__navigation-link:hover {
+  background: #00ffb8;
+}
+
+/* Game Hub Sections */
+.featured_section {
+  background: #fff;
+  margin: 30px;
+  padding: 30px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow: hidden;
+}
+.featured_section:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+@media (max-width: 480px) {
+  .featured_section {
+    margin: 10px;
+    padding: 15px;
+  }
+}
+.featured_section a {
+  text-decoration: none;
+}
+
+.featured_section__more {
+  float: right;
+  color: #640e81;
+  font-size: 16px;
+}
+@media (max-width: 480px) {
+  .featured_section__more {
+    font-size: 12px;
+  }
+}
+
+.featured_section__title {
+  font-family: 'Gotham-Book';
+  margin: 0 0 30px 0;
+  padding: 0;
+  font-size: 25px;
+  line-height: normal;
+  color: #444;
+}
+@media (max-width: 480px) {
+  .featured_section__title {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+  }
+}
+
+.featured_section__games {
+  overflow: visible;
+}
+@media (max-width: 480px) {
+  .featured_section__games {
+    margin-right: -30px;
+  }
+}
+.featured_section__games .slick-list {
+  overflow: visible;
+}
+
+/* Games Bit */
+.games-bit {
+  outline: 0;
+  margin: 0 30px 0 0;
+  width: 125px;
+  height: 205px;
+  display: inline-block;
+  font-family: 'Gotham-Book';
+  color: #333;
+  font-size: 16px;
+  line-height: 1.25;
+  vertical-align: top;
+}
+@media (max-width: 480px) {
+  .games-bit {
+    margin: 0 10px 0 0;
+    width: 90px;
+    max-height: 145px;
+    font-size: 12px;
+  }
+}
+.games-bit:hover {
+  transition: ease-in-out all 0.3s;
+  transform: scale(1.1);
+}
+.games-search .games-bit {
+  width: 155px;
+  height: 235px;
+  background: #fff;
+  padding: 30px;
+  margin: 0 15px 30px 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow: hidden;
+}
+@media (max-width: 480px) {
+  .games-search .games-bit {
+    max-height: 135px;
+    padding: 10px;
+    margin: 0 5px 10px 5px;
+    width: calc(23%);
+  }
+}
+
+.games-bit__title {
+  margin: 10px 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+@media (max-width: 480px) {
+  .games-bit__title {
+    margin: 5px 0;
+  }
+}
+
+.games-bit__image {
+  width: 100%;
+}
+
+.games-bit__rating {
+  color: #818181;
+  font-size: 14px;
+}
+@media (max-width: 480px) {
+  .games-bit__rating {
+    font-size: 12px;
+  }
+}
+
+/* Games Pages */
+.games-pages {
+  height: 0;
+  overflow: hidden;
+}
+
+/* Game Category Page */
+.games-list-categories {
+  position: relative;
+  font-family: 'Gotham';
+  background: #fff;
+  list-style: none;
+  padding: 0 0 30px 0;
+  margin: 54px 30px 0 30px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+@media (max-width: 480px) {
+  .games-list-categories {
+    margin: 35px 15px 0 15px;
+    padding: 0 0 15px 0;
+  }
+}
+.games-list-categories:before {
+  position: absolute;
+  display: block;
+  content: 'All Categories';
+  top: -54px;
+  font-size: 18px;
+  line-height: 54px;
+  padding: 0 30px;
+  color: #333;
+}
+@media (max-width: 480px) {
+  .games-list-categories:before {
+    top: -35px;
+    font-size: 14px;
+    line-height: 35px;
+    padding: 0 15px;
+  }
+}
+.games-list-categories:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+.games-list-categories li {
+  display: block;
+}
+
+a.games-list-categories__link {
+  display: block;
+  outline: 0;
+  color: #333;
+  font-family: 'Gotham-Book';
+  font-size: 18px;
+  line-height: 54px;
+  text-decoration: none;
+  padding: 30px 15px;
+  transition: ease-in .2s all;
+}
+@media (max-width: 480px) {
+  a.games-list-categories__link {
+    font-size: 14px;
+    line-height: 35px;
+    padding: 15px 7.5px;
+  }
+}
+a.games-list-categories__link:hover {
+  background: #00ffb8;
+}
+
+a.games-list-categories__link i {
+  margin: 0 30px 0 0;
+  vertical-align: middle;
+  border-radius: 50%;
+  padding: 10px;
+  font-size: 22px;
+  color: #fff;
+  background-color: #640e81;
+}
+@media (max-width: 480px) {
+  a.games-list-categories__link i {
+    margin: 0 10px 0 0;
+    font-size: 18px;
+  }
+}
+
+/* Search Games Page */
+.games-search {
+  padding: 30px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+@media (max-width: 480px) {
+  .games-search {
+    padding: 10px;
+  }
+}
+.games-search a {
+  text-decoration: none;
+}
+
+/* Games Navigator */
+.games-navigator__bar {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  background-color: #640e81;
+}
+.games-navigator--active .games-navigator__bar {
+  height: 54px;
+}
+@media (max-width: 480px) {
+  .games-navigator--active .games-navigator__bar {
+    height: 54px;
+  }
+}
+
+.games-navigator__bar-close {
+  outline: 0;
+  float: left;
+  border: 0;
+  color: #fff;
+  font-size: 18px;
+  background: transparent;
+  margin: 0 30px;
+  height: 54px;
+}
+@media (max-width: 480px) {
+  .games-navigator__bar-close {
+    margin: 0 10px;
+    height: 54px;
+  }
+}
+
+.games-navigator__bar-title {
+  border: 0;
+  color: #fff;
+  font-size: 18px;
+  font-family: 'Gotham-Book';
+  background: transparent;
+  padding: 0 30px;
+  line-height: 54px;
+}
+@media (max-width: 480px) {
+  .games-navigator__bar-title {
+    font-size: 18px;
+    padding: 0 15px;
+    line-height: 54px;
+  }
+}
+
+.games-navigator__content {
+  height: 0;
+  opacity: 0;
+  transition: all 0.3s ease-in;
+}
+.games-navigator--active .games-navigator__content {
+  height: auto;
+  opacity: 1;
+}
+
+.games-navigator__bar-search {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 77px;
+  transition: ease-in-out .2s;
+}
+.games-navigator__bar-search.games-navigator__bar-search--active {
+  background: #fff;
+  width: 100%;
+}
+
+.games-navigator__bar-search-button {
+  outline: 0;
+  border: 0;
+  color: #fff;
+  font-size: 18px;
+  background: transparent;
+  padding: 0 30px;
+  height: 54px;
+}
+@media (max-width: 480px) {
+  .games-navigator__bar-search-button {
+    height: 54px;
+  }
+}
+.games-navigator__bar-search--active .games-navigator__bar-search-button {
+  color: #737373;
+}
+
+.games-navigator__bar-search-box {
+  width: calc(100% - 112px);
+  overflow: hidden;
+  background: #fff;
+  outline: 0;
+  border: 0;
+  color: #fff;
+  font-size: 18px;
+  padding: 0 10px;
+  height: 54px;
+}
+.games-navigator__bar-search-box::placeholder {
+  color: #737373;
+}
+.games-navigator__bar-search--active .games-navigator__bar-search-box {
+  color: #737373;
+}
+
+</style>
+</head>
+<body>
+    <!-- Games Hub -->
+<div class="games-hub">
+    <ul class="games-hub__navigation">
+      <li><a href="#" class="games-hub__navigation-link" data-page=".games-search" data-games-search-cat="1389">Action</a></li>
+     </ul>
+  
+  
+    <!-- Recommended -->
+    <div class="featured_section">
+      <a href="#">
+        <span class="featured_section__more">
+          more
+        </span>
+        <h1 class="featured_section__title">
+           Recommended Games
+        </h1>
+      </a>
+      <div class="featured_section__games" id="featured_section__games-recommended"></div>
+    </div>
+  
+    <!-- Featured Games -->
+    <div class="featured_section">
+      <a href="#">
+        <span class="featured_section__more">
+          more
+        </span>
+        <h1 class="featured_section__title">
+          Featured Games
+        </h1>
+      </a>
+      <div class="featured_section__games" id="featured_section__games-featured"></div>
+    </div>
+  </div>
+  
+  <!-- Games Pages -->
+  <div class="games-pages">
+    <!-- Category List Page -->
+    <ul class="games-list-categories">
+       <li><a href="#" class="games-list-categories__link" data-page=".games-search" data-games-search-cat="1393"><i class="fa fa-puzzle-piece"></i>Arcade</a></li>   
+   </ul>
+  
+    <!-- Search Page -->
+    <div class="games-search">
+      <a href="#" class="games-bit" data-featherlight="#fl_pop" title="142356" data-original="https://img2.appland.se/app/icons/20161130162207/icon_512x512.png?w=125&amp;h=125" added="142356" data-games-rating="5" alpha="Talking Tom Gold Run" cat="1389">
+        <img class="games-bit__image" src="https://img2.appland.se/app/icons/20161130162207/icon_512x512.png" />
+        <div class="games-bit__title">
+          Talking Tom Gold Run
+        </div>
+        <div class="games-bit__rating">
+          <i class="fa fa-star"></i> 5
+         </div>
+      </a>
+      <a href="#"  class="games-bit" data-featherlight="#fl_pop" title="142270" data-original="https://img2.appland.se/app/icons/20170130103959/icon_512x512_2.png?w=125&amp;h=125" added="142270" data-games-rating="4" alpha="Stupid Zombies 3" cat="1389" data-games-featured>
+        <img class="games-bit__image" src="https://img2.appland.se/app/icons/20170130103959/icon_512x512_2.png?w=125&h=125" />
+        <div class="games-bit__title">
+          Stupid Zombies
+        </div>
+        <div class="games-bit__rating">
+          <i class="fa fa-star"></i> 4
+         </div>
+      </a>
+      <a href="#" class="games-bit" data-featherlight="#fl_pop" title="14450" data-original="https://img2.appland.se/app/icons/20170504T111836Z-590b0e0c490eb/game_box2.png?w=125&amp;h=125" added="14450" data-games-rating="4" alpha="Call of Duty Black Ops Mobile" cat="1389" data-games-featured>
+        <img class="games-bit__image" src="https://img2.appland.se/app/icons/20170504T111836Z-590b0e0c490eb/game_box2.png?" />
+        <div class="games-bit__title">
+          Call of Duty Black Ops Mobile
+        </div>
+        <div class="games-bit__rating">
+          <i class="fa fa-star"></i> 4
+         </div>
+      </a>
+      <a href="#" class="games-bit" data-featherlight="#fl_pop" title="14301" data-original="https://img2.appland.se/app/icons/20160701074036/icon_512_1467358836.1947.png?w=125&amp;h=125" added="14301" data-games-rating="4" alpha="Cut The Rope Experiments" cat="1395" data-games-featured>
+        <img class="games-bit__image" src="https://img2.appland.se/app/icons/20160701074036/icon_512_1467358836.1947.png" />
+        <div class="games-bit__title">
+          Cut The Rope Experiments
+        </div>
+        <div class="games-bit__rating">
+          <i class="fa fa-star"></i> 4
+         </div>
+      </a>
+      <a href="#" class="games-bit" data-featherlight="#fl_pop" title="142356" data-original="https://img2.appland.se/app/icons/20161130162207/icon_512x512.png?w=125&amp;h=125" added="142356" data-games-rating="5" alpha="Talking Tom Gold Run" cat="1389" data-games-featured>
+        <img class="games-bit__image" src="https://img2.appland.se/app/icons/20161130162207/icon_512x512.png" />
+        <div class="games-bit__title">
+          Talking Tom Gold Run
+        </div>
+        <div class="games-bit__rating">
+          <i class="fa fa-star"></i> 5
+         </div>
+      </a>
+      <a href="#"  class="games-bit" data-featherlight="#fl_pop" title="142270" data-original="https://img2.appland.se/app/icons/20170130103959/icon_512x512_2.png?w=125&amp;h=125" added="142270" data-games-rating="4" alpha="Stupid Zombies 3" cat="1389" data-games-featured>
+        <img class="games-bit__image" src="https://img2.appland.se/app/icons/20170130103959/icon_512x512_2.png?w=125&h=125" />
+        <div class="games-bit__title">
+          Stupid Zombies
+        </div>
+        <div class="games-bit__rating">
+          <i class="fa fa-star"></i> 4
+         </div>
+      </a>
+      <a href="#" class="games-bit" data-featherlight="#fl_pop" title="14450" data-original="https://img2.appland.se/app/icons/20170504T111836Z-590b0e0c490eb/game_box2.png?w=125&amp;h=125" added="14450" data-games-rating="4" alpha="Call of Duty Black Ops Mobile" cat="1389" data-games-featured>
+        <img class="games-bit__image" src="https://img2.appland.se/app/icons/20170504T111836Z-590b0e0c490eb/game_box2.png?" />
+        <div class="games-bit__title">
+          Call of Duty Black Ops Mobile
+        </div>
+        <div class="games-bit__rating">
+          <i class="fa fa-star"></i> 4
+         </div>
+      </a>
+      <a href="#" class="games-bit" data-featherlight="#fl_pop" title="14301" data-original="https://img2.appland.se/app/icons/20160701074036/icon_512_1467358836.1947.png?w=125&amp;h=125" added="14301" data-games-rating="4" alpha="Cut The Rope Experiments" cat="1395">
+        <img class="games-bit__image" src="https://img2.appland.se/app/icons/20160701074036/icon_512_1467358836.1947.png" />
+        <div class="games-bit__title">
+          Cut The Rope Experiments
+        </div>
+        <div class="games-bit__rating">
+          <i class="fa fa-star"></i> 4
+         </div>
+      </a>
+      <a href="#" class="games-bit" data-featherlight="#fl_pop" title="142356" data-original="https://img2.appland.se/app/icons/20161130162207/icon_512x512.png?w=125&amp;h=125" added="142356" data-games-rating="5" alpha="Talking Tom Gold Run" cat="1389">
+        <img class="games-bit__image" src="https://img2.appland.se/app/icons/20161130162207/icon_512x512.png" />
+        <div class="games-bit__title">
+          Talking Tom Gold Run
+        </div>
+        <div class="games-bit__rating">
+          <i class="fa fa-star"></i> 5
+         </div>
+      </a>
+      <a href="#"  class="games-bit" data-featherlight="#fl_pop" title="142270" data-original="https://img2.appland.se/app/icons/20170130103959/icon_512x512_2.png?w=125&amp;h=125" added="142270" data-games-rating="4" alpha="Stupid Zombies 3" cat="1389">
+        <img class="games-bit__image" src="https://img2.appland.se/app/icons/20170130103959/icon_512x512_2.png?w=125&h=125" />
+        <div class="games-bit__title">
+          Stupid Zombies
+        </div>
+        <div class="games-bit__rating">
+          <i class="fa fa-star"></i> 4
+         </div>
+      </a>
+      <a href="#" class="games-bit" data-featherlight="#fl_pop" title="14450" data-original="https://img2.appland.se/app/icons/20170504T111836Z-590b0e0c490eb/game_box2.png?w=125&amp;h=125" added="14450" data-games-rating="4" alpha="Call of Duty Black Ops Mobile" cat="1389">
+        <img class="games-bit__image" src="https://img2.appland.se/app/icons/20170504T111836Z-590b0e0c490eb/game_box2.png?" />
+        <div class="games-bit__title">
+          Call of Duty Black Ops Mobile
+        </div>
+        <div class="games-bit__rating">
+          <i class="fa fa-star"></i> 4
+         </div>
+      </a>
+      <a href="#" class="games-bit" data-featherlight="#fl_pop" title="14301" data-original="https://img2.appland.se/app/icons/20160701074036/icon_512_1467358836.1947.png?w=125&amp;h=125" added="14301" data-games-rating="4" alpha="Cut The Rope Experiments" cat="1395" data-games-featured>
+        <img class="games-bit__image" src="https://img2.appland.se/app/icons/20160701074036/icon_512_1467358836.1947.png" />
+        <div class="games-bit__title">
+          Cut The Rope Experiments
+        </div>
+        <div class="games-bit__rating">
+          <i class="fa fa-star"></i> 4
+         </div>
+      </a>
+      <a href="#" class="games-bit" data-featherlight="#fl_pop" title="142356" data-original="https://img2.appland.se/app/icons/20161130162207/icon_512x512.png?w=125&amp;h=125" added="142356" data-games-rating="5" alpha="Talking Tom Gold Run" cat="1389">
+        <img class="games-bit__image" src="https://img2.appland.se/app/icons/20161130162207/icon_512x512.png" />
+        <div class="games-bit__title">
+          Talking Tom Gold Run
+        </div>
+        <div class="games-bit__rating">
+          <i class="fa fa-star"></i> 5
+         </div>
+      </a>
+      <a href="#"  class="games-bit" data-featherlight="#fl_pop" title="142270" data-original="https://img2.appland.se/app/icons/20170130103959/icon_512x512_2.png?w=125&amp;h=125" added="142270" data-games-rating="4" alpha="Stupid Zombies 3" cat="1389">
+        <img class="games-bit__image" src="https://img2.appland.se/app/icons/20170130103959/icon_512x512_2.png?w=125&h=125" />
+        <div class="games-bit__title">
+          Stupid Zombies
+        </div>
+        <div class="games-bit__rating">
+          <i class="fa fa-star"></i> 4
+         </div>
+      </a>
+      <a href="#" class="games-bit" data-featherlight="#fl_pop" title="14450" data-original="https://img2.appland.se/app/icons/20170504T111836Z-590b0e0c490eb/game_box2.png?w=125&amp;h=125" added="14450" data-games-rating="4" alpha="Call of Duty Black Ops Mobile" cat="1389" data-games-featured>
+        <img class="games-bit__image" src="https://img2.appland.se/app/icons/20170504T111836Z-590b0e0c490eb/game_box2.png?" />
+        <div class="games-bit__title">
+          Call of Duty Black Ops Mobile
+        </div>
+        <div class="games-bit__rating">
+          <i class="fa fa-star"></i> 4
+         </div>
+      </a>
+      <a href="#" class="games-bit" data-featherlight="#fl_pop" title="14301" data-original="https://img2.appland.se/app/icons/20160701074036/icon_512_1467358836.1947.png?w=125&amp;h=125" added="14301" data-games-rating="4" alpha="Cut The Rope Experiments" cat="1395">
+        <img class="games-bit__image" src="https://img2.appland.se/app/icons/20160701074036/icon_512_1467358836.1947.png" />
+        <div class="games-bit__title">
+          Cut The Rope Experiments
+        </div>
+        <div class="games-bit__rating">
+          <i class="fa fa-star"></i> 4
+         </div>
+      </a>
+    </div>
+  </div>
+  
+  <!-- Games Page Navigator -->
+  <div class="games-navigator">
+    <div class="games-navigator__bar">
+      <button class="games-navigator__bar-close">
+        <i class="fa fa-arrow-left"></i>
+      </button>
+      <div class="games-navigator__bar-title">
+         Categories  
+      </div>
+      <div class="games-navigator__bar-right">
+         <div class="games-navigator__bar-search">
+          <button class="games-navigator__bar-search-button">
+             <i class="fa fa-search"></i>
+          </button>
+          <input placeholder="Search GameStash..." type="text" class="games-navigator__bar-search-box" />
+        </div>
+      </div>
+    </div>
+    <div class="games-navigator__content"></div>
+  </div>
+  
+
+
+  
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.quicksearch/2.3.2/jquery.quicksearch.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/featherlight/1.7.6/featherlight.min.js"></script>
+ 
+ 
+ 
+ <script>
+  $(function() {
+
+// Display Recommended
+$('#featured_section__games-recommended').append($('.games-search .games-bit[data-games-rating="5"], [data-games-rating="4"]').clone());
+
+// Display Featured
+$('#featured_section__games-featured').append($('.games-search .games-bit[data-games-featured]').clone());
+    
+// Slick Carousels
+$(".games-hub__navigation").slick({
+  arrows: false,
+  dots: false,
+  infinite: false,
+  speed: 300,
+  infinite: true,
+  variableWidth: true
+});
+$(".featured_section__games").slick({
+  arrows: false,
+  dots: false,
+  infinite: false,
+  speed: 300,
+  slidesToScroll: 4,
+  slidesToShow: 4,
+  variableWidth: true,
+  responsive: [
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        infinite: true,
+        centerMode: true,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+      }
+    }
+   ]
+});
+
+
+
+// Games Search
+var $iso = $('.games-search').isotope({
+    itemSelector : '.games-bit',
+    resizesContainer: true,
+    sortAscending : {
+      alpha: true,
+      rating: false,
+      added:false
+    },
+  layoutMode: 'masonry',	
+    transitionDuration: '0.6s',
+    getSortData : {
+        alpha : '[alpha]',
+        added:  '[added] parseInt',
+        rating : '[rating] parseInt'
+    },
+    stagger: 5,
+  hiddenStyle: {
+    opacity: 0
+  },
+  visibleStyle: {
+    opacity: 1
+  }
+});
+
+// Game Text Search
+var games_navigator__top_bar_search__active = false;
+$('input.games-navigator__bar-search-box').quicksearch('.games-pages .games-search .games-bit', {
+  'selector': '.games-bit__title',
+  'noResults' : '#noresults_message',
+  'onBefore' : function() {
+    var game_search = $('.games-pages .games-search');
+    $('.games-navigator__content').html(game_search.clone());
+  },
+  'show': function () {
+    $(this).show();
+  },
+  'hide': function () {
+    $(this).hide();
+  },
+  'onAfter' : function() {
+    if(games_navigator__top_bar_search__active)
+      $('input.games-navigator__bar-search-box').keyup();
+    
+    $iso.isotope({filter: function() {return $(this).is(':visible')}});
+  }
+});
+
+// Games Search Categories
+$(document).on('click','[data-games-search-cat]', function(){
+     var filterName = $(this).attr('data-games-search-cat');
+    if (filterName == ''){
+        $iso.isotope({ filter : '*'});
+    }else{
+        $iso.isotope({ filter : '[cat=\"'+filterName+'\"]'});
+    } 
+  
+  return false;
+});
+
+// Games Search Featured
+$(document).on('click','[data-games-search-featured]', function(){
+  $iso.isotope({ filter : '[data-games-featured]'});
+  
+  return false;
+});
+
+// Games Search Top
+$(document).on('click','[data-games-search-rating]', function(){
+    $iso.isotope({ sortBy : 'data-games-rating'});
+    $iso.isotope({ filter : '[data-games-rating=\"5\"]'});
+  
+  return false;
+});
+
+// Page Selector
+$(document).on('click','[data-page]', function(){
+  var currentpage = $(this).attr('data-page');
+  $('.games-navigator__bar-title').html($(this).text());
+  $('.games-navigator').addClass('games-navigator--active');
+  $('.games-navigator__content').html($(currentpage).clone().show());
+  $('.games-hub').hide();
+});
+
+// Close Page
+$('.games-navigator__bar-close').click(_GamesNavigatorClose);
+function _GamesNavigatorClose(){
+  $('.games-navigator').removeClass('games-navigator--active');
+  $('.games-navigator__content').html('');
+  $('.games-hub').show();
+}
+
+// Navigator Search
+$('.games-navigator__bar-search-button').click(function(){
+  
+  $(this).parent().toggleClass('games-navigator__bar-search--active');
+  games_navigator__top_bar_search__active = $(this).parent().hasClass('games-navigator__bar-search--active');
+  
+  // Focus on textbox
+  if(games_navigator__top_bar_search__active){
+    $('.games-navigator__bar-search-box').focus();
+  } else {
+    $('.games-navigator__bar-search-box').val('');
+    _GamesNavigatorClose();
+  }
+});
+
+});
+
+  </script>
+</body>
+</html>

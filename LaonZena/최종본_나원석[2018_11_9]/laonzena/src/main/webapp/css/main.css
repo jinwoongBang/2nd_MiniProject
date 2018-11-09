@@ -1,0 +1,114 @@
+@charset "UTF-8";
+#title {
+	animation-name: myani;
+    animation-duration: 1.5s;
+    animation-timing-function: linear;
+    animation-iteration-count:infinite;
+    animation-direction:alternate-reverse;
+	text-align: center;	
+    padding-top: 0em;
+}
+@keyframes myani {
+		0% {
+            color:green;
+        }
+        25% {
+			color:rgb(122, 233, 122);
+        }
+        50% {
+			color:rgba(255, 251, 7, 0.973);
+        }
+        75% {
+            color:rgb(247, 103, 146);
+        }
+        100% {
+            color:rgb(6, 225, 233);
+        }
+}
+
+body {
+	background-image: url("../img/main3.jpg");
+	background-size: 100%;
+
+}
+.banner {
+	border-radius: 30px;
+	top:50px;
+	position:relative;
+	height: 400px;
+	display: flex;
+	width: 80%;
+	left:150px;
+}
+
+.banner__item {
+	border-radius: 20px;
+	flex: 1;
+	color: #fff;
+	font-weight: bold;
+	font-size: 2.5em;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: flex-grow .8s;
+	
+}
+
+.banner__item:nth-child(1) {
+	background: url("../img/culogo.png");
+	background-repeat: no-repeat;
+	background-size: 110% 110%;
+}
+
+.banner__item:nth-child(2) {
+	background: url("../img/gslogo.jpg");
+	background-repeat : no-repeat;
+	background-size: 110% 110%;
+
+}
+
+.banner__item:nth-child(3) {
+	background: url("../img/sevenlogo.jpg");
+	background-repeat : no-repeat;
+	background-size: 100% 100%;
+}
+
+.banner__item:nth-child(4) {
+	background: url("../img/minilogo.jpg");
+	background-repeat : no-repeat;
+	background-size: 110% 110%;
+}
+
+.banner__item:nth-child(5) {
+	background: url("../img/emartlogo.png");
+	background-repeat : no-repeat;
+	background-size: 110% 110%;
+ 	
+}
+
+.banner__item:hover {
+	flex-grow: 5;
+	
+}
+
+.banner__item:hover .banner__title a{
+	font-size: 100px;
+	-webkit-transform: rotate(0);
+	transform: rotate(0);
+	animation-name: myani;
+    animation-duration: 1.5s;
+    animation-timing-function: linear;
+    animation-iteration-count:infinite;
+    animation-direction:alternate-reverse;
+}
+
+#spanlogo {
+	margin: 40%;
+}
+#search {
+	margin: auto 500px;
+}
+#searchbox {
+	width: 500px;
+}
+

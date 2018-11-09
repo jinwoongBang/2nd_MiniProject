@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.laonzena.repository.mapper.GsBoardMapper">
+	<resultMap id="boardMap" type="Board">
+		<result column="board_no" property="no" />
+		<result column="board_title" property="title" />
+		<result column="board_content" property="content" />
+		<result column="board_reg_date" property="regDate" />
+		<result column="board_category" property="category" />
+		<result column="board_product" property="product" />
+		<result column="board_view_cnt" property="viewCnt" />
+		<result column="board_recom_cnt" property="recomCnt" />
+		<result column="attach_ori_name" property="oriName" />
+		<result column="attach_ser_name" property="serName" />
+		<result column="attach_ser_path" property="serPath" />
+		<result column="board_writer" property="writer" />
+	</resultMap>
+	
+	<resultMap type="comment" id="commentMap">
+		<result column="comment_no" property="commentNo"/>
+		<result column="board_no" property="boardNo"/>
+		<result column="comment_content" property="content"/>
+		<result column="comment_writer" property="writer"/>
+	</resultMap>
+	
+	<!-- 참조 -->
+<!-- 	<select id="selectBoard" parameterType="Page" resultMap="BoardMap"> -->
+<!-- 		select * -->
+<!-- 		  from (select rownum rnum, a.* 	 -->
+<!-- 			      from (select * -->
+<!-- 				    	  from tb_paging_board  -->
+<!-- 					     order by no desc) a -->
+<!-- 			     where rownum &lt;= #{end}) -->
+<!-- 		 where rnum &gt;= #{begin}			      -->
+<!-- 	</select> -->
+	
+	<select id="selectBoard" parameterType ="Page" resultMap="boardMap">
+		select *
+		  from (select rownum rnum, a.* 	
+			      from (select *
+				    	  from lz_tb_gs_board 
+					     order by board_no desc) a
+			     where rownum &lt;= #{endNo})
+		 where rnum &gt;= #{beginNo}
+	</select>
+	
+	<!-- 전체 게시물의 수(조건에 맞는) -->
+	<select id="selectBoardCount" resultType="int">
+		select count(*)
+		  from lz_tb_gs_board 
+	</select>
+	
+	<insert id="insertBoard" parameterType="Board">
+		insert into lz_tb_gs_board (
+                        board_no,
+                        board_title,
+                        board_content,
+                        board_category,
+                        board_product,
+                        board_view_cnt,
+                        board_recom_cnt,
+                        attach_ori_name,
+                        attach_ser_name,
+                        attach_ser_path,
+                        board_writer  
+            )values(
+                        lz_s_gs_board_no.nextval,
+                        #{title},
+                        #{content},
+                        #{category},
+                        #{product},
+                        0,
+                        0,
+                        #{oriName},
+                        #{serName},
+                        #{serPath},
+                        #{writer}
+		)
+	</insert>
+	
+	<select id="selectBoardByNo" parameterType="int" resultMap="boardMap">
+		select *
+		 from lz_tb_gs_board
+		where board_no = #{no} 
+	</select>
+	
+	<update id="viewCntUp" parameterType="int">
+		update lz_tb_gs_board
+		set   board_view_cnt= board_view_cnt+1
+		where board_no = #{no}
+	</update>
+	
+	<update id="updateBoard" parameterType="Board">
+		update lz_tb_gs_board
+		set   board_title = #{title},
+			  board_content = #{content}
+		where board_no = #{no}
+	</update>
+	
+	<delete id="deleteBoard" parameterType="int">
+    	delete 
+    	  from lz_tb_gs_board
+    	 where board_no = #{no}
+    </delete> 
+	
+	
+	<!-- 댓글  -->
+	<select id="selectCommentByNo" parameterType="int" resultMap="commentMap">
+		select *
+		 from lz_tb_gs_comment
+		where board_no = #{boardNo} 
+	</select>
+	
+	<insert id="insertComment" parameterType="comment">
+		insert into lz_tb_gs_comment(
+		    comment_no,
+		    board_no,
+		    comment_content,
+		    comment_writer
+		)values(
+		    lz_s_gs_comment_no.nextval,
+		    #{boardNo},
+		    #{content},
+		    #{writer}    
+		)
+	</insert>
+	
+	<update id="updateComment" parameterType="comment">
+		update lz_tb_gs_comment
+		set  comment_content=#{content}
+		where board_no=#{boardNo} and comment_no=#{commentNo}
+	</update>
+	
+	<delete id="deleteComment" parameterType="comment">
+		delete 
+		from lz_tb_gs_comment
+		where board_no=#{boardNo} and comment_no=#{commentNo}
+	</delete>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

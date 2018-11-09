@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- 탑 리스트 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css" />
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://cdn.rawgit.com/VPenkov/okayNav/master/app/js/jquery.okayNav.js"></script>
+    
+    <!-- 탑리스트 -->
+    <style>
+        * { box-sizing:border-box }
+        *:before, *:after { box-sizing:inherit }
+        
+        
+        /* Basic styles */
+        html {
+          font-size: 62.5%;
+          -webkit-tap-highlight-color: rgba(0,0,0,0);
+          /* font-family: @font-family-base; */
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.4rem;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #f7f7f7;
+        }
+
+        /* body {
+          color: #aaa;
+          font-family: "PT Sans";
+          background: url("https://subtlepatterns.com/patterns/sos.png");
+        } */
+        a { text-decoration: none }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        main {
+            margin-top: 10rem;
+            text-align: center;
+        }
+        /* Header styles */
+        header {
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+            background-color: #fff;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+            flex-direction: row;
+            height: 7rem;
+            padding: 0 15px;
+            position: fixed;
+            -webkit-justify-content: space-between;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            top: 0;
+            width: 100%
+        }
+
+        .site-logo {
+            transition: color 200ms cubic-bezier(.55, 0, .1, 1);
+            color: #30acff;
+            font-size: 3rem;
+        }
+
+        .ok-header__logo:hover {color: #546edb}
+
+        /* okayNav styles */
+        body.okayNav-loaded {
+          overflow-x: hidden;
+        }
+        .okayNav:not(.loaded) {
+          visibility: hidden;
+          -webkit-user-select: none;
+            -moz-user-select: none;
+              -ms-user-select: none;
+                  user-select: none;
+        }
+        .okayNav ul {
+          /* We want two navigations - one hidden and one visible */
+          float: left;
+        }
+        .okayNav a {
+          /* Links general styling */
+          color: #2e2e33;
+          font-size: 1.4rem;
+          font-weight: bold;
+          position: relative;
+          z-index: 1;
+        }
+        .okayNav__nav--visible {
+          overflow: hidden;
+          white-space: nowrap;
+        }
+        .okayNav__nav--visible li {
+          display: inline-block;
+        }
+        .okayNav__nav--visible a {
+          /* Link styling for the visible part of the nav */
+          display: block;
+          transition: color 200ms cubic-bezier(0.55, 0, 0.1, 1);
+          padding: 15px 15px;
+        }
+        .okayNav__nav--visible a:hover {
+          color: #546edb;
+        }
+        /* Link styling for the off-screen part of the nav */
+        .okayNav__nav--invisible {
+          position: fixed;
+          top: 70px;
+          bottom: 0;
+          overflow-y: scroll;
+          -webkit-overflow-scrolling: touch;
+          background: #fff;
+        }
+        .okayNav__nav--invisible a {
+          background: #fff;
+          width: 240px;
+          display: block;
+          padding: 15px;
+        }
+        .okayNav__nav--invisible.nav-left {
+          left: 0;
+          -webkit-transform: translateX(-100%);
+                  transform: translateX(-100%);
+        }
+        .okayNav__nav--invisible.nav-right {
+          right: 0;
+          -webkit-transform: translateX(100%);
+                  transform: translateX(100%);
+        }
+        .okayNav__nav--invisible.transition-enabled {
+          transition: -webkit-transform 400ms cubic-bezier(0.55, 0, 0.1, 1);
+          transition: transform 400ms cubic-bezier(0.55, 0, 0.1, 1);
+          transition: transform 400ms cubic-bezier(0.55, 0, 0.1, 1), -webkit-transform 400ms cubic-bezier(0.55, 0, 0.1, 1);
+        }
+        .okayNav__nav--invisible.nav-open {
+          -webkit-transform: translateX(0);
+                  transform: translateX(0);
+        }
+        /* Kebab icon */
+        .okayNav__menu-toggle {
+          position: relative;
+          transition: -webkit-transform 400ms cubic-bezier(0.55, 0, 0.1, 1);
+          transition: transform 400ms cubic-bezier(0.55, 0, 0.1, 1);
+          transition: transform 400ms cubic-bezier(0.55, 0, 0.1, 1), -webkit-transform 400ms cubic-bezier(0.55, 0, 0.1, 1);
+          cursor: pointer;
+          width: 40px;
+          height: 20px;
+          float: left;
+          z-index: 1;
+          top: 15px;
+        }
+        .okayNav__menu-toggle.okay-invisible {
+          position: absolute;
+          opacity: 0;
+          -webkit-user-select: none;
+            -moz-user-select: none;
+              -ms-user-select: none;
+                  user-select: none;
+          pointer-events: none;
+        }
+        .okayNav__menu-toggle span {
+          display: block;
+          position: absolute;
+          margin: auto;
+          height: 4px;
+          width: 4px;
+          background: #2e2e33;
+          border-radius: 50%;
+          left: 0;
+          right: 0;
+          pointer-events: none;
+        }
+        .okayNav__menu-toggle span:nth-child(1) {
+          top: 0;
+        }
+        .okayNav__menu-toggle span:nth-child(2) {
+          top: 50%;
+          -webkit-transform: translateY(-50%);
+                  transform: translateY(-50%);
+        }
+        .okayNav__menu-toggle span:nth-child(3) {
+          bottom: 0;
+        }
+        .okayNav__menu-toggle.icon--active {
+          /* Kebab icon when off-screen nav is open */
+          -webkit-transform: rotate(90deg);
+                  transform: rotate(90deg);
+        }
+        .okayNav__menu-toggle.icon--active span {
+          background: #546edb;
+        }
+    </style>    
+            
+    <!-- 메뉴 -->
+    <style>
+        @import url("http://weloveiconfonts.com/api/?family=entypo");
+            *, *:after, *:before {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        [class*="entypo-"]:before, #form #submit, .green, .orange {
+            -webkit-font-smoothing: antialiased;
+            -moz-macosx-text-rendering: grayscale;
+        }
+
+        .wrap:after {
+            clear: both;
+            content: "";
+            display: table;
+        }
+        .wrap:before {
+            content: "";
+            display: table;
+        }
+
+        [class*="entypo-"]:before {
+            font-family: 'entypo', sans-serif;
+            font-style: normal;
+        }
+        a {
+            color: rgb(173, 173, 173);
+            text-decoration: none;
+            margin-bottom: 1em;
+        }
+
+        a i {
+            margin-right: 7px;
+        }
+
+        .wrap {
+            position: absolute;
+            width: 1020px;
+            padding: 2em 0;
+            top:50px;
+        }
+
+        section {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            width: 300px;
+            float: left;
+            /* margin-right: 100%;*/
+            padding: 0 3% 1em; 
+        }
+
+        #vert-nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        #vert-nav .topmenu li.openmenu > a {
+            background: #50a37e;
+        }
+        #vert-nav .topmenu li.openmenu .sf {
+            -webkit-transform: rotate(180deg);
+        }
+        #vert-nav .topmenu li {
+            position: relative;
+        }
+        #vert-nav .topmenu li .sf {
+            position: absolute;
+            z-index: 9;
+            top: 1em;
+            right: 1em;
+            color: #378a65;
+            -moz-transition: all 0.3s ease;
+            -o-transition: all 0.3s ease;
+            -webkit-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+            -webkit-backface-visibility: hidden;
+        }
+        #vert-nav .topmenu li:last-child a {
+            border-bottom: 0.2em solid #398e68;
+        }
+        #vert-nav .topmenu li a {
+            margin: 0;
+            padding: 1em;
+            display: block;
+            width: 100%;
+            background: #3D9970;
+            color: #fff;
+            border-bottom: 0.1em solid #398e68;
+        }
+        #vert-nav .topmenu li a:hover {
+            background: #50a37e;
+        }
+        #vert-nav .submenu {
+            display: none;
+        }
+        #vert-nav .submenu li:last-child a {
+            border-width: .1em;
+        }
+        #vert-nav .submenu li a {
+            padding-left: 2.6em;
+            background: #3b946d;
+            -moz-transition: all 0.3s ease;
+            -o-transition: all 0.3s ease;
+            -webkit-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+        }
+        #vert-nav .submenu li a:hover {
+            background: #3c976f;
+        }
+
+        #form input, #form textarea {
+            width: 100%;
+            outline: none;
+            border: 0.1em solid #ebebeb;
+            border-bottom: none;
+            color: #aaa;
+            padding: .65em .65em .65em 2.2em;
+        }
+        #form input:focus, #form textarea:focus {
+            background: #fcfcfc;
+        }
+        #form .field {
+            padding: 0;
+            position: relative;
+        }
+        #form label {
+            position: absolute;
+            text-transform: uppercase;
+            color: #e6e6e6;
+            top: .5em;
+            left: .5em;
+            font-size: 1.2em;
+        }
+        /* #form label.focused {
+            color: #3D9970;
+        } */
+        #form #rangeval {
+            float: right;
+        }
+        #form #submit {
+            outline: none;
+            border: none;
+            background: #3D9970;
+            display: block;
+            color: #fff;
+            padding: 0.75em;
+            font-size: 1em;
+            border-bottom: 0.2em solid #398e68;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        #form #submit:hover {
+            color: #fff;
+            background: #50a37e;
+        }
+        #form #submit:active {
+            border-bottom: none;
+            margin-top: .2em;
+        }
+
+        .green {
+            background: #3D9970;
+            display: inline-block;
+            color: #fff;
+            padding: 1em 2em;
+            font-size: 1em;
+            border-bottom: 0.2em solid #398e68;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .green:hover {
+            color: #fff;
+            background: #50a37e;
+        }
+        .green:active {
+            border-bottom: none;
+            margin-top: .2em;
+        }
+
+        .orange {
+            background: #FF851B;
+            display: inline-block;
+            color: #fff;
+            padding: 1em 2em;
+            font-size: 1em;
+            border-bottom: 0.2em solid #ed7c19;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .orange:hover {
+            color: #fff;
+            background: #ff9132;
+        }
+        .orange:active {
+            border-bottom: none;
+            margin-top: .2em;
+        }
+    </style>
+
+    <!-- 게시판 -->
+    <style>
+        table, tr{
+            /* border: 1px solid black; */
+            border-collapse: collapse;
+        }
+        tbody {
+          font-size : 10px;
+        }
+        
+        tbody > tr:hover{
+          background-color: rgb(255, 247, 238);
+        }
+        table {
+          position: absolute;
+          top:110px;
+          left:400px;
+          width: 1000px;
+          text-align: center;
+        }
+        th{
+          background-color: rgb(255, 245, 233);
+          height: 50px;
+          border-bottom: 2px solid #c9c9c9;
+          
+        }
+        img.product {
+          width: 50px;
+          height: 50px;
+        }
+   
+        div.pagination {
+            display: flex;
+            position: absolute;
+            width: 800px;
+
+            top:750px;
+            left:500px;
+        }
+        div.pagination > div {
+            height: 20px;
+            width: 20px;
+            /* border: 1px solid gray; */
+            margin: auto;
+            text-align: center;
+            /* border: 1px solid #2e2e33; */
+            border-radius: 4px;
+        }
+    
+        div.pagination > div:active{
+            font-size: 15px; 
+            box-shadow: 1px 1px 1px 1px #666 inset;
+            
+        }
+        
+        div.searchBar{
+            display: flex;
+            position: absolute;
+            width: 800px;
+            
+            top:705px;
+            left:700px;
+        }
+        div.searchBar>input{
+            border-radius: 10px;
+            width: 300px;
+        }
+        div.searchBar>input:focus{
+            background-color: rgb(255, 251, 247);
+        }
+        div.searchBar>select{
+            border-radius: 10px;
+            background-color: #f7f7f7;
+        }
+        div.searchBar> .search{
+            position: relative;
+            border: 0px solid white;
+            border-radius: 10px;
+            background-color: rgb(255, 247, 238);
+            left: 5px;
+        }
+        div.searchBar> .write{
+            position: relative;
+            border: 0px solid white;
+            border-radius: 10px;
+            background-color: #e5fff3;
+            left:200px;
+            width: 100px;
+            height: 30px;
+            font-weight: bold;
+        }
+        div.searchBar> .write:active{
+            box-shadow: 2px 2px 2px 2px #666 inset;
+        }
+        div.searchBar > img {
+            position: relative;
+            widows: 20px;
+            height: 20px;
+            left: 5px;
+        }
+        #overlay{
+            position: absolute;
+            width: 120%;
+            height: 120%;
+            background-color: #2e2e33;
+            opacity: 0.7;
+            visibility: hidden;
+            z-index: 1;
+        }
+        #content{
+            position: absolute;
+            width: 700px;
+            height: 550px;
+            background-color: rgb(255, 245, 233);;
+            border-radius: 40px;
+            top:100px;
+            left: 500px;
+            z-index: 2;
+            visibility: hidden;
+            box-shadow: 4px 4px 4px 4px rgb(255, 209, 209);
+            padding: 5px 50px;
+        }
+        #board-write{
+            text-align: center;
+            text-shadow:2px 2px 2px 2px #707070;
+            font-size: 15px;
+        }
+        #content>div>input{
+            position: relative;
+            width: 300px;
+            height: 30px;
+            border-radius: 10px;
+            margin: 15px;
+            left: 50px;
+        }
+        #content>div>input:focus{
+            position: relative;
+            width: 300px;
+            height: 30px;
+            border-radius: 10px;
+            margin: 10px;
+            left: 40px;
+            box-shadow: 2px 2px 2px 2px #707070;
+        }
+        textarea{
+            position: relative;
+            border-radius: 20px;
+            width: 500px;
+            height: 120px;
+            left: 50px;
+            top: 20px;
+        }
+        textarea:focus{
+            position: relative;
+            border-radius: 20px;
+            box-shadow: 2px 2px 2px 2px #707070;
+        }
+        #content>div>select{
+            position: relative;
+            left:60px;
+            border-radius: 5px;
+            width: 100px;
+        }
+        #content>div span{
+            display: inline-block;
+            width:50px;
+        }
+        #text{
+            position: relative;
+            top:00px;
+        }
+        #search-product{
+            position: relative;
+            width: 20px;
+            height: 20px;
+            left: 42px;
+            top: 4px;
+            cursor: pointer;
+        }
+        
+        #search-img{
+            position: relative;
+            display: inline-block;
+            width: 150px;
+            height: 150px;
+            border-radius: 100px;
+            float: right;
+            right:-25px;
+            top:10px;
+        }
+        #search-img>img{
+            width: 150px;
+            height: 150px;
+            border-radius: 100px;
+        }
+        #write-review{
+            position: relative;
+            top: 40px;
+            left: 140px;
+            
+        }
+        #write-review > button {
+            background-color: #d2edff;
+            border-radius: 10px;
+            width: 170px;
+            height: 40px;
+            color: #666;
+            margin: 0px 20px;
+        }
+    </style>
+
+
+</head>
+<body>
+    <div id="overlay">
+        
+    </div>
+    <div id="content">
+        <div id="board-write">
+            <h1>
+                Write
+            </h1>
+        </div>
+        <span id="search-img">
+            <img src="../img/god.jpg">
+        </span>
+        <div>
+            <span>Title</span>
+            <input type="text" />
+        </div>
+        <div>
+            <span>Category</span>
+            <select id="search-category">
+                <option>유제품</option>
+                <option>햄버거</option>
+                <option>음료</option>
+            </select>
+        </div>
+        <div>
+            <span>Product</span>
+            <input type="text" />
+            <img id="search-product" src="../img/search icon png vector.png" />
+        </div>
+        <div>
+            <span>Price</span>
+            <input type="text" />
+        </div>
+        <div>
+            <span id="text">Content</span>
+            <textarea></textarea>
+        </div>
+        <div id="write-review">
+            <button>Submit</button>
+            <button>cancel</button>
+        </div>
+    </div>
+
+    </div>
+    <!-- 탑리스트 -->
+    <header id="header">
+            <a id="topList" class="site-logo" href="#">
+                     Logo
+            </a> 
+            <nav role="navigation" id="nav-main" class="okayNav">
+              <ul>
+                <li><a id="topList" href="#">Home</a></li>
+                <li><a id="topList" href="#">자유게시판</a></li>
+                <li><a id="topList" href="#">Blog</a></li>
+                <li><a id="topList" href="#">Services</a></li>
+                <li><a id="topList" href="#">Contacts</a></li>
+                <li><a id="topList" href="#">로그인</a></li>
+              </ul>
+            </nav>
+    </header>
+    <!-- /header -->
+    <script>
+        var navigation = $('#nav-main').okayNav();	
+    </script>
+
+    <!-- 메뉴 -->
+    <div class="wrap">
+        <section id="vert-nav">
+            <h3>GS Board</h3>
+            <nav role='navigation'>
+                <ul class="topmenu">
+                    <!-- <li><a id="#" href="#0"><i class="entypo-home"></i> Home</a></li> -->
+                    <li><a href="#0"><i class="entypo-user"></i>Product</a>
+                        <ul class="submenu">
+                            <li> <a href="#0">전체</a></li>
+                            <li> <a href="#0">음료/커피</a></li>
+                            <li> <a href="#0">유제품</a></li>
+                            <li> <a href="#0">과자/간식</a></li>
+                            <li> <a href="#0">라면/가공식품</a></li>
+                            <li> <a href="#0">생활용품</a></li>
+                        </ul>
+                            </li>
+                            <li><a href="#0"><i class="entypo-brush"></i>Event Product</a>
+                        <ul class="submenu">
+                            <li> <a href="#0">1+1</a></li>
+                            <li> <a href="#0">2+1</a></li>
+                            <li> <a href="#0">덤증정</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#0"><i class="entypo-vcard"></i>Review Community</a></li>
+                </ul>
+            </nav>  
+        </section>
+    </div>
+              
+    <!-- 게시판 -->
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Category</th>
+          <th>Product</th>
+          <th>Product Name</th>
+          <th>Title</th>
+          <th>Writer</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>1</td>
+              <td>review</td>
+              <td><img class="product" src="../img/spinner.jpg"/></td>
+              <td>혜자네 창렬 김밥</td>
+              <td>혜자인듯 창렬인듯 존맛인듯</td>
+              <td>방진웅</td>
+              <td>2018 - 10 - 29</td>
+          </tr>
+          <tr>
+              <td>2</td>
+              <td>review</td>
+              <td><img class="product" src="../img/spinner.jpg"/></td>
+              <td>혜자네 창렬 김밥</td>
+              <td>혜자인듯 창렬인듯 존맛인듯</td>
+              <td>방진웅</td>
+              <td>2018 - 10 - 29</td>
+          </tr>
+          <tr>
+              <td>3</td>
+              <td>review</td>
+              <td><img class="product" src="../img/spinner.jpg"/></td>
+              <td>혜자네 창렬 김밥</td>
+              <td>혜자인듯 창렬인듯 존맛인듯</td>
+              <td>방진웅</td>
+              <td>2018 - 10 - 29</td>
+          </tr>
+          <tr>
+              <td>4</td>
+              <td>review</td>
+              <td><img class="product" src="../img/spinner.jpg"/></td>
+              <td>혜자네 창렬 김밥</td>
+              <td>혜자인듯 창렬인듯 존맛인듯</td>
+              <td>방진웅</td>
+              <td>2018 - 10 - 29</td>
+          </tr>
+          <tr>
+              <td>5</td>
+              <td>review</td>
+              <td><img class="product" src="../img/spinner.jpg"/></td>
+              <td>혜자네 창렬 김밥</td>
+              <td>혜자인듯 창렬인듯 존맛인듯</td>
+              <td>방진웅</td>
+              <td>2018 - 10 - 29</td>
+          </tr>
+          <tr>
+              <td>6</td>
+              <td>review</td>
+              <td><img class="product" src="../img/spinner.jpg"/></td>
+              <td>혜자네 창렬 김밥</td>
+              <td>혜자인듯 창렬인듯 존맛인듯</td>
+              <td>방진웅</td>
+              <td>2018 - 10 - 29</td>
+          </tr>
+          <tr>
+              <td>7</td>
+              <td>review</td>
+              <td><img class="product" src="../img/spinner.jpg"/></td>
+              <td>혜자네 창렬 김밥</td>
+              <td>혜자인듯 창렬인듯 존맛인듯</td>
+              <td>방진웅</td>
+              <td>2018 - 10 - 29</td>
+          </tr>
+          <tr>
+              <td>8</td>
+              <td>review</td>
+              <td><img class="product" src="../img/spinner.jpg"/></td>
+              <td>혜자네 창렬 김밥</td>
+              <td>혜자인듯 창렬인듯 존맛인듯</td>
+              <td>방진웅</td>
+              <td>2018 - 10 - 29</td>
+          </tr>
+          <tr>
+              <td>9</td>
+              <td>review</td>
+              <td><img class="product" src="../img/spinner.jpg"/></td>
+              <td>혜자네 창렬 김밥</td>
+              <td>혜자인듯 창렬인듯 존맛인듯</td>
+              <td>방진웅</td></td>
+              <td>2018 - 10 - 29</td>
+          </tr>
+          <tr>
+              <td>10</td>
+              <td>review</td>
+              <td><img class="product" src="../img/spinner.jpg"/></td>
+              <td>혜자네 창렬 김밥</td>
+              <td>혜자인듯 창렬인듯 존맛인듯</td>
+              <td>방진웅</td>
+              <td>2018 - 10 - 29</td>
+          </tr>
+      
+      </tbody>
+    </table>
+        <div class="searchBar">
+            <select>
+                <option value="">글제목</option>
+                <option value="">작성자</option>
+                <option value="">내용</option>
+            </select>
+            <input type="text"/>
+            <img src="../img/search icon png vector.png"/>
+            <button type="submit" class="write">Write</button>
+        </div>
+        <div class="pagination">
+            <div>
+                <a href="#1">&lt;&lt;</a>
+            </div>
+            <div>
+                <a href="#2">&lt;</a>
+            </div>
+            <div>
+                <a href="#3">1</a>
+            </div>
+            <div>
+                <a href="#4">2</a>
+            </div>
+            <div>
+                <a href="#5">3</a>
+            </div>
+            <div>
+                <a href="#6">4</a>
+            </div>
+            <div>
+                <a href="#7">5</a>
+            </div>
+            <div>
+                <a href="#8">6</a>
+            </div>
+            <div>
+                <a href="#9">7</a>
+            </div>
+            <div>
+                <a href="#10">8</a>
+            </div>
+            <div>
+                <a href="#11">9</a>
+            </div>
+            <div>
+                <a href="#12">10</a>
+            </div>
+            <div>
+                <a href="#13">&gt;</a>
+            </div>
+            <div>
+                <a href="#14">&gt;&gt;</a>
+            </div>
+        </div>
+        
+    <script>
+        /* 사이드 메뉴 */
+        $(".submenu").parent().prepend('<i class="entypo-down-open-big sf"></i>');
+
+        $("#vert-nav .topmenu a").click( function() {
+            var $menu = $(this).next(".submenu");
+            $menu.slideToggle('slow');
+            $menu.parent().toggleClass('openmenu');
+        });
+
+        $("input,textarea").focus( function() {
+            $(this).prev("label").addClass('focused');
+        }); 
+
+        $("input,textarea").blur( function() {
+            $(this).prev("label").removeClass('focused');
+        });
+    </script>
+
+    <script>
+        /* 글 작성 */
+        $(".write").on("click",function () {
+            var overlay = document.getElementById("overlay");
+            var content = document.getElementById("content");
+            overlay.style.visibility = "visible";
+            content.style.visibility = "visible";
+            $("#overlay").on("click", function () {
+                overlay.style.visibility = "hidden";
+                content.style.visibility = "hidden";
+            })
+        })
+        
+        /* 상품 검색 */
+        $("#search-product").on("click", function(){
+            alert("상품 검색");
+            window.open(
+			    "http://gs25.gsretail.com/gscvs/ko/products/youus-freshfood", "상품 검색", "width=700px,height=500px"	
+		    );
+        })
+        
+        /* 상품 검색 버튼 */
+        $("#search-product").mouseenter(function () {
+            $(this).animate({width:25, height:25});
+        }).mouseleave(function(){
+            $(this).animate({width:20, height:20});
+        })
+        
+        /* Content submit */
+        $("#write-review>button:nth-child(1)").on("click", function () {
+            alert("제출");
+            var overlay = document.getElementById("overlay");
+            var content = document.getElementById("content");
+            overlay.style.visibility = "hidden";
+            content.style.visibility = "hidden";
+        })
+
+        /* Content cancel */
+        $("#write-review>button:nth-child(2)").on("click", function () {
+            alert("취소");
+            var overlay = document.getElementById("overlay");
+            var content = document.getElementById("content");
+            overlay.style.visibility = "hidden";
+            content.style.visibility = "hidden";
+        })
+
+    </script>
+</body>
+</html>
