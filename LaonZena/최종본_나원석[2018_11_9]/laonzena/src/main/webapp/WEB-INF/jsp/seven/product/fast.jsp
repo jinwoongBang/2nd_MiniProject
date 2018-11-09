@@ -32,6 +32,7 @@
 
 </head>
 <body>
+<input id="pageSize" type="hidden" value="${pageSize}">
 <div class="wrap" style="margin-left: 30%">
 		<div class="games-navigator , games-navigator--active">
 
@@ -47,8 +48,27 @@
 						</a>
 					</c:forEach>
 				</div>
+				<button type="button" style="width: 75%;margin-left: 2%">더보기</button>
 			</div>
 		</div>
 	</div>
+	
+	<script>
+	// 마지막 자식
+	var count = $(".games-navigator__content > .games-search > .games-bit > .games-bit__title > #prname1").length;
+		$("button").click(function () {
+			if(parseInt(count)%3!=0) {
+				$("button").after("<p style='margin-left:30%'>더 이상 표시할 내용이 없습니다.</p>")
+				$("button").remove();
+				return false;
+			}
+			var pageSize=parseInt($("#pageSize").val());
+			pageSize +=6;
+						
+			location.href="fast.do?pageSize="+pageSize
+		})
+		
+	
+	</script>
 </body>
 </html>

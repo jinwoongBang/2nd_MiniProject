@@ -52,5 +52,71 @@ public class SevenEventController {
 		}
 		return mav;
 	}
+	
+	@RequestMapping("/2n1.do")
+	public ModelAndView twoPlus() {
+		ModelAndView mav = new ModelAndView("seven/event/2n1");
+		
+		try {
+			Document doc = Jsoup.connect("http://www.7-eleven.co.kr/product/presentList.asp?pTab=2").get();
+//			Document doc2 = Jsoup.connect("http://www.7-eleven.co.kr/product/listMoreAjax.asp?intPageSize=10&pTab=1").get();
+
+			Elements list = doc.select("div.pic_product");
+			List products = new ArrayList();
+				for (Element e : list) {
+					// System.out.println(e.html());
+					Elements sList0 = e.select(".pic_product > img");
+					Elements sList1 = e.select(".infowrap > .name");
+					Elements sList2 = e.select(".infowrap >.price");
+
+					String image = sList0.attr("src");
+					String name = sList1.html();
+					String price = sList2.text();
+					HashMap<String, String> product = new HashMap<>();
+					product.put("image", image);
+					product.put("name", name);
+					product.put("price", price);
+					products.add(product);
+				}
+			mav.addObject("products", products);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return mav;
+	}
+	
+	@RequestMapping("/presentation.do")
+	public ModelAndView dum() {
+		ModelAndView mav = new ModelAndView("seven/event/presentation");
+		
+		try {
+			Document doc = Jsoup.connect("http://www.7-eleven.co.kr/product/presentList.asp?pTab=3").get();
+//			Document doc2 = Jsoup.connect("http://www.7-eleven.co.kr/product/listMoreAjax.asp?intPageSize=10&pTab=1").get();
+
+			Elements list = doc.select("div.pic_product");
+			List products = new ArrayList();
+				for (Element e : list) {
+					// System.out.println(e.html());
+					Elements sList0 = e.select(".pic_product > img");
+					Elements sList1 = e.select(".infowrap > .name");
+					Elements sList2 = e.select(".infowrap >.price");
+
+					String image = sList0.attr("src");
+					String name = sList1.html();
+					String price = sList2.text();
+					HashMap<String, String> product = new HashMap<>();
+					product.put("image", image);
+					product.put("name", name);
+					product.put("price", price);
+					products.add(product);
+				}
+			mav.addObject("products", products);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return mav;
+	}
 
 }

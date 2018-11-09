@@ -56,5 +56,12 @@ int i=0;
 		</div>
 
 	</div>
+	
+	<script>
+		$.ajax({
+			url:""
+		})
+	
+	</script>
 </body>
 </html>

@@ -40,7 +40,7 @@
 				<div class="games-search">
 					<c:forEach var="p" items="${products}">
 						<a href="#" class="games-bit"> <img class="games-bit__image"
-							src="https://www.emart24.co.kr${p.image}" />
+							src="http://www.7-eleven.co.kr${p.image}"  style="width:60%;height:60% "/>
 							<div class="games-bit__title" style="margin-top: 36px;">
 								<span id="prname1" style='margin-left: 15px'>${p.name}</span>
 								<div id="price" style="padding-top: 10%; 	margin-top: 5px;">${p.price}원</div>

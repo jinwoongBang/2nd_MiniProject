@@ -12,6 +12,7 @@ import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.laonzena.seven.service.SevenProductService;
@@ -21,7 +22,6 @@ import kr.co.laonzena.seven.service.SevenProductService;
 public class SevenProductController {
 	@Autowired
 	private SevenProductService service;
-	
 	
 	@RequestMapping("/productlist.do")
 	public void prList() {
@@ -61,11 +61,11 @@ public class SevenProductController {
 	}
 	
 	@RequestMapping("/fast.do")
-	public ModelAndView fast() {
-		ModelAndView mav = new ModelAndView("seven/product/product");
+	public ModelAndView fast(@RequestParam(value="pageSize", defaultValue="9") String pageSize) {
+		ModelAndView mav = new ModelAndView("seven/product/fast");
 		
 		try {
-			Document doc = Jsoup.connect("http://www.7-eleven.co.kr/product/dosirakNewMoreAjax.asp?intPageSize=9&pTab=d_group").get();
+			Document doc = Jsoup.connect("http://www.7-eleven.co.kr/product/dosirakNewMoreAjax.asp?intPageSize="+pageSize+"&pTab=d_group").get();
 			Elements list = doc.select(".pic_product");
 			List products = new ArrayList();
 				for (Element e : list) {
@@ -84,6 +84,7 @@ public class SevenProductController {
 					products.add(product);
 				}
 			mav.addObject("products", products);
+			mav.addObject("pageSize", pageSize);
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -92,11 +93,11 @@ public class SevenProductController {
 	}
 	
 	@RequestMapping("/noodle.do")
-	public ModelAndView gimbob() {
-		ModelAndView mav = new ModelAndView("seven/product/product");
+	public ModelAndView gimbob(@RequestParam(value="pageSize", defaultValue="9") String pageSize) {
+		ModelAndView mav = new ModelAndView("seven/product/noodle");
 		
 		try {
-			Document doc = Jsoup.connect("http://www.7-eleven.co.kr/product/dosirakNewMoreAjax.asp?intPageSize=9&pTab=noodle").get();
+			Document doc = Jsoup.connect("http://www.7-eleven.co.kr/product/dosirakNewMoreAjax.asp?intPageSize="+pageSize+"&pTab=noodle").get();
 			Elements list = doc.select(".pic_product");
 			List products = new ArrayList();
 				for (Element e : list) {
@@ -115,6 +116,7 @@ public class SevenProductController {
 					products.add(product);
 				}
 			mav.addObject("products", products);
+			mav.addObject("pageSize", pageSize);
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -122,12 +124,14 @@ public class SevenProductController {
 		return mav;
 	}
 	
+	
+	
 	@RequestMapping("/rice.do")
-	public ModelAndView dosirak() {
-		ModelAndView mav = new ModelAndView("seven/product/product");
+	public ModelAndView dosirak(@RequestParam(value="pageSize", defaultValue="9") String pageSize) {
+		ModelAndView mav = new ModelAndView("seven/product/rice");
 		
 		try {
-			Document doc = Jsoup.connect("http://www.7-eleven.co.kr/product/dosirakNewMoreAjax.asp?intPageSize=9&pTab=mini").get();
+			Document doc = Jsoup.connect("http://www.7-eleven.co.kr/product/dosirakNewMoreAjax.asp?intPageSize="+pageSize+"&pTab=mini").get();
 			Elements list = doc.select(".pic_product");
 			List products = new ArrayList();
 				for (Element e : list) {
@@ -145,7 +149,9 @@ public class SevenProductController {
 					product.put("price", price);
 					products.add(product);
 				}
+
 			mav.addObject("products", products);
+			mav.addObject("pageSize", pageSize);
 
 		} catch (IOException e) {
 			e.printStackTrace();
